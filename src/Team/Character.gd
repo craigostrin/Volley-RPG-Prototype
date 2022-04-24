@@ -15,8 +15,7 @@ var is_hovered := false
 var is_selected := false setget set_is_selected
 export var is_weapon := false
 
-enum Teams { LEFT = 1, RIGHT = -1 }
-var team := 1 setget _set_team
+var team: int = Enum.Teams.LEFT setget _set_team
 
 var anim_names: PoolStringArray = []
 
@@ -49,7 +48,7 @@ func set_is_selected(val: bool) -> void:
 
 
 func _set_team(val: int) -> void:
-	if not val in Teams.values():
+	if not val in Enum.Teams.values():
 		printerr(name + " set to invalid team: " + str(val))
 		return
 	

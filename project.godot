@@ -30,6 +30,10 @@ config/name="Volley RPG PM"
 run/main_scene="res://src/Game.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+Enum="*res://src/Enum.gd"
+
 [display]
 
 window/size/width=600

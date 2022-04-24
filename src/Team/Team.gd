@@ -2,8 +2,7 @@ class_name Team
 extends Node2D
 
 
-enum Sides { LEFT = 1, RIGHT = -1 }
-export(Sides) var side := Sides.LEFT
+export(Enum.Teams) var side := Enum.Teams.LEFT
 
 onready var characters := get_children()
 var weapons := []

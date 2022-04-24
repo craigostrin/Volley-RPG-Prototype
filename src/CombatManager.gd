@@ -1,0 +1,4 @@
+extends Node
+
+signal defense_action_completed
+signal attack_action_completed
