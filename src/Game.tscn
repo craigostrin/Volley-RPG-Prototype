@@ -22,740 +22,6 @@ one_shot = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="UIPane" type="PanelContainer" parent="CanvasLayer"]
-anchor_bottom = 1.0
-margin_right = 200.0
-grow_horizontal = 0
-rect_min_size = Vector2( 200, 0 )
-theme = ExtResource( 3 )
-script = ExtResource( 8 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="VBox" type="VBoxContainer" parent="CanvasLayer/UIPane"]
-margin_left = 7.0
-margin_top = 7.0
-margin_right = 193.0
-margin_bottom = 423.0
-alignment = 1
-
-[node name="ScorePanelContainer" type="PanelContainer" parent="CanvasLayer/UIPane/VBox"]
-margin_top = 45.0
-margin_right = 186.0
-margin_bottom = 115.0
-
-[node name="VBox" type="VBoxContainer" parent="CanvasLayer/UIPane/VBox/ScorePanelContainer"]
-margin_left = 7.0
-margin_top = 7.0
-margin_right = 179.0
-margin_bottom = 63.0
-
-[node name="Top" type="HBoxContainer" parent="CanvasLayer/UIPane/VBox/ScorePanelContainer/VBox"]
-margin_right = 172.0
-margin_bottom = 26.0
-
-[node name="Team1" type="HBoxContainer" parent="CanvasLayer/UIPane/VBox/ScorePanelContainer/VBox/Top"]
-margin_right = 101.0
-margin_bottom = 26.0
-
-[node name="Abbr" type="Label" parent="CanvasLayer/UIPane/VBox/ScorePanelContainer/VBox/Top/Team1"]
-margin_top = 4.0
-margin_right = 39.0
-margin_bottom = 22.0
-theme = ExtResource( 3 )
-text = "CAN"
-valign = 1
-
-[node name="Flag" type="TextureRect" parent="CanvasLayer/UIPane/VBox/ScorePanelContainer/VBox/Top/Team1"]
-margin_left = 43.0
-margin_right = 73.0
-margin_bottom = 26.0
-grow_vertical = 2
-rect_min_size = Vector2( 30, 19 )
-size_flags_horizontal = 3
-texture = ExtResource( 4 )
-expand = true
-stretch_mode = 6
-
-[node name="Serve" type="CheckBox" parent="CanvasLayer/UIPane/VBox/ScorePanelContainer/VBox/Top/Team1"]
-margin_left = 77.0
-margin_right = 101.0
-margin_bottom = 26.0
-button_mask = 0
-
-[node name="SetsWon" type="Panel" parent="CanvasLayer/UIPane/VBox/ScorePanelContainer/VBox/Top"]
-margin_left = 105.0
-margin_right = 127.0
-margin_bottom = 26.0
-rect_min_size = Vector2( 22, 0 )
-
-[node name="SetsWonLabel" type="Label" parent="CanvasLayer/UIPane/VBox/ScorePanelContainer/VBox/Top/SetsWon"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 1.0
-size_flags_horizontal = 5
-text = "0"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Points" type="Panel" parent="CanvasLayer/UIPane/VBox/ScorePanelContainer/VBox/Top"]
-margin_left = 131.0
-margin_right = 172.0
-margin_bottom = 26.0
-rect_min_size = Vector2( 22, 0 )
-size_flags_horizontal = 3
-
-[node name="PointsLabel" type="Label" parent="CanvasLayer/UIPane/VBox/ScorePanelContainer/VBox/Top/Points"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-text = "00"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Bottom" type="HBoxContainer" parent="CanvasLayer/UIPane/VBox/ScorePanelContainer/VBox"]
-margin_top = 30.0
-margin_right = 172.0
-margin_bottom = 56.0
-
-[node name="Team2" type="HBoxContainer" parent="CanvasLayer/UIPane/VBox/ScorePanelContainer/VBox/Bottom"]
-margin_right = 101.0
-margin_bottom = 26.0
-
-[node name="Abbr" type="Label" parent="CanvasLayer/UIPane/VBox/ScorePanelContainer/VBox/Bottom/Team2"]
-margin_top = 4.0
-margin_right = 39.0
-margin_bottom = 22.0
-theme = ExtResource( 3 )
-text = "USA"
-valign = 1
-
-[node name="Flag" type="TextureRect" parent="CanvasLayer/UIPane/VBox/ScorePanelContainer/VBox/Bottom/Team2"]
-margin_left = 43.0
-margin_right = 73.0
-margin_bottom = 26.0
-grow_vertical = 2
-rect_min_size = Vector2( 30, 19 )
-size_flags_horizontal = 3
-texture = ExtResource( 2 )
-expand = true
-stretch_mode = 6
-
-[node name="Serve" type="CheckBox" parent="CanvasLayer/UIPane/VBox/ScorePanelContainer/VBox/Bottom/Team2"]
-margin_left = 77.0
-margin_right = 101.0
-margin_bottom = 26.0
-button_mask = 0
-
-[node name="SetsWon" type="Panel" parent="CanvasLayer/UIPane/VBox/ScorePanelContainer/VBox/Bottom"]
-margin_left = 105.0
-margin_right = 127.0
-margin_bottom = 26.0
-rect_min_size = Vector2( 22, 0 )
-
-[node name="SetsWonLabel" type="Label" parent="CanvasLayer/UIPane/VBox/ScorePanelContainer/VBox/Bottom/SetsWon"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 1.0
-size_flags_horizontal = 5
-text = "0"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Points" type="Panel" parent="CanvasLayer/UIPane/VBox/ScorePanelContainer/VBox/Bottom"]
-margin_left = 131.0
-margin_right = 172.0
-margin_bottom = 26.0
-rect_min_size = Vector2( 22, 0 )
-size_flags_horizontal = 3
-
-[node name="PointsLabel" type="Label" parent="CanvasLayer/UIPane/VBox/ScorePanelContainer/VBox/Bottom/Points"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-text = "00"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="ChSelectPanelContainer" type="PanelContainer" parent="CanvasLayer/UIPane/VBox"]
-margin_top = 119.0
-margin_right = 186.0
-margin_bottom = 225.0
-script = ExtResource( 9 )
-
-[node name="Team" type="VBoxContainer" parent="CanvasLayer/UIPane/VBox/ChSelectPanelContainer"]
-margin_left = 7.0
-margin_top = 7.0
-margin_right = 179.0
-margin_bottom = 99.0
-
-[node name="Slot1" type="HBoxContainer" parent="CanvasLayer/UIPane/VBox/ChSelectPanelContainer/Team"]
-margin_right = 172.0
-margin_bottom = 20.0
-grow_horizontal = 2
-alignment = 2
-
-[node name="Selector" type="TextureRect" parent="CanvasLayer/UIPane/VBox/ChSelectPanelContainer/Team/Slot1"]
-margin_left = 39.0
-margin_right = 59.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 20, 20 )
-size_flags_horizontal = 8
-size_flags_vertical = 4
-texture = ExtResource( 6 )
-stretch_mode = 5
-
-[node name="pad2" type="Control" parent="CanvasLayer/UIPane/VBox/ChSelectPanelContainer/Team/Slot1"]
-margin_left = 63.0
-margin_right = 83.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 20, 0 )
-
-[node name="Label" type="Label" parent="CanvasLayer/UIPane/VBox/ChSelectPanelContainer/Team/Slot1"]
-margin_left = 87.0
-margin_right = 138.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 0, 20 )
-size_flags_horizontal = 8
-text = "TEAM"
-valign = 1
-
-[node name="pad1" type="Control" parent="CanvasLayer/UIPane/VBox/ChSelectPanelContainer/Team/Slot1"]
-margin_left = 142.0
-margin_right = 172.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 30, 0 )
-
-[node name="Slot2" type="HBoxContainer" parent="CanvasLayer/UIPane/VBox/ChSelectPanelContainer/Team"]
-margin_top = 24.0
-margin_right = 172.0
-margin_bottom = 44.0
-grow_horizontal = 2
-alignment = 2
-
-[node name="Selector" type="TextureRect" parent="CanvasLayer/UIPane/VBox/ChSelectPanelContainer/Team/Slot2"]
-margin_left = 39.0
-margin_right = 59.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 20, 20 )
-size_flags_horizontal = 8
-size_flags_vertical = 4
-texture = ExtResource( 6 )
-stretch_mode = 5
-
-[node name="pad2" type="Control" parent="CanvasLayer/UIPane/VBox/ChSelectPanelContainer/Team/Slot2"]
-margin_left = 63.0
-margin_right = 83.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 20, 0 )
-
-[node name="Label" type="Label" parent="CanvasLayer/UIPane/VBox/ChSelectPanelContainer/Team/Slot2"]
-margin_left = 87.0
-margin_right = 138.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 0, 20 )
-size_flags_horizontal = 8
-text = "TEAM"
-valign = 1
-
-[node name="pad1" type="Control" parent="CanvasLayer/UIPane/VBox/ChSelectPanelContainer/Team/Slot2"]
-margin_left = 142.0
-margin_right = 172.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 30, 0 )
-
-[node name="Slot3" type="HBoxContainer" parent="CanvasLayer/UIPane/VBox/ChSelectPanelContainer/Team"]
-margin_top = 48.0
-margin_right = 172.0
-margin_bottom = 68.0
-grow_horizontal = 2
-alignment = 2
-
-[node name="Selector" type="TextureRect" parent="CanvasLayer/UIPane/VBox/ChSelectPanelContainer/Team/Slot3"]
-margin_left = 39.0
-margin_right = 59.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 20, 20 )
-size_flags_horizontal = 8
-size_flags_vertical = 4
-texture = ExtResource( 6 )
-stretch_mode = 5
-
-[node name="pad2" type="Control" parent="CanvasLayer/UIPane/VBox/ChSelectPanelContainer/Team/Slot3"]
-margin_left = 63.0
-margin_right = 83.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 20, 0 )
-
-[node name="Label" type="Label" parent="CanvasLayer/UIPane/VBox/ChSelectPanelContainer/Team/Slot3"]
-margin_left = 87.0
-margin_right = 138.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 0, 20 )
-size_flags_horizontal = 8
-text = "TEAM"
-valign = 1
-
-[node name="pad1" type="Control" parent="CanvasLayer/UIPane/VBox/ChSelectPanelContainer/Team/Slot3"]
-margin_left = 142.0
-margin_right = 172.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 30, 0 )
-
-[node name="Slot4" type="HBoxContainer" parent="CanvasLayer/UIPane/VBox/ChSelectPanelContainer/Team"]
-margin_top = 72.0
-margin_right = 172.0
-margin_bottom = 92.0
-grow_horizontal = 2
-alignment = 2
-
-[node name="Selector" type="TextureRect" parent="CanvasLayer/UIPane/VBox/ChSelectPanelContainer/Team/Slot4"]
-margin_left = 39.0
-margin_right = 59.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 20, 20 )
-size_flags_horizontal = 8
-size_flags_vertical = 4
-texture = ExtResource( 6 )
-stretch_mode = 5
-
-[node name="pad2" type="Control" parent="CanvasLayer/UIPane/VBox/ChSelectPanelContainer/Team/Slot4"]
-margin_left = 63.0
-margin_right = 83.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 20, 0 )
-
-[node name="Label" type="Label" parent="CanvasLayer/UIPane/VBox/ChSelectPanelContainer/Team/Slot4"]
-margin_left = 87.0
-margin_right = 138.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 0, 20 )
-size_flags_horizontal = 8
-text = "TEAM"
-valign = 1
-
-[node name="pad1" type="Control" parent="CanvasLayer/UIPane/VBox/ChSelectPanelContainer/Team/Slot4"]
-margin_left = 142.0
-margin_right = 172.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 30, 0 )
-
-[node name="StatsPanelContainer" type="PanelContainer" parent="CanvasLayer/UIPane/VBox"]
-margin_top = 229.0
-margin_right = 186.0
-margin_bottom = 371.0
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/UIPane/VBox/StatsPanelContainer"]
-margin_left = 7.0
-margin_top = 7.0
-margin_right = 179.0
-margin_bottom = 135.0
-
-[node name="Stat1" type="HBoxContainer" parent="CanvasLayer/UIPane/VBox/StatsPanelContainer/VBoxContainer"]
-margin_right = 172.0
-margin_bottom = 18.0
-grow_horizontal = 2
-alignment = 1
-
-[node name="pad1" type="Control" parent="CanvasLayer/UIPane/VBox/StatsPanelContainer/VBoxContainer/Stat1"]
-margin_right = 10.0
-margin_bottom = 18.0
-rect_min_size = Vector2( 10, 0 )
-
-[node name="StatLabel" type="Label" parent="CanvasLayer/UIPane/VBox/StatsPanelContainer/VBoxContainer/Stat1"]
-margin_left = 14.0
-margin_right = 79.0
-margin_bottom = 18.0
-grow_horizontal = 0
-size_flags_horizontal = 3
-text = "PWR"
-valign = 1
-
-[node name="pad2" type="Control" parent="CanvasLayer/UIPane/VBox/StatsPanelContainer/VBoxContainer/Stat1"]
-margin_left = 83.0
-margin_right = 103.0
-margin_bottom = 18.0
-rect_min_size = Vector2( 20, 0 )
-
-[node name="Stat" type="Label" parent="CanvasLayer/UIPane/VBox/StatsPanelContainer/VBoxContainer/Stat1"]
-margin_left = 107.0
-margin_right = 172.0
-margin_bottom = 18.0
-grow_horizontal = 0
-size_flags_horizontal = 3
-text = "85"
-valign = 1
-
-[node name="Stat2" type="HBoxContainer" parent="CanvasLayer/UIPane/VBox/StatsPanelContainer/VBoxContainer"]
-margin_top = 22.0
-margin_right = 172.0
-margin_bottom = 40.0
-grow_horizontal = 2
-alignment = 1
-
-[node name="pad1" type="Control" parent="CanvasLayer/UIPane/VBox/StatsPanelContainer/VBoxContainer/Stat2"]
-margin_right = 10.0
-margin_bottom = 18.0
-rect_min_size = Vector2( 10, 0 )
-
-[node name="StatLabel" type="Label" parent="CanvasLayer/UIPane/VBox/StatsPanelContainer/VBoxContainer/Stat2"]
-margin_left = 14.0
-margin_right = 79.0
-margin_bottom = 18.0
-grow_horizontal = 0
-size_flags_horizontal = 3
-text = "AGI"
-valign = 1
-
-[node name="pad2" type="Control" parent="CanvasLayer/UIPane/VBox/StatsPanelContainer/VBoxContainer/Stat2"]
-margin_left = 83.0
-margin_right = 103.0
-margin_bottom = 18.0
-rect_min_size = Vector2( 20, 0 )
-
-[node name="Stat" type="Label" parent="CanvasLayer/UIPane/VBox/StatsPanelContainer/VBoxContainer/Stat2"]
-margin_left = 107.0
-margin_right = 172.0
-margin_bottom = 18.0
-grow_horizontal = 0
-size_flags_horizontal = 3
-text = "85"
-valign = 1
-
-[node name="Stat3" type="HBoxContainer" parent="CanvasLayer/UIPane/VBox/StatsPanelContainer/VBoxContainer"]
-margin_top = 44.0
-margin_right = 172.0
-margin_bottom = 62.0
-grow_horizontal = 2
-alignment = 1
-
-[node name="pad1" type="Control" parent="CanvasLayer/UIPane/VBox/StatsPanelContainer/VBoxContainer/Stat3"]
-margin_right = 10.0
-margin_bottom = 18.0
-rect_min_size = Vector2( 10, 0 )
-
-[node name="StatLabel" type="Label" parent="CanvasLayer/UIPane/VBox/StatsPanelContainer/VBoxContainer/Stat3"]
-margin_left = 14.0
-margin_right = 79.0
-margin_bottom = 18.0
-grow_horizontal = 0
-size_flags_horizontal = 3
-text = "END"
-valign = 1
-
-[node name="pad2" type="Control" parent="CanvasLayer/UIPane/VBox/StatsPanelContainer/VBoxContainer/Stat3"]
-margin_left = 83.0
-margin_right = 103.0
-margin_bottom = 18.0
-rect_min_size = Vector2( 20, 0 )
-
-[node name="Stat" type="Label" parent="CanvasLayer/UIPane/VBox/StatsPanelContainer/VBoxContainer/Stat3"]
-margin_left = 107.0
-margin_right = 172.0
-margin_bottom = 18.0
-grow_horizontal = 0
-size_flags_horizontal = 3
-text = "85"
-valign = 1
-
-[node name="Stat4" type="HBoxContainer" parent="CanvasLayer/UIPane/VBox/StatsPanelContainer/VBoxContainer"]
-margin_top = 66.0
-margin_right = 172.0
-margin_bottom = 84.0
-grow_horizontal = 2
-alignment = 1
-
-[node name="pad1" type="Control" parent="CanvasLayer/UIPane/VBox/StatsPanelContainer/VBoxContainer/Stat4"]
-margin_right = 10.0
-margin_bottom = 18.0
-rect_min_size = Vector2( 10, 0 )
-
-[node name="StatLabel" type="Label" parent="CanvasLayer/UIPane/VBox/StatsPanelContainer/VBoxContainer/Stat4"]
-margin_left = 14.0
-margin_right = 79.0
-margin_bottom = 18.0
-grow_horizontal = 0
-size_flags_horizontal = 3
-text = "INT"
-valign = 1
-
-[node name="pad2" type="Control" parent="CanvasLayer/UIPane/VBox/StatsPanelContainer/VBoxContainer/Stat4"]
-margin_left = 83.0
-margin_right = 103.0
-margin_bottom = 18.0
-rect_min_size = Vector2( 20, 0 )
-
-[node name="Stat" type="Label" parent="CanvasLayer/UIPane/VBox/StatsPanelContainer/VBoxContainer/Stat4"]
-margin_left = 107.0
-margin_right = 172.0
-margin_bottom = 18.0
-grow_horizontal = 0
-size_flags_horizontal = 3
-text = "85"
-valign = 1
-
-[node name="Stat5" type="HBoxContainer" parent="CanvasLayer/UIPane/VBox/StatsPanelContainer/VBoxContainer"]
-margin_top = 88.0
-margin_right = 172.0
-margin_bottom = 106.0
-grow_horizontal = 2
-alignment = 1
-
-[node name="pad1" type="Control" parent="CanvasLayer/UIPane/VBox/StatsPanelContainer/VBoxContainer/Stat5"]
-margin_right = 10.0
-margin_bottom = 18.0
-rect_min_size = Vector2( 10, 0 )
-
-[node name="StatLabel" type="Label" parent="CanvasLayer/UIPane/VBox/StatsPanelContainer/VBoxContainer/Stat5"]
-margin_left = 14.0
-margin_right = 79.0
-margin_bottom = 18.0
-grow_horizontal = 0
-size_flags_horizontal = 3
-text = "WIS"
-valign = 1
-
-[node name="pad2" type="Control" parent="CanvasLayer/UIPane/VBox/StatsPanelContainer/VBoxContainer/Stat5"]
-margin_left = 83.0
-margin_right = 103.0
-margin_bottom = 18.0
-rect_min_size = Vector2( 20, 0 )
-
-[node name="Stat" type="Label" parent="CanvasLayer/UIPane/VBox/StatsPanelContainer/VBoxContainer/Stat5"]
-margin_left = 107.0
-margin_right = 172.0
-margin_bottom = 18.0
-grow_horizontal = 0
-size_flags_horizontal = 3
-text = "85"
-valign = 1
-
-[node name="Stat6" type="HBoxContainer" parent="CanvasLayer/UIPane/VBox/StatsPanelContainer/VBoxContainer"]
-margin_top = 110.0
-margin_right = 172.0
-margin_bottom = 128.0
-grow_horizontal = 2
-alignment = 1
-
-[node name="pad1" type="Control" parent="CanvasLayer/UIPane/VBox/StatsPanelContainer/VBoxContainer/Stat6"]
-margin_right = 10.0
-margin_bottom = 18.0
-rect_min_size = Vector2( 10, 0 )
-
-[node name="StatLabel" type="Label" parent="CanvasLayer/UIPane/VBox/StatsPanelContainer/VBoxContainer/Stat6"]
-margin_left = 14.0
-margin_right = 79.0
-margin_bottom = 18.0
-grow_horizontal = 0
-size_flags_horizontal = 3
-text = "CHA"
-valign = 1
-
-[node name="pad2" type="Control" parent="CanvasLayer/UIPane/VBox/StatsPanelContainer/VBoxContainer/Stat6"]
-margin_left = 83.0
-margin_right = 103.0
-margin_bottom = 18.0
-rect_min_size = Vector2( 20, 0 )
-
-[node name="Stat" type="Label" parent="CanvasLayer/UIPane/VBox/StatsPanelContainer/VBoxContainer/Stat6"]
-margin_left = 107.0
-margin_right = 172.0
-margin_bottom = 18.0
-grow_horizontal = 0
-size_flags_horizontal = 3
-text = "85"
-valign = 1
-
-[node name="ActionSelectPanelContainer" type="PanelContainer" parent="CanvasLayer/UIPane/VBox"]
-visible = false
-margin_top = 330.0
-margin_right = 186.0
-margin_bottom = 436.0
-
-[node name="Actions" type="VBoxContainer" parent="CanvasLayer/UIPane/VBox/ActionSelectPanelContainer"]
-margin_left = 7.0
-margin_top = 7.0
-margin_right = 179.0
-margin_bottom = 99.0
-
-[node name="Slot1" type="HBoxContainer" parent="CanvasLayer/UIPane/VBox/ActionSelectPanelContainer/Actions"]
-margin_right = 172.0
-margin_bottom = 20.0
-grow_horizontal = 2
-alignment = 1
-
-[node name="pad1" type="Control" parent="CanvasLayer/UIPane/VBox/ActionSelectPanelContainer/Actions/Slot1"]
-margin_right = 10.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 10, 0 )
-
-[node name="Selector" type="TextureRect" parent="CanvasLayer/UIPane/VBox/ActionSelectPanelContainer/Actions/Slot1"]
-margin_left = 14.0
-margin_right = 34.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 20, 20 )
-size_flags_horizontal = 8
-size_flags_vertical = 4
-texture = ExtResource( 6 )
-stretch_mode = 5
-
-[node name="pad2" type="Control" parent="CanvasLayer/UIPane/VBox/ActionSelectPanelContainer/Actions/Slot1"]
-margin_left = 38.0
-margin_right = 58.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 20, 0 )
-
-[node name="Label" type="Label" parent="CanvasLayer/UIPane/VBox/ActionSelectPanelContainer/Actions/Slot1"]
-margin_left = 62.0
-margin_top = 1.0
-margin_right = 172.0
-margin_bottom = 19.0
-grow_horizontal = 0
-size_flags_horizontal = 3
-text = "Action 1"
-valign = 1
-
-[node name="Slot2" type="HBoxContainer" parent="CanvasLayer/UIPane/VBox/ActionSelectPanelContainer/Actions"]
-margin_top = 24.0
-margin_right = 172.0
-margin_bottom = 44.0
-grow_horizontal = 2
-alignment = 1
-
-[node name="pad1" type="Control" parent="CanvasLayer/UIPane/VBox/ActionSelectPanelContainer/Actions/Slot2"]
-margin_right = 10.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 10, 0 )
-
-[node name="Selector" type="TextureRect" parent="CanvasLayer/UIPane/VBox/ActionSelectPanelContainer/Actions/Slot2"]
-margin_left = 14.0
-margin_right = 34.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 20, 20 )
-size_flags_horizontal = 8
-size_flags_vertical = 4
-texture = ExtResource( 6 )
-stretch_mode = 5
-
-[node name="pad2" type="Control" parent="CanvasLayer/UIPane/VBox/ActionSelectPanelContainer/Actions/Slot2"]
-margin_left = 38.0
-margin_right = 58.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 20, 0 )
-
-[node name="Label" type="Label" parent="CanvasLayer/UIPane/VBox/ActionSelectPanelContainer/Actions/Slot2"]
-margin_left = 62.0
-margin_top = 1.0
-margin_right = 172.0
-margin_bottom = 19.0
-grow_horizontal = 0
-size_flags_horizontal = 3
-text = "Action 2"
-valign = 1
-
-[node name="Slot3" type="HBoxContainer" parent="CanvasLayer/UIPane/VBox/ActionSelectPanelContainer/Actions"]
-margin_top = 48.0
-margin_right = 172.0
-margin_bottom = 68.0
-grow_horizontal = 2
-alignment = 1
-
-[node name="pad1" type="Control" parent="CanvasLayer/UIPane/VBox/ActionSelectPanelContainer/Actions/Slot3"]
-margin_right = 10.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 10, 0 )
-
-[node name="Selector" type="TextureRect" parent="CanvasLayer/UIPane/VBox/ActionSelectPanelContainer/Actions/Slot3"]
-margin_left = 14.0
-margin_right = 34.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 20, 20 )
-size_flags_horizontal = 8
-size_flags_vertical = 4
-texture = ExtResource( 6 )
-stretch_mode = 5
-
-[node name="pad2" type="Control" parent="CanvasLayer/UIPane/VBox/ActionSelectPanelContainer/Actions/Slot3"]
-margin_left = 38.0
-margin_right = 58.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 20, 0 )
-
-[node name="Label" type="Label" parent="CanvasLayer/UIPane/VBox/ActionSelectPanelContainer/Actions/Slot3"]
-margin_left = 62.0
-margin_top = 1.0
-margin_right = 172.0
-margin_bottom = 19.0
-grow_horizontal = 0
-size_flags_horizontal = 3
-text = "Action 3"
-valign = 1
-
-[node name="Slot4" type="HBoxContainer" parent="CanvasLayer/UIPane/VBox/ActionSelectPanelContainer/Actions"]
-margin_top = 72.0
-margin_right = 172.0
-margin_bottom = 92.0
-grow_horizontal = 2
-alignment = 1
-
-[node name="pad1" type="Control" parent="CanvasLayer/UIPane/VBox/ActionSelectPanelContainer/Actions/Slot4"]
-margin_right = 10.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 10, 0 )
-
-[node name="Selector" type="TextureRect" parent="CanvasLayer/UIPane/VBox/ActionSelectPanelContainer/Actions/Slot4"]
-margin_left = 14.0
-margin_right = 34.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 20, 20 )
-size_flags_horizontal = 8
-size_flags_vertical = 4
-texture = ExtResource( 6 )
-stretch_mode = 5
-
-[node name="pad2" type="Control" parent="CanvasLayer/UIPane/VBox/ActionSelectPanelContainer/Actions/Slot4"]
-margin_left = 38.0
-margin_right = 58.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 20, 0 )
-
-[node name="Label" type="Label" parent="CanvasLayer/UIPane/VBox/ActionSelectPanelContainer/Actions/Slot4"]
-margin_left = 62.0
-margin_top = 1.0
-margin_right = 172.0
-margin_bottom = 19.0
-grow_horizontal = 0
-size_flags_horizontal = 3
-text = "Action 4"
-valign = 1
-
-[node name="StatsPanelContainer2" type="PanelContainer" parent="CanvasLayer/UIPane/VBox"]
-visible = false
-margin_top = 330.0
-margin_right = 186.0
-margin_bottom = 553.0
-
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/UIPane/VBox/StatsPanelContainer2"]
-margin_left = 7.0
-margin_top = 7.0
-margin_right = 179.0
-margin_bottom = 216.0
-text = "Description of action. RichText Label means you can have special effects. May want a smaller font.
-
-Will list Special Effects with a bit of flavor."
-fit_content_height = true
-
 [node name="World" parent="." instance=ExtResource( 1 )]
 position = Vector2( 200, 0 )
 
@@ -767,6 +33,751 @@ position = Vector2( 113, 280 )
 [node name="Team2" parent="World/Teams" instance=ExtResource( 5 )]
 position = Vector2( 313, 280 )
 side = -1
+
+[node name="UIPane" type="PanelContainer" parent="World"]
+self_modulate = Color( 1, 1, 1, 0 )
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -181.0
+grow_horizontal = 0
+rect_min_size = Vector2( 200, 0 )
+theme = ExtResource( 3 )
+script = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBox" type="VBoxContainer" parent="World/UIPane"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 193.0
+margin_bottom = 402.0
+alignment = 1
+
+[node name="ScorePanelContainer" type="PanelContainer" parent="World/UIPane/VBox"]
+self_modulate = Color( 1, 1, 1, 0.862745 )
+margin_right = 186.0
+margin_bottom = 70.0
+
+[node name="VBox" type="VBoxContainer" parent="World/UIPane/VBox/ScorePanelContainer"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 179.0
+margin_bottom = 63.0
+
+[node name="Top" type="HBoxContainer" parent="World/UIPane/VBox/ScorePanelContainer/VBox"]
+margin_right = 172.0
+margin_bottom = 26.0
+
+[node name="Team1" type="HBoxContainer" parent="World/UIPane/VBox/ScorePanelContainer/VBox/Top"]
+margin_right = 101.0
+margin_bottom = 26.0
+
+[node name="Abbr" type="Label" parent="World/UIPane/VBox/ScorePanelContainer/VBox/Top/Team1"]
+margin_top = 4.0
+margin_right = 39.0
+margin_bottom = 22.0
+theme = ExtResource( 3 )
+text = "CAN"
+valign = 1
+
+[node name="Flag" type="TextureRect" parent="World/UIPane/VBox/ScorePanelContainer/VBox/Top/Team1"]
+margin_left = 43.0
+margin_right = 73.0
+margin_bottom = 26.0
+grow_vertical = 2
+rect_min_size = Vector2( 30, 19 )
+size_flags_horizontal = 3
+texture = ExtResource( 4 )
+expand = true
+stretch_mode = 6
+
+[node name="Serve" type="CheckBox" parent="World/UIPane/VBox/ScorePanelContainer/VBox/Top/Team1"]
+margin_left = 77.0
+margin_right = 101.0
+margin_bottom = 26.0
+button_mask = 0
+
+[node name="SetsWon" type="Panel" parent="World/UIPane/VBox/ScorePanelContainer/VBox/Top"]
+margin_left = 105.0
+margin_right = 127.0
+margin_bottom = 26.0
+rect_min_size = Vector2( 22, 0 )
+
+[node name="SetsWonLabel" type="Label" parent="World/UIPane/VBox/ScorePanelContainer/VBox/Top/SetsWon"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 1.0
+size_flags_horizontal = 5
+text = "0"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Points" type="Panel" parent="World/UIPane/VBox/ScorePanelContainer/VBox/Top"]
+margin_left = 131.0
+margin_right = 172.0
+margin_bottom = 26.0
+rect_min_size = Vector2( 22, 0 )
+size_flags_horizontal = 3
+
+[node name="PointsLabel" type="Label" parent="World/UIPane/VBox/ScorePanelContainer/VBox/Top/Points"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "00"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Bottom" type="HBoxContainer" parent="World/UIPane/VBox/ScorePanelContainer/VBox"]
+margin_top = 30.0
+margin_right = 172.0
+margin_bottom = 56.0
+
+[node name="Team2" type="HBoxContainer" parent="World/UIPane/VBox/ScorePanelContainer/VBox/Bottom"]
+margin_right = 101.0
+margin_bottom = 26.0
+
+[node name="Abbr" type="Label" parent="World/UIPane/VBox/ScorePanelContainer/VBox/Bottom/Team2"]
+margin_top = 4.0
+margin_right = 39.0
+margin_bottom = 22.0
+theme = ExtResource( 3 )
+text = "USA"
+valign = 1
+
+[node name="Flag" type="TextureRect" parent="World/UIPane/VBox/ScorePanelContainer/VBox/Bottom/Team2"]
+margin_left = 43.0
+margin_right = 73.0
+margin_bottom = 26.0
+grow_vertical = 2
+rect_min_size = Vector2( 30, 19 )
+size_flags_horizontal = 3
+texture = ExtResource( 2 )
+expand = true
+stretch_mode = 6
+
+[node name="Serve" type="CheckBox" parent="World/UIPane/VBox/ScorePanelContainer/VBox/Bottom/Team2"]
+margin_left = 77.0
+margin_right = 101.0
+margin_bottom = 26.0
+button_mask = 0
+
+[node name="SetsWon" type="Panel" parent="World/UIPane/VBox/ScorePanelContainer/VBox/Bottom"]
+margin_left = 105.0
+margin_right = 127.0
+margin_bottom = 26.0
+rect_min_size = Vector2( 22, 0 )
+
+[node name="SetsWonLabel" type="Label" parent="World/UIPane/VBox/ScorePanelContainer/VBox/Bottom/SetsWon"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 1.0
+size_flags_horizontal = 5
+text = "0"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Points" type="Panel" parent="World/UIPane/VBox/ScorePanelContainer/VBox/Bottom"]
+margin_left = 131.0
+margin_right = 172.0
+margin_bottom = 26.0
+rect_min_size = Vector2( 22, 0 )
+size_flags_horizontal = 3
+
+[node name="PointsLabel" type="Label" parent="World/UIPane/VBox/ScorePanelContainer/VBox/Bottom/Points"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "00"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="padding" type="Control" parent="World/UIPane/VBox"]
+margin_top = 74.0
+margin_right = 186.0
+margin_bottom = 139.0
+rect_min_size = Vector2( 0, 65 )
+
+[node name="ChSelectPanelContainer" type="PanelContainer" parent="World/UIPane/VBox"]
+self_modulate = Color( 1, 1, 1, 0.862745 )
+margin_top = 143.0
+margin_right = 186.0
+margin_bottom = 249.0
+script = ExtResource( 9 )
+
+[node name="Team" type="VBoxContainer" parent="World/UIPane/VBox/ChSelectPanelContainer"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 179.0
+margin_bottom = 99.0
+
+[node name="Slot1" type="HBoxContainer" parent="World/UIPane/VBox/ChSelectPanelContainer/Team"]
+margin_right = 172.0
+margin_bottom = 20.0
+grow_horizontal = 2
+alignment = 2
+
+[node name="Selector" type="TextureRect" parent="World/UIPane/VBox/ChSelectPanelContainer/Team/Slot1"]
+margin_left = 39.0
+margin_right = 59.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+size_flags_horizontal = 8
+size_flags_vertical = 4
+texture = ExtResource( 6 )
+stretch_mode = 5
+
+[node name="pad2" type="Control" parent="World/UIPane/VBox/ChSelectPanelContainer/Team/Slot1"]
+margin_left = 63.0
+margin_right = 83.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 0 )
+
+[node name="Label" type="Label" parent="World/UIPane/VBox/ChSelectPanelContainer/Team/Slot1"]
+margin_left = 87.0
+margin_right = 138.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 0, 20 )
+size_flags_horizontal = 8
+text = "TEAM"
+valign = 1
+
+[node name="pad1" type="Control" parent="World/UIPane/VBox/ChSelectPanelContainer/Team/Slot1"]
+margin_left = 142.0
+margin_right = 172.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 30, 0 )
+
+[node name="Slot2" type="HBoxContainer" parent="World/UIPane/VBox/ChSelectPanelContainer/Team"]
+margin_top = 24.0
+margin_right = 172.0
+margin_bottom = 44.0
+grow_horizontal = 2
+alignment = 2
+
+[node name="Selector" type="TextureRect" parent="World/UIPane/VBox/ChSelectPanelContainer/Team/Slot2"]
+margin_left = 39.0
+margin_right = 59.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+size_flags_horizontal = 8
+size_flags_vertical = 4
+texture = ExtResource( 6 )
+stretch_mode = 5
+
+[node name="pad2" type="Control" parent="World/UIPane/VBox/ChSelectPanelContainer/Team/Slot2"]
+margin_left = 63.0
+margin_right = 83.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 0 )
+
+[node name="Label" type="Label" parent="World/UIPane/VBox/ChSelectPanelContainer/Team/Slot2"]
+margin_left = 87.0
+margin_right = 138.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 0, 20 )
+size_flags_horizontal = 8
+text = "TEAM"
+valign = 1
+
+[node name="pad1" type="Control" parent="World/UIPane/VBox/ChSelectPanelContainer/Team/Slot2"]
+margin_left = 142.0
+margin_right = 172.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 30, 0 )
+
+[node name="Slot3" type="HBoxContainer" parent="World/UIPane/VBox/ChSelectPanelContainer/Team"]
+margin_top = 48.0
+margin_right = 172.0
+margin_bottom = 68.0
+grow_horizontal = 2
+alignment = 2
+
+[node name="Selector" type="TextureRect" parent="World/UIPane/VBox/ChSelectPanelContainer/Team/Slot3"]
+margin_left = 39.0
+margin_right = 59.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+size_flags_horizontal = 8
+size_flags_vertical = 4
+texture = ExtResource( 6 )
+stretch_mode = 5
+
+[node name="pad2" type="Control" parent="World/UIPane/VBox/ChSelectPanelContainer/Team/Slot3"]
+margin_left = 63.0
+margin_right = 83.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 0 )
+
+[node name="Label" type="Label" parent="World/UIPane/VBox/ChSelectPanelContainer/Team/Slot3"]
+margin_left = 87.0
+margin_right = 138.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 0, 20 )
+size_flags_horizontal = 8
+text = "TEAM"
+valign = 1
+
+[node name="pad1" type="Control" parent="World/UIPane/VBox/ChSelectPanelContainer/Team/Slot3"]
+margin_left = 142.0
+margin_right = 172.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 30, 0 )
+
+[node name="Slot4" type="HBoxContainer" parent="World/UIPane/VBox/ChSelectPanelContainer/Team"]
+margin_top = 72.0
+margin_right = 172.0
+margin_bottom = 92.0
+grow_horizontal = 2
+alignment = 2
+
+[node name="Selector" type="TextureRect" parent="World/UIPane/VBox/ChSelectPanelContainer/Team/Slot4"]
+margin_left = 39.0
+margin_right = 59.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+size_flags_horizontal = 8
+size_flags_vertical = 4
+texture = ExtResource( 6 )
+stretch_mode = 5
+
+[node name="pad2" type="Control" parent="World/UIPane/VBox/ChSelectPanelContainer/Team/Slot4"]
+margin_left = 63.0
+margin_right = 83.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 0 )
+
+[node name="Label" type="Label" parent="World/UIPane/VBox/ChSelectPanelContainer/Team/Slot4"]
+margin_left = 87.0
+margin_right = 138.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 0, 20 )
+size_flags_horizontal = 8
+text = "TEAM"
+valign = 1
+
+[node name="pad1" type="Control" parent="World/UIPane/VBox/ChSelectPanelContainer/Team/Slot4"]
+margin_left = 142.0
+margin_right = 172.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 30, 0 )
+
+[node name="StatsPanelContainer" type="PanelContainer" parent="World/UIPane/VBox"]
+self_modulate = Color( 1, 1, 1, 0.862745 )
+margin_top = 253.0
+margin_right = 186.0
+margin_bottom = 395.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="World/UIPane/VBox/StatsPanelContainer"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 179.0
+margin_bottom = 135.0
+
+[node name="Stat1" type="HBoxContainer" parent="World/UIPane/VBox/StatsPanelContainer/VBoxContainer"]
+margin_right = 172.0
+margin_bottom = 18.0
+grow_horizontal = 2
+alignment = 1
+
+[node name="pad1" type="Control" parent="World/UIPane/VBox/StatsPanelContainer/VBoxContainer/Stat1"]
+margin_right = 10.0
+margin_bottom = 18.0
+rect_min_size = Vector2( 10, 0 )
+
+[node name="StatLabel" type="Label" parent="World/UIPane/VBox/StatsPanelContainer/VBoxContainer/Stat1"]
+margin_left = 14.0
+margin_right = 79.0
+margin_bottom = 18.0
+grow_horizontal = 0
+size_flags_horizontal = 3
+text = "PWR"
+valign = 1
+
+[node name="pad2" type="Control" parent="World/UIPane/VBox/StatsPanelContainer/VBoxContainer/Stat1"]
+margin_left = 83.0
+margin_right = 103.0
+margin_bottom = 18.0
+rect_min_size = Vector2( 20, 0 )
+
+[node name="Stat" type="Label" parent="World/UIPane/VBox/StatsPanelContainer/VBoxContainer/Stat1"]
+margin_left = 107.0
+margin_right = 172.0
+margin_bottom = 18.0
+grow_horizontal = 0
+size_flags_horizontal = 3
+text = "85"
+valign = 1
+
+[node name="Stat2" type="HBoxContainer" parent="World/UIPane/VBox/StatsPanelContainer/VBoxContainer"]
+margin_top = 22.0
+margin_right = 172.0
+margin_bottom = 40.0
+grow_horizontal = 2
+alignment = 1
+
+[node name="pad1" type="Control" parent="World/UIPane/VBox/StatsPanelContainer/VBoxContainer/Stat2"]
+margin_right = 10.0
+margin_bottom = 18.0
+rect_min_size = Vector2( 10, 0 )
+
+[node name="StatLabel" type="Label" parent="World/UIPane/VBox/StatsPanelContainer/VBoxContainer/Stat2"]
+margin_left = 14.0
+margin_right = 79.0
+margin_bottom = 18.0
+grow_horizontal = 0
+size_flags_horizontal = 3
+text = "AGI"
+valign = 1
+
+[node name="pad2" type="Control" parent="World/UIPane/VBox/StatsPanelContainer/VBoxContainer/Stat2"]
+margin_left = 83.0
+margin_right = 103.0
+margin_bottom = 18.0
+rect_min_size = Vector2( 20, 0 )
+
+[node name="Stat" type="Label" parent="World/UIPane/VBox/StatsPanelContainer/VBoxContainer/Stat2"]
+margin_left = 107.0
+margin_right = 172.0
+margin_bottom = 18.0
+grow_horizontal = 0
+size_flags_horizontal = 3
+text = "85"
+valign = 1
+
+[node name="Stat3" type="HBoxContainer" parent="World/UIPane/VBox/StatsPanelContainer/VBoxContainer"]
+margin_top = 44.0
+margin_right = 172.0
+margin_bottom = 62.0
+grow_horizontal = 2
+alignment = 1
+
+[node name="pad1" type="Control" parent="World/UIPane/VBox/StatsPanelContainer/VBoxContainer/Stat3"]
+margin_right = 10.0
+margin_bottom = 18.0
+rect_min_size = Vector2( 10, 0 )
+
+[node name="StatLabel" type="Label" parent="World/UIPane/VBox/StatsPanelContainer/VBoxContainer/Stat3"]
+margin_left = 14.0
+margin_right = 79.0
+margin_bottom = 18.0
+grow_horizontal = 0
+size_flags_horizontal = 3
+text = "END"
+valign = 1
+
+[node name="pad2" type="Control" parent="World/UIPane/VBox/StatsPanelContainer/VBoxContainer/Stat3"]
+margin_left = 83.0
+margin_right = 103.0
+margin_bottom = 18.0
+rect_min_size = Vector2( 20, 0 )
+
+[node name="Stat" type="Label" parent="World/UIPane/VBox/StatsPanelContainer/VBoxContainer/Stat3"]
+margin_left = 107.0
+margin_right = 172.0
+margin_bottom = 18.0
+grow_horizontal = 0
+size_flags_horizontal = 3
+text = "85"
+valign = 1
+
+[node name="Stat4" type="HBoxContainer" parent="World/UIPane/VBox/StatsPanelContainer/VBoxContainer"]
+margin_top = 66.0
+margin_right = 172.0
+margin_bottom = 84.0
+grow_horizontal = 2
+alignment = 1
+
+[node name="pad1" type="Control" parent="World/UIPane/VBox/StatsPanelContainer/VBoxContainer/Stat4"]
+margin_right = 10.0
+margin_bottom = 18.0
+rect_min_size = Vector2( 10, 0 )
+
+[node name="StatLabel" type="Label" parent="World/UIPane/VBox/StatsPanelContainer/VBoxContainer/Stat4"]
+margin_left = 14.0
+margin_right = 79.0
+margin_bottom = 18.0
+grow_horizontal = 0
+size_flags_horizontal = 3
+text = "INT"
+valign = 1
+
+[node name="pad2" type="Control" parent="World/UIPane/VBox/StatsPanelContainer/VBoxContainer/Stat4"]
+margin_left = 83.0
+margin_right = 103.0
+margin_bottom = 18.0
+rect_min_size = Vector2( 20, 0 )
+
+[node name="Stat" type="Label" parent="World/UIPane/VBox/StatsPanelContainer/VBoxContainer/Stat4"]
+margin_left = 107.0
+margin_right = 172.0
+margin_bottom = 18.0
+grow_horizontal = 0
+size_flags_horizontal = 3
+text = "85"
+valign = 1
+
+[node name="Stat5" type="HBoxContainer" parent="World/UIPane/VBox/StatsPanelContainer/VBoxContainer"]
+margin_top = 88.0
+margin_right = 172.0
+margin_bottom = 106.0
+grow_horizontal = 2
+alignment = 1
+
+[node name="pad1" type="Control" parent="World/UIPane/VBox/StatsPanelContainer/VBoxContainer/Stat5"]
+margin_right = 10.0
+margin_bottom = 18.0
+rect_min_size = Vector2( 10, 0 )
+
+[node name="StatLabel" type="Label" parent="World/UIPane/VBox/StatsPanelContainer/VBoxContainer/Stat5"]
+margin_left = 14.0
+margin_right = 79.0
+margin_bottom = 18.0
+grow_horizontal = 0
+size_flags_horizontal = 3
+text = "WIS"
+valign = 1
+
+[node name="pad2" type="Control" parent="World/UIPane/VBox/StatsPanelContainer/VBoxContainer/Stat5"]
+margin_left = 83.0
+margin_right = 103.0
+margin_bottom = 18.0
+rect_min_size = Vector2( 20, 0 )
+
+[node name="Stat" type="Label" parent="World/UIPane/VBox/StatsPanelContainer/VBoxContainer/Stat5"]
+margin_left = 107.0
+margin_right = 172.0
+margin_bottom = 18.0
+grow_horizontal = 0
+size_flags_horizontal = 3
+text = "85"
+valign = 1
+
+[node name="Stat6" type="HBoxContainer" parent="World/UIPane/VBox/StatsPanelContainer/VBoxContainer"]
+margin_top = 110.0
+margin_right = 172.0
+margin_bottom = 128.0
+grow_horizontal = 2
+alignment = 1
+
+[node name="pad1" type="Control" parent="World/UIPane/VBox/StatsPanelContainer/VBoxContainer/Stat6"]
+margin_right = 10.0
+margin_bottom = 18.0
+rect_min_size = Vector2( 10, 0 )
+
+[node name="StatLabel" type="Label" parent="World/UIPane/VBox/StatsPanelContainer/VBoxContainer/Stat6"]
+margin_left = 14.0
+margin_right = 79.0
+margin_bottom = 18.0
+grow_horizontal = 0
+size_flags_horizontal = 3
+text = "CHA"
+valign = 1
+
+[node name="pad2" type="Control" parent="World/UIPane/VBox/StatsPanelContainer/VBoxContainer/Stat6"]
+margin_left = 83.0
+margin_right = 103.0
+margin_bottom = 18.0
+rect_min_size = Vector2( 20, 0 )
+
+[node name="Stat" type="Label" parent="World/UIPane/VBox/StatsPanelContainer/VBoxContainer/Stat6"]
+margin_left = 107.0
+margin_right = 172.0
+margin_bottom = 18.0
+grow_horizontal = 0
+size_flags_horizontal = 3
+text = "85"
+valign = 1
+
+[node name="ActionSelectPanelContainer" type="PanelContainer" parent="World/UIPane/VBox"]
+visible = false
+margin_top = 330.0
+margin_right = 186.0
+margin_bottom = 436.0
+
+[node name="Actions" type="VBoxContainer" parent="World/UIPane/VBox/ActionSelectPanelContainer"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 179.0
+margin_bottom = 99.0
+
+[node name="Slot1" type="HBoxContainer" parent="World/UIPane/VBox/ActionSelectPanelContainer/Actions"]
+margin_right = 172.0
+margin_bottom = 20.0
+grow_horizontal = 2
+alignment = 1
+
+[node name="pad1" type="Control" parent="World/UIPane/VBox/ActionSelectPanelContainer/Actions/Slot1"]
+margin_right = 10.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 10, 0 )
+
+[node name="Selector" type="TextureRect" parent="World/UIPane/VBox/ActionSelectPanelContainer/Actions/Slot1"]
+margin_left = 14.0
+margin_right = 34.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+size_flags_horizontal = 8
+size_flags_vertical = 4
+texture = ExtResource( 6 )
+stretch_mode = 5
+
+[node name="pad2" type="Control" parent="World/UIPane/VBox/ActionSelectPanelContainer/Actions/Slot1"]
+margin_left = 38.0
+margin_right = 58.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 0 )
+
+[node name="Label" type="Label" parent="World/UIPane/VBox/ActionSelectPanelContainer/Actions/Slot1"]
+margin_left = 62.0
+margin_top = 1.0
+margin_right = 172.0
+margin_bottom = 19.0
+grow_horizontal = 0
+size_flags_horizontal = 3
+text = "Action 1"
+valign = 1
+
+[node name="Slot2" type="HBoxContainer" parent="World/UIPane/VBox/ActionSelectPanelContainer/Actions"]
+margin_top = 24.0
+margin_right = 172.0
+margin_bottom = 44.0
+grow_horizontal = 2
+alignment = 1
+
+[node name="pad1" type="Control" parent="World/UIPane/VBox/ActionSelectPanelContainer/Actions/Slot2"]
+margin_right = 10.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 10, 0 )
+
+[node name="Selector" type="TextureRect" parent="World/UIPane/VBox/ActionSelectPanelContainer/Actions/Slot2"]
+margin_left = 14.0
+margin_right = 34.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+size_flags_horizontal = 8
+size_flags_vertical = 4
+texture = ExtResource( 6 )
+stretch_mode = 5
+
+[node name="pad2" type="Control" parent="World/UIPane/VBox/ActionSelectPanelContainer/Actions/Slot2"]
+margin_left = 38.0
+margin_right = 58.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 0 )
+
+[node name="Label" type="Label" parent="World/UIPane/VBox/ActionSelectPanelContainer/Actions/Slot2"]
+margin_left = 62.0
+margin_top = 1.0
+margin_right = 172.0
+margin_bottom = 19.0
+grow_horizontal = 0
+size_flags_horizontal = 3
+text = "Action 2"
+valign = 1
+
+[node name="Slot3" type="HBoxContainer" parent="World/UIPane/VBox/ActionSelectPanelContainer/Actions"]
+margin_top = 48.0
+margin_right = 172.0
+margin_bottom = 68.0
+grow_horizontal = 2
+alignment = 1
+
+[node name="pad1" type="Control" parent="World/UIPane/VBox/ActionSelectPanelContainer/Actions/Slot3"]
+margin_right = 10.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 10, 0 )
+
+[node name="Selector" type="TextureRect" parent="World/UIPane/VBox/ActionSelectPanelContainer/Actions/Slot3"]
+margin_left = 14.0
+margin_right = 34.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+size_flags_horizontal = 8
+size_flags_vertical = 4
+texture = ExtResource( 6 )
+stretch_mode = 5
+
+[node name="pad2" type="Control" parent="World/UIPane/VBox/ActionSelectPanelContainer/Actions/Slot3"]
+margin_left = 38.0
+margin_right = 58.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 0 )
+
+[node name="Label" type="Label" parent="World/UIPane/VBox/ActionSelectPanelContainer/Actions/Slot3"]
+margin_left = 62.0
+margin_top = 1.0
+margin_right = 172.0
+margin_bottom = 19.0
+grow_horizontal = 0
+size_flags_horizontal = 3
+text = "Action 3"
+valign = 1
+
+[node name="Slot4" type="HBoxContainer" parent="World/UIPane/VBox/ActionSelectPanelContainer/Actions"]
+margin_top = 72.0
+margin_right = 172.0
+margin_bottom = 92.0
+grow_horizontal = 2
+alignment = 1
+
+[node name="pad1" type="Control" parent="World/UIPane/VBox/ActionSelectPanelContainer/Actions/Slot4"]
+margin_right = 10.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 10, 0 )
+
+[node name="Selector" type="TextureRect" parent="World/UIPane/VBox/ActionSelectPanelContainer/Actions/Slot4"]
+margin_left = 14.0
+margin_right = 34.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+size_flags_horizontal = 8
+size_flags_vertical = 4
+texture = ExtResource( 6 )
+stretch_mode = 5
+
+[node name="pad2" type="Control" parent="World/UIPane/VBox/ActionSelectPanelContainer/Actions/Slot4"]
+margin_left = 38.0
+margin_right = 58.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 0 )
+
+[node name="Label" type="Label" parent="World/UIPane/VBox/ActionSelectPanelContainer/Actions/Slot4"]
+margin_left = 62.0
+margin_top = 1.0
+margin_right = 172.0
+margin_bottom = 19.0
+grow_horizontal = 0
+size_flags_horizontal = 3
+text = "Action 4"
+valign = 1
+
+[node name="ActionDescPanelContainer" type="PanelContainer" parent="World/UIPane/VBox"]
+visible = false
+margin_top = 330.0
+margin_right = 186.0
+margin_bottom = 553.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="World/UIPane/VBox/ActionDescPanelContainer"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 179.0
+margin_bottom = 216.0
+text = "Description of action. RichText Label means you can have special effects. May want a smaller font.
+
+Will list Special Effects with a bit of flavor."
+fit_content_height = true
 
 [node name="PlaceholderTimer" type="Timer" parent="."]
 one_shot = true
