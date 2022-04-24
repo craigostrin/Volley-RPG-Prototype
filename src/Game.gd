@@ -14,11 +14,12 @@ onready var test_timer: Timer = $PlaceholderTimer
 onready var test_char: Character = $World/Teams/Team/Character1
 
 onready var combat_manager: CombatManager = $CombatManager
-onready var ui_pane: Control = $CanvasLayer/UIPane
+onready var ui_pane: Control = $World/UIPaneLeft
 onready var ch_select_panel: PanelContainer = \
-	$CanvasLayer/UIPane/VBox/ChSelectPanelContainer
+	$World/UIPaneLeft/VBox/ChSelectPanelContainer
 onready var team_l: Team = $World/Teams/Team
 onready var team_r: Team = $World/Teams/Team2
+onready var t: Tween = $Tween
 
 
 func _ready() -> void:
@@ -37,7 +38,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		get_tree().quit()
 	#DEBUG BUTTON
 	if event.is_action_pressed("ui_focus_next"):
-		pass
+		move_screen(1)
 
 
 func end_turn() -> void:
@@ -51,16 +52,26 @@ func end_turn() -> void:
 func start_attack_phase() -> void:
 	pass
 
-
 func move_screen(side: int) -> void:
 	if not side in Enum.Teams.values():
 		return
 	
-	ui_pane.set_config(side)
-	if side == Enum.Teams.LEFT:
-		$World.position = WORLD_LEFT_POS
-	else:
-		$World.position = WORLD_RIGHT_POS
+	var target_pos := Vector2.ZERO
+	target_pos = WORLD_LEFT_POS if side == Enum.Teams.LEFT else WORLD_RIGHT_POS
+	
+	t.interpolate_property(
+		$World,
+		"position",
+		$World.position,
+		target_pos,
+		1.5,
+		Tween.TRANS_QUAD,
+		Tween.EASE_IN_OUT
+	)
+	t.start()
+	
+	#ui_pane.set_config(side)
+
 
 
 # INIT MATCH
