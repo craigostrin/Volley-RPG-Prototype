@@ -14,6 +14,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/Team/Character.gd"
 }, {
+"base": "Node",
+"class": "CombatManager",
+"language": "GDScript",
+"path": "res://src/CombatManager.gd"
+}, {
 "base": "Node2D",
 "class": "Team",
 "language": "GDScript",
@@ -21,6 +26,7 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "Character": "",
+"CombatManager": "",
 "Team": ""
 }
 
@@ -36,9 +42,9 @@ Enum="*res://src/Enum.gd"
 
 [display]
 
-window/size/width=600
+window/size/width=688
 window/size/height=430
-window/size/test_width=1200
+window/size/test_width=1376
 window/size/test_height=860
 window/stretch/mode="2d"
 window/stretch/aspect="keep"

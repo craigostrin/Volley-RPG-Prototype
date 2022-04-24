@@ -1,5 +1,10 @@
 extends PanelContainer
 
+#TODO
+## Move score pane out of the UI pane and into the center screen
+## When switching sides, the score pane should fadein from top and
+## 		the UI panes should fadein/out from/to their respective sides
+## UI panes should obviously be translucent.
 
 var left_config := {
 	"anchor_left"     : 0,

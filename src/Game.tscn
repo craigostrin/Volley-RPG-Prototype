@@ -17,13 +17,14 @@ script = ExtResource( 7 )
 [node name="CombatManager" type="Node" parent="."]
 script = ExtResource( 10 )
 
+[node name="PlaceholderTimer" type="Timer" parent="CombatManager"]
+one_shot = true
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="UIPane" type="PanelContainer" parent="CanvasLayer"]
-anchor_left = 1.0
-anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -181.0
+margin_right = 200.0
 grow_horizontal = 0
 rect_min_size = Vector2( 200, 0 )
 theme = ExtResource( 3 )
@@ -756,6 +757,7 @@ Will list Special Effects with a bit of flavor."
 fit_content_height = true
 
 [node name="World" parent="." instance=ExtResource( 1 )]
+position = Vector2( 200, 0 )
 
 [node name="Teams" type="Node2D" parent="World"]
 

@@ -13,6 +13,7 @@ var team_r_ch_dicts := []
 onready var test_timer: Timer = $PlaceholderTimer
 onready var test_char: Character = $World/Teams/Team/Character1
 
+onready var combat_manager: CombatManager = $CombatManager
 onready var ui_pane: Control = $CanvasLayer/UIPane
 onready var ch_select_panel: PanelContainer = \
 	$CanvasLayer/UIPane/VBox/ChSelectPanelContainer
@@ -23,6 +24,10 @@ onready var team_r: Team = $World/Teams/Team2
 func _ready() -> void:
 	ch_select_panel.connect("selector_moved", self, "_on_ui_selector_moved")
 	ch_select_panel.connect("ch_selected", self, "_on_ch_selected")
+	combat_manager.connect(\
+		 "attack_action_completed", self, "_on_attack_action_completed")
+	combat_manager.connect(\
+		"defense_action_completed", self, "_on_defense_action_completed")
 	init_match()
 
 
@@ -83,27 +88,25 @@ func _on_ch_selected(ch_slot: int) -> void:
 	active_team.select(ch_slot)
 
 
+# COMBAT SIGNALS
 func _on_defense_action_selected() -> void:
-	#combatmanager.init defense action( action or action_slot )
-	yield(test_timer.start(), "timeout")
 	print("defense action selected, play action")
+	combat_manager.init_defense_action(-1)
+
 
 func _on_defense_action_completed() -> void:
 	#animation plays
-	#combat manager calculates possible attack options
 	yield(test_timer.start(), "timeout")
-	print("defense picked, start attack phase")
+	print("defense completed, start attack phase")
 	start_attack_phase()
 
 
 func _on_attack_action_selected() -> void:
-	#combatmanager.init attack action( action or action_slot )
-	yield(test_timer.start(), "timeout")
 	print("attack action selected, play action")
+	combat_manager.init_attack_action(-1)
 
 func _on_attack_action_completed() -> void:
 	#animation plays
-	#combat manager calculates enemy's possible defense options
 	yield(test_timer.start(), "timeout")
-	print("attack picked, start next player's turn")
+	print("attack completed, start next player's turn")
 	end_turn()
