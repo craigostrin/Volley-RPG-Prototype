@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://src/Team/Character_SpriteFrames.tres" type="SpriteFrames" id=1]
+[ext_resource path="res://src/Team/Character.gd" type="Script" id=2]
+[ext_resource path="res://assets/art/ui/hand_up.png" type="Texture" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 10, 20 )
+
+[node name="Character" type="Position2D" groups=["characters"]]
+script = ExtResource( 2 )
+
+[node name="SelectionIndicator" type="TextureRect" parent="."]
+visible = false
+margin_left = -10.0
+margin_top = -64.0
+margin_right = 10.0
+margin_bottom = -44.0
+rect_min_size = Vector2( 20, 20 )
+texture = ExtResource( 3 )
+stretch_mode = 4
+flip_v = true
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="KinematicBody2D" type="KinematicBody2D" parent="."]
+position = Vector2( 0, -21 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D"]
+shape = SubResource( 1 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="KinematicBody2D"]
+frames = ExtResource( 1 )
+animation = "idle"
