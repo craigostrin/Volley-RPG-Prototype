@@ -4,6 +4,7 @@ const WORLD_LEFT_POS  = Vector2(  0, 0)
 const WORLD_RIGHT_POS = Vector2(200, 0)
 
 var active_team: Team
+var active_side := "l"
 #TODO ch stat manager
 ## Game should just manage turns, active team, UI hookups + selection, etc
 #TODO combat manager
@@ -14,9 +15,10 @@ onready var test_timer: Timer = $PlaceholderTimer
 onready var test_char: Character = $World/Teams/Team/Character1
 
 onready var combat_manager: CombatManager = $CombatManager
-onready var ui_pane: Control = $World/UIPaneLeft
+onready var ui_pane_l: Control = $World/UIPanes/UIPaneLeft
+onready var ui_pane_r: Control = $World/UIPanes/UIPaneRight
 onready var ch_select_panel: PanelContainer = \
-	$World/UIPaneLeft/VBox/ChSelectPanelContainer
+	$World/UIPanes/UIPaneLeft/VBox/ChSelectPanelContainer
 onready var team_l: Team = $World/Teams/Team
 onready var team_r: Team = $World/Teams/Team2
 onready var t: Tween = $Tween
@@ -30,6 +32,7 @@ func _ready() -> void:
 	combat_manager.connect(\
 		"defense_action_completed", self, "_on_defense_action_completed")
 	init_match()
+	ui_pane_l.is_active_pane = true
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -38,19 +41,50 @@ func _unhandled_input(event: InputEvent) -> void:
 		get_tree().quit()
 	#DEBUG BUTTON
 	if event.is_action_pressed("ui_focus_next"):
-		move_screen(1)
+		if active_team == team_l:
+			move_screen(Enum.Teams.LEFT)
+			active_team = team_r
+		else:
+			move_screen(Enum.Teams.RIGHT)
+			active_team = team_l
 
 
-func end_turn() -> void:
-	active_team = team_r if active_team == team_l else team_l
+# MATCH MANAGEMENT
+func init_match() -> void:
+	active_team = team_l
+	active_team.hover(0)
 
 
-#func start_new_turn() -> void:
-#	var active_side = "r" if active_team == team_r else "l"
+func start_next_turn() -> void:
+	# active team changes in End_Turn() unless there's a reason to do it here
+	
+	#1 move screen
+	#2 swap active teams
+	#3 swap active panes
+	pass
 
 
 func start_attack_phase() -> void:
+	#init active_ch_select_panel.activate_selection
 	pass
+
+
+func end_turn() -> void:
+	#clean up turn
+	active_team = team_r if active_team == team_l else team_l
+
+
+#func get_team_stats() -> void:
+#	team_l_ch_dicts = team_l.get_ch_stats()
+#	team_r_ch_dicts = team_r.get_ch_stats()
+#
+#func populate_player_ch_names() -> void:
+#	var ch_names: PoolStringArray = []
+#	for dict in team_l_ch_dicts:
+#		ch_names.append(dict["Name"])
+#
+#	ch_select_panel.populate_team_names(ch_names)
+
 
 func move_screen(side: int) -> void:
 	if not side in Enum.Teams.values():
@@ -69,29 +103,9 @@ func move_screen(side: int) -> void:
 		Tween.EASE_IN_OUT
 	)
 	t.start()
-	
-	#ui_pane.set_config(side)
 
 
-
-# INIT MATCH
-func init_match() -> void:
-	active_team = team_l
-	active_team.hover(0)
-
-
-#func get_team_stats() -> void:
-#	team_l_ch_dicts = team_l.get_ch_stats()
-#	team_r_ch_dicts = team_r.get_ch_stats()
-#
-#func populate_player_ch_names() -> void:
-#	var ch_names: PoolStringArray = []
-#	for dict in team_l_ch_dicts:
-#		ch_names.append(dict["Name"])
-#
-#	ch_select_panel.populate_team_names(ch_names)
-
-
+# UI SIGNALS
 func _on_ui_selector_moved(ch_slot_hovered: int) -> void:
 	active_team.hover(ch_slot_hovered)
 
