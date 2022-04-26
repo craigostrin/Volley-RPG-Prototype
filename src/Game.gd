@@ -44,9 +44,13 @@ func _unhandled_input(event: InputEvent) -> void:
 		if active_team == team_l:
 			move_screen(Enum.Teams.LEFT)
 			active_team = team_r
+			$World/ScorePanels/ScorePanelLeft.fade_in()
+			$World/ScorePanels/ScorePanelRight.fade_out()
 		else:
 			move_screen(Enum.Teams.RIGHT)
 			active_team = team_l
+			$World/ScorePanels/ScorePanelLeft.fade_out()
+			$World/ScorePanels/ScorePanelRight.fade_in()
 
 
 # MATCH MANAGEMENT
