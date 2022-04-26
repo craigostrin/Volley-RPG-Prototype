@@ -11,6 +11,7 @@ enum Position {
 	ON_SCREEN_Y = 10
 	OFF_SCREEN_Y = -70
 }
+# scorepanelRight x position, 230, but you should recalc for final product
 
 enum Alpha {
 	INVISIBLE   =   0,
@@ -19,41 +20,17 @@ enum Alpha {
 	OPAQUE      = 255
 }
 
-onready var t: Tween = $Tween
-
-func fade_in() -> void:
-	tween_fade(Alpha.TRANSLUCENT)
-	tween_move_to(Position.ON_SCREEN_Y)
-	t.start()
+onready var anim_player: AnimationPlayer = $AnimationPlayer
+onready var timer: Timer = $Timer
 
 
-func fade_out() -> void:
-	tween_move_to(Position.OFF_SCREEN_Y)
-	tween_fade(Alpha.INVISIBLE)
-	t.start()
+func move_fade_in() -> void:
+	anim_player.play("MoveFadeIn")
+	timer.start()
+	yield(timer, "timeout")
+	anim_player.play("FadeTransparent") 
 
 
-func tween_fade(Alpha: int) -> void:
-	t.interpolate_property(
-		self,
-		"modulate.a8",
-		modulate.a8,
-		Alpha,
-		3.0,
-		Tween.TRANS_QUAD,
-		Tween.EASE_IN_OUT
-	)
+func move_fade_out() -> void:
+	anim_player.play("MoveFadeOut")
 
-
-func tween_move_to(Position: int) -> void:
-	var target_rect_position := Vector2(rect_position.x, Position)
-	
-	t.interpolate_property(
-		self,
-		"rect_position",
-		rect_position,
-		target_rect_position,
-		1.5,
-		Tween.TRANS_QUAD,
-		Tween.EASE_IN_OUT
-	)

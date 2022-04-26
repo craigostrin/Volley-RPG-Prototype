@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://src/World/World.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/art/flags/320px-Flag_of_the_United_States_(Pantone).svg.png" type="Texture" id=2]
@@ -12,6 +12,198 @@
 [ext_resource path="res://src/CombatManager.gd" type="Script" id=10]
 [ext_resource path="res://src/ThemeScore.tres" type="Theme" id=11]
 [ext_resource path="res://src/UI/ScorePanel.gd" type="Script" id=12]
+
+[sub_resource type="Animation" id=2]
+resource_name = "FadeTransparent"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"update": 3,
+"values": [ Color( 1, 1, 1, 0.313726 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "MoveFadeIn"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.7 ),
+"transitions": PoolRealArray( 1 ),
+"update": 3,
+"values": [ Vector2( 10, 10 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1.8025 ),
+"update": 3,
+"values": [ Color( 1, 1, 1, 0.862745 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "MoveFadeOut"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"update": 3,
+"values": [ Vector2( 10, -70 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.6 ),
+"transitions": PoolRealArray( 0.4 ),
+"update": 3,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0.862745 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 10, 10 ) ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "FadeTransparent"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"update": 3,
+"values": [ Color( 1, 1, 1, 0.313726 ) ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "MoveFadeIn"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.7 ),
+"transitions": PoolRealArray( 1 ),
+"update": 3,
+"values": [ Vector2( 10, 10 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1.8025 ),
+"update": 3,
+"values": [ Color( 1, 1, 1, 0.862745 ) ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "MoveFadeOut"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"update": 3,
+"values": [ Vector2( 10, -70 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.6 ),
+"transitions": PoolRealArray( 0.4 ),
+"update": 3,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=9]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0.862745 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 10, 10 ) ]
+}
 
 [sub_resource type="Animation" id=1]
 resource_name = "move_screen_left"
@@ -1401,6 +1593,7 @@ __meta__ = {
 }
 
 [node name="ScorePanelLeft" type="PanelContainer" parent="World/ScorePanels"]
+modulate = Color( 1, 1, 1, 0.862745 )
 self_modulate = Color( 1, 1, 1, 0.862745 )
 margin_left = 10.0
 margin_top = 10.0
@@ -1551,13 +1744,22 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Tween" type="Tween" parent="World/ScorePanels/ScorePanelLeft"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="World/ScorePanels/ScorePanelLeft"]
+anims/FadeTransparent = SubResource( 2 )
+anims/MoveFadeIn = SubResource( 4 )
+anims/MoveFadeOut = SubResource( 5 )
+anims/RESET = SubResource( 3 )
+
+[node name="Timer" type="Timer" parent="World/ScorePanels/ScorePanelLeft"]
+wait_time = 2.0
+one_shot = true
 
 [node name="ScorePanelRight" type="PanelContainer" parent="World/ScorePanels"]
+modulate = Color( 1, 1, 1, 0.862745 )
 self_modulate = Color( 1, 1, 1, 0.862745 )
-margin_left = 230.0
+margin_left = 10.0
 margin_top = 10.0
-margin_right = 390.0
+margin_right = 170.0
 margin_bottom = 76.0
 rect_min_size = Vector2( 160, 50 )
 script = ExtResource( 12 )
@@ -1704,7 +1906,15 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Tween" type="Tween" parent="World/ScorePanels/ScorePanelRight"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="World/ScorePanels/ScorePanelRight"]
+anims/FadeTransparent = SubResource( 6 )
+anims/MoveFadeIn = SubResource( 7 )
+anims/MoveFadeOut = SubResource( 8 )
+anims/RESET = SubResource( 9 )
+
+[node name="Timer" type="Timer" parent="World/ScorePanels/ScorePanelRight"]
+wait_time = 2.0
+one_shot = true
 
 [node name="PlaceholderTimer" type="Timer" parent="."]
 one_shot = true
