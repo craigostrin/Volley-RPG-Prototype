@@ -1553,6 +1553,10 @@ __meta__ = {
 
 [node name="Tween" type="Tween" parent="World/ScorePanels/ScorePanelLeft"]
 
+[node name="Timer" type="Timer" parent="World/ScorePanels/ScorePanelLeft"]
+wait_time = 2.0
+one_shot = true
+
 [node name="ScorePanelRight" type="PanelContainer" parent="World/ScorePanels"]
 self_modulate = Color( 1, 1, 1, 0.862745 )
 margin_left = 230.0
@@ -1705,6 +1709,10 @@ __meta__ = {
 }
 
 [node name="Tween" type="Tween" parent="World/ScorePanels/ScorePanelRight"]
+
+[node name="Timer" type="Timer" parent="World/ScorePanels/ScorePanelRight"]
+wait_time = 2.0
+one_shot = true
 
 [node name="PlaceholderTimer" type="Timer" parent="."]
 one_shot = true

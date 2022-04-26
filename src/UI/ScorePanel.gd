@@ -1,11 +1,14 @@
 extends PanelContainer
 
 #TODO
-## Replace Tween with AnimationPlayer (which is better for when you know the final
-##		values in advance)
-## Smooth out the transitions
-## Fade to transparent after a few seconds of translucense
 ## Fade out completely instead of move_out
+
+const FADE_IN_DUR     = 1.0
+const FADE_OUT_DUR    = 0.6
+const MOVE_OUT_DELAY  = 0.6 # same as FadeOutDur
+const FADE_TRANSP_DUR = 1.5
+const MOVE_IN_DUR     = 0.6
+const MOVE_OUT_DUR    = 1.0
 
 enum Position {
 	ON_SCREEN_Y = 10
@@ -20,40 +23,53 @@ enum Alpha {
 }
 
 onready var t: Tween = $Tween
+onready var timer: Timer = $Timer
 
 func fade_in() -> void:
-	tween_fade(Alpha.TRANSLUCENT)
-	tween_move_to(Position.ON_SCREEN_Y)
+	# Fade in
+	_tween_fade(Alpha.TRANSLUCENT, FADE_IN_DUR)
+	_tween_move_to(Position.ON_SCREEN_Y, MOVE_IN_DUR)
+	t.start()
+	yield(t, "tween_all_completed")
+	
+	# Wait a few seconds
+	timer.start()
+	yield(timer, "timeout")
+	
+	# Fade to transparent
+	_tween_fade(Alpha.TRANSPARENT, FADE_TRANSP_DUR)
 	t.start()
 
 
 func fade_out() -> void:
-	tween_move_to(Position.OFF_SCREEN_Y)
-	tween_fade(Alpha.INVISIBLE)
+	_tween_fade(Alpha.INVISIBLE, FADE_OUT_DUR)
+	_tween_move_to(Position.OFF_SCREEN_Y, MOVE_OUT_DUR, MOVE_OUT_DELAY)
 	t.start()
 
 
-func tween_fade(Alpha: int) -> void:
+# in should be 1.0, out should be 0.6
+func _tween_fade(Alpha: int, Duration: float) -> void:
 	t.interpolate_property(
 		self,
-		"modulate.a8",
+		"modulate:a8",
 		modulate.a8,
 		Alpha,
-		3.0,
+		Duration,
 		Tween.TRANS_QUAD,
 		Tween.EASE_IN_OUT
 	)
 
-
-func tween_move_to(Position: int) -> void:
-	var target_rect_position := Vector2(rect_position.x, Position)
+# in should be 0.6, out should be 1.0 
+func _tween_move_to(Y_Position: int, Duration: float, Delay := 0.0) -> void:
+	var target_rect_position := Vector2(rect_position.x, Y_Position)
 	
 	t.interpolate_property(
 		self,
 		"rect_position",
 		rect_position,
 		target_rect_position,
-		1.5,
+		Duration,
 		Tween.TRANS_QUAD,
-		Tween.EASE_IN_OUT
+		Tween.EASE_IN_OUT,
+		Delay
 	)
