@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://src/World/World.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/art/flags/320px-Flag_of_the_United_States_(Pantone).svg.png" type="Texture" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://src/CombatManager.gd" type="Script" id=10]
 [ext_resource path="res://src/ThemeScore.tres" type="Theme" id=11]
 [ext_resource path="res://src/UI/ScorePanel.gd" type="Script" id=12]
+[ext_resource path="res://src/World/World.gd" type="Script" id=13]
 
 [sub_resource type="Animation" id=1]
 resource_name = "move_screen_left"
@@ -29,6 +30,7 @@ one_shot = true
 
 [node name="World" parent="." instance=ExtResource( 1 )]
 position = Vector2( 200, 0 )
+script = ExtResource( 13 )
 
 [node name="Teams" type="Node2D" parent="World"]
 
@@ -37,7 +39,6 @@ position = Vector2( 113, 280 )
 
 [node name="Team2" parent="World/Teams" instance=ExtResource( 5 )]
 position = Vector2( 313, 280 )
-side = -1
 
 [node name="UIPanes" type="Control" parent="World"]
 anchor_right = 1.0
@@ -1401,11 +1402,12 @@ __meta__ = {
 }
 
 [node name="ScorePanelLeft" type="PanelContainer" parent="World/ScorePanels"]
+modulate = Color( 1, 1, 1, 0 )
 self_modulate = Color( 1, 1, 1, 0.862745 )
 margin_left = 10.0
-margin_top = 10.0
+margin_top = -70.0
 margin_right = 170.0
-margin_bottom = 76.0
+margin_bottom = -4.0
 rect_min_size = Vector2( 160, 50 )
 script = ExtResource( 12 )
 __meta__ = {
@@ -1714,12 +1716,12 @@ __meta__ = {
 wait_time = 2.0
 one_shot = true
 
+[node name="Tween" type="Tween" parent="World"]
+
 [node name="PlaceholderTimer" type="Timer" parent="."]
 one_shot = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/move_screen_left = SubResource( 1 )
-
-[node name="Tween" type="Tween" parent="."]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]

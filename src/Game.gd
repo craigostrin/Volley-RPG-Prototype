@@ -3,8 +3,8 @@ extends Node2D
 const WORLD_LEFT_POS  = Vector2(  0, 0)
 const WORLD_RIGHT_POS = Vector2(200, 0)
 
+var active_side: int  = Side.LEFT setget _set_active_side
 var active_team: Team
-var active_side := "l"
 #TODO ch stat manager
 ## Game should just manage turns, active team, UI hookups + selection, etc
 #TODO combat manager
@@ -15,13 +15,13 @@ onready var test_timer: Timer = $PlaceholderTimer
 onready var test_char: Character = $World/Teams/Team/Character1
 
 onready var combat_manager: CombatManager = $CombatManager
+onready var world: Node2D = $World
 onready var ui_pane_l: Control = $World/UIPanes/UIPaneLeft
 onready var ui_pane_r: Control = $World/UIPanes/UIPaneRight
 onready var ch_select_panel: PanelContainer = \
 	$World/UIPanes/UIPaneLeft/VBox/ChSelectPanelContainer
 onready var team_l: Team = $World/Teams/Team
 onready var team_r: Team = $World/Teams/Team2
-onready var t: Tween = $Tween
 
 
 func _ready() -> void:
@@ -31,6 +31,7 @@ func _ready() -> void:
 		 "attack_action_completed", self, "_on_attack_action_completed")
 	combat_manager.connect(\
 		"defense_action_completed", self, "_on_defense_action_completed")
+	
 	init_match()
 	ui_pane_l.is_active_pane = true
 
@@ -41,21 +42,17 @@ func _unhandled_input(event: InputEvent) -> void:
 		get_tree().quit()
 	#DEBUG BUTTON
 	if event.is_action_pressed("ui_focus_next"):
-		if active_team == team_l:
-			move_screen(Enum.Teams.LEFT)
-			active_team = team_r
-			$World/ScorePanels/ScorePanelLeft.fade_in()
-			$World/ScorePanels/ScorePanelRight.fade_out()
+		if active_side == Side.LEFT:
+			active_side = Side.RIGHT
+			world.move_screen_to(Side.LEFT)
 		else:
-			move_screen(Enum.Teams.RIGHT)
-			active_team = team_l
-			$World/ScorePanels/ScorePanelLeft.fade_out()
-			$World/ScorePanels/ScorePanelRight.fade_in()
+			active_side = Side.LEFT
+			world.move_screen_to(Side.RIGHT)
 
 
 # MATCH MANAGEMENT
 func init_match() -> void:
-	active_team = team_l
+	self.active_side = Side.LEFT
 	active_team.hover(0)
 
 
@@ -75,7 +72,8 @@ func start_attack_phase() -> void:
 
 func end_turn() -> void:
 	#clean up turn
-	active_team = team_r if active_team == team_l else team_l
+	self.active_side = Side.R if active_side == Side.L else Side.L
+	#world.move_screen_to(Enum.Team[active_side])
 
 
 #func get_team_stats() -> void:
@@ -89,24 +87,13 @@ func end_turn() -> void:
 #
 #	ch_select_panel.populate_team_names(ch_names)
 
-
-func move_screen(side: int) -> void:
-	if not side in Enum.Teams.values():
+func _set_active_side(val: int) -> void:
+	if not val in Side.values():
+		printerr("Error setting sides in Game.gd.")
 		return
 	
-	var target_pos := Vector2.ZERO
-	target_pos = WORLD_LEFT_POS if side == Enum.Teams.LEFT else WORLD_RIGHT_POS
-	
-	t.interpolate_property(
-		$World,
-		"position",
-		$World.position,
-		target_pos,
-		1.5,
-		Tween.TRANS_QUAD,
-		Tween.EASE_IN_OUT
-	)
-	t.start()
+	active_side = val
+	active_team = team_l if active_side == Side.LEFT else team_r
 
 
 # UI SIGNALS

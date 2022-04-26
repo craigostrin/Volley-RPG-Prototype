@@ -2,7 +2,7 @@ class_name Team
 extends Node2D
 
 
-export(Enum.Teams) var side := Enum.Teams.LEFT
+var side := Side.LEFT
 
 onready var characters := get_children()
 var weapons := []
@@ -15,7 +15,7 @@ func _ready() -> void:
 
 func setup_team() -> void:
 	for ch in characters:
-		ch.team = side
+		ch.side = side
 		
 		if ch.is_weapon:
 			weapons.append(ch)

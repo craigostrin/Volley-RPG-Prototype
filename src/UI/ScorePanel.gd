@@ -1,3 +1,4 @@
+class_name ScorePanel
 extends PanelContainer
 
 #TODO
@@ -10,6 +11,9 @@ const FADE_TRANSP_DUR = 1.5
 const MOVE_IN_DUR     = 0.6
 const MOVE_OUT_DUR    = 1.0
 
+# If needed:
+# Left X = 10
+# Right X = 230 (recalc this later, based on rect size + 10 margin)
 enum Position {
 	ON_SCREEN_Y = 10
 	OFF_SCREEN_Y = -70
@@ -24,6 +28,15 @@ enum Alpha {
 
 onready var t: Tween = $Tween
 onready var timer: Timer = $Timer
+
+
+func _ready() -> void:
+	timer.start()
+	yield(timer, "timeout")
+	
+	_tween_fade(Alpha.TRANSPARENT, FADE_TRANSP_DUR)
+	t.start()
+
 
 func fade_in() -> void:
 	# Fade in
