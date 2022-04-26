@@ -1,5 +1,13 @@
 extends Node2D
 
+#CENTRAL TODO LIST
+## Mechanics
+### Players need HP and Stamina
+## UI Pane:
+### Make it switch between left and right, and reset to 0th ch slot
+### Make the list a grid or do away with the list entirely
+### Add player panel with name, HP, and Stamina bars instead of ch select list
+
 const WORLD_LEFT_POS  = Vector2(  0, 0)
 const WORLD_RIGHT_POS = Vector2(200, 0)
 

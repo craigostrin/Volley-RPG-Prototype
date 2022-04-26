@@ -2,13 +2,8 @@ extends PanelContainer
 
 #TODO
 ## Fix character select - should be based on active team, and reset when screen moves
-## Add function to show/hide ScorePanel based on active screen side
 ## UIPanes should be a bit smaller
 ## Font overall could be a bit smaller
-## ScorePanel
-###		2 modes: translucent (when point just scored) and mostly transparent
-###			(most of the time)
-###		Should fade-in from top when switching sides
 #FUTURE
 ## Canvas Modulate Node can help with transition animations
 
