@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://src/World/World.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/art/flags/320px-Flag_of_the_United_States_(Pantone).svg.png" type="Texture" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://src/UI/ChSelectPanelContainer.gd" type="Script" id=9]
 [ext_resource path="res://src/CombatManager.gd" type="Script" id=10]
 [ext_resource path="res://src/ThemeScore.tres" type="Theme" id=11]
+[ext_resource path="res://src/UI/ScorePanel.gd" type="Script" id=12]
 
 [sub_resource type="Animation" id=1]
 resource_name = "move_screen_left"
@@ -1401,11 +1402,12 @@ __meta__ = {
 
 [node name="ScorePanelLeft" type="PanelContainer" parent="World/ScorePanels"]
 self_modulate = Color( 1, 1, 1, 0.862745 )
-margin_left = 7.0
-margin_top = 7.0
-margin_right = 167.0
-margin_bottom = 73.0
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 170.0
+margin_bottom = 76.0
 rect_min_size = Vector2( 160, 50 )
+script = ExtResource( 12 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1549,13 +1551,16 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Tween" type="Tween" parent="World/ScorePanels/ScorePanelLeft"]
+
 [node name="ScorePanelRight" type="PanelContainer" parent="World/ScorePanels"]
 self_modulate = Color( 1, 1, 1, 0.862745 )
 margin_left = 230.0
-margin_top = 7.0
+margin_top = 10.0
 margin_right = 390.0
-margin_bottom = 73.0
+margin_bottom = 76.0
 rect_min_size = Vector2( 160, 50 )
+script = ExtResource( 12 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1698,6 +1703,8 @@ valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Tween" type="Tween" parent="World/ScorePanels/ScorePanelRight"]
 
 [node name="PlaceholderTimer" type="Timer" parent="."]
 one_shot = true
