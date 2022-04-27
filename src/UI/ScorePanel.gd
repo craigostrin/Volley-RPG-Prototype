@@ -6,10 +6,12 @@ extends PanelContainer
 
 const FADE_IN_DUR     = 1.0
 const FADE_OUT_DUR    = 0.6
-const MOVE_OUT_DELAY  = 0.6 # same as FadeOutDur
 const FADE_TRANSP_DUR = 1.5
 const MOVE_IN_DUR     = 0.6
 const MOVE_OUT_DUR    = 1.0
+const TRANSP_DELAY    = 1.4
+const MOVE_OUT_DELAY  = FADE_OUT_DUR + 0.2
+
 
 # If needed:
 # Left X = 10
@@ -27,12 +29,12 @@ enum Alpha {
 }
 
 onready var t: Tween = $Tween
-onready var timer: Timer = $Timer
+onready var transp_timer: Timer = $GoToTranspTimer
 
 
 func _ready() -> void:
-	timer.start()
-	yield(timer, "timeout")
+	transp_timer.start(TRANSP_DELAY)
+	yield(transp_timer, "timeout")
 	
 	_tween_fade(Alpha.TRANSPARENT, FADE_TRANSP_DUR)
 	t.start()
@@ -46,8 +48,8 @@ func fade_in() -> void:
 	yield(t, "tween_all_completed")
 	
 	# Wait a few seconds
-	timer.start()
-	yield(timer, "timeout")
+	transp_timer.start(TRANSP_DELAY)
+	yield(transp_timer, "timeout")
 	
 	# Fade to transparent
 	_tween_fade(Alpha.TRANSPARENT, FADE_TRANSP_DUR)
