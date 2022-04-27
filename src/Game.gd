@@ -1,5 +1,8 @@
 extends Node2D
 
+#WORKING ON
+## refactoring character slots in Team and Character
+
 #CENTRAL TODO LIST
 ## Mechanics
 ### Players need HP and Stamina
@@ -11,7 +14,7 @@ extends Node2D
 const WORLD_LEFT_POS  = Vector2(  0, 0)
 const WORLD_RIGHT_POS = Vector2(200, 0)
 
-var active_side: int  = Side.LEFT setget _set_active_side
+var active_side: int  = Side.RIGHT setget _set_active_side
 var active_team: Team
 #TODO ch stat manager
 ## Game should just manage turns, active team, UI hookups + selection, etc
@@ -24,24 +27,24 @@ onready var test_char: Character = $World/Teams/Team/Character1
 
 onready var combat_manager: CombatManager = $CombatManager
 onready var world: Node2D = $World
-onready var ui_pane_l: Control = $World/UIPanes/UIPaneLeft
-onready var ui_pane_r: Control = $World/UIPanes/UIPaneRight
+onready var left_pane: Control = $World/UI/SidePanes/LeftPane
+onready var right_pane: Control = $World/UI/SidePanes/RightPane
 onready var ch_select_panel: PanelContainer = \
-	$World/UIPanes/UIPaneLeft/VBox/ChSelectPanelContainer
+	$World/UI/SidePanes/LeftPane/VBox/ChSelectPanelContainer
 onready var team_l: Team = $World/Teams/Team
 onready var team_r: Team = $World/Teams/Team2
 
 
 func _ready() -> void:
-	ch_select_panel.connect("selector_moved", self, "_on_ui_selector_moved")
-	ch_select_panel.connect("ch_selected", self, "_on_ch_selected")
+#	ch_select_panel.connect("selector_moved", self, "_on_ui_selector_moved")
+#	ch_select_panel.connect("ch_selected", self, "_on_ch_selected")
 	combat_manager.connect(\
 		 "attack_action_completed", self, "_on_attack_action_completed")
 	combat_manager.connect(\
 		"defense_action_completed", self, "_on_defense_action_completed")
 	
 	init_match()
-	ui_pane_l.is_active_pane = true
+	left_pane.is_active_pane = true
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -61,7 +64,7 @@ func _unhandled_input(event: InputEvent) -> void:
 # MATCH MANAGEMENT
 func init_match() -> void:
 	self.active_side = Side.LEFT
-	active_team.hover(0)
+	active_team.hover(Vector2.ZERO)
 
 
 func start_next_turn() -> void:
@@ -105,8 +108,8 @@ func _set_active_side(val: int) -> void:
 
 
 # UI SIGNALS
-func _on_ui_selector_moved(ch_slot_hovered: int) -> void:
-	active_team.hover(ch_slot_hovered)
+#func _on_ui_selector_moved(ch_slot_hovered: Vector2) -> void:
+#	active_team.hover(ch_slot_hovered)
 
 func _on_ch_selected(ch_slot: int) -> void:
 	active_team.select(ch_slot)

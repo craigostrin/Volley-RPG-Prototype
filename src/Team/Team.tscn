@@ -7,14 +7,14 @@
 script = ExtResource( 2 )
 
 [node name="Character1" parent="." instance=ExtResource( 1 )]
-position = Vector2( -60, 80 )
+position = Vector2( 53, 360 )
 is_weapon = true
 
 [node name="Character2" parent="." instance=ExtResource( 1 )]
-position = Vector2( -60, -60 )
+position = Vector2( 53, 220 )
 
 [node name="Character3" parent="." instance=ExtResource( 1 )]
-position = Vector2( 34, -60 )
+position = Vector2( 147, 220 )
 
 [node name="Character4" parent="." instance=ExtResource( 1 )]
-position = Vector2( 34, 80 )
+position = Vector2( 147, 360 )

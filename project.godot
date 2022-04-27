@@ -28,24 +28,30 @@ _global_script_classes=[ {
 "class": "Team",
 "language": "GDScript",
 "path": "res://src/Team/Team.gd"
+}, {
+"base": "Control",
+"class": "UI",
+"language": "GDScript",
+"path": "res://src/UI/UI.gd"
 } ]
 _global_script_class_icons={
 "Character": "",
 "CombatManager": "",
 "ScorePanel": "",
-"Team": ""
+"Team": "",
+"UI": ""
 }
 
 [application]
 
-config/name="Volley RPG PM"
+config/name="Volleyball: A Love Story"
 run/main_scene="res://src/Game.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
-Enum="*res://src/Enum.gd"
 Side="*res://src/Side.gd"
+ChMap="*res://src/ChMap.gd"
 
 [display]
 

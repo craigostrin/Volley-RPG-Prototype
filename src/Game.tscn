@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://src/World/World.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/art/flags/320px-Flag_of_the_United_States_(Pantone).svg.png" type="Texture" id=2]
@@ -13,10 +13,9 @@
 [ext_resource path="res://src/ThemeScore.tres" type="Theme" id=11]
 [ext_resource path="res://src/UI/ScorePanel.gd" type="Script" id=12]
 [ext_resource path="res://src/World/World.gd" type="Script" id=13]
-
-[sub_resource type="Animation" id=1]
-resource_name = "move_screen_left"
-length = 1.5
+[ext_resource path="res://src/UI/UI.gd" type="Script" id=14]
+[ext_resource path="res://assets/art/ui/hand_up.png" type="Texture" id=15]
+[ext_resource path="res://src/UI/SelectionIndicator.gd" type="Script" id=16]
 
 [node name="Game" type="Node2D"]
 position = Vector2( 1, 0 )
@@ -29,18 +28,25 @@ script = ExtResource( 10 )
 one_shot = true
 
 [node name="World" parent="." instance=ExtResource( 1 )]
-position = Vector2( 200, 0 )
 script = ExtResource( 13 )
 
 [node name="Teams" type="Node2D" parent="World"]
 
-[node name="Team" parent="World/Teams" instance=ExtResource( 5 )]
-position = Vector2( 113, 280 )
+[node name="Team" parent="World/Teams" groups=["teams"] instance=ExtResource( 5 )]
 
-[node name="Team2" parent="World/Teams" instance=ExtResource( 5 )]
-position = Vector2( 313, 280 )
+[node name="Team2" parent="World/Teams" groups=["teams"] instance=ExtResource( 5 )]
+position = Vector2( 200, 0 )
+side = -1
 
-[node name="UIPanes" type="Control" parent="World"]
+[node name="UI" type="Control" parent="World"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 14 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SidePanes" type="Control" parent="World/UI"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 3 )
@@ -48,7 +54,8 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="UIPaneLeft" type="PanelContainer" parent="World/UIPanes"]
+[node name="LeftPane" type="PanelContainer" parent="World/UI/SidePanes"]
+visible = false
 self_modulate = Color( 1, 1, 1, 0 )
 anchor_left = 1.0
 anchor_right = 1.0
@@ -63,38 +70,38 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBox" type="VBoxContainer" parent="World/UIPanes/UIPaneLeft"]
+[node name="VBox" type="VBoxContainer" parent="World/UI/SidePanes/LeftPane"]
 margin_left = 7.0
 margin_top = 7.0
 margin_right = 193.0
 margin_bottom = 357.0
 alignment = 1
 
-[node name="padding" type="Control" parent="World/UIPanes/UIPaneLeft/VBox"]
+[node name="padding" type="Control" parent="World/UI/SidePanes/LeftPane/VBox"]
 margin_right = 186.0
 margin_bottom = 100.0
 rect_min_size = Vector2( 0, 100 )
 
-[node name="ChSelectPanelContainer" type="PanelContainer" parent="World/UIPanes/UIPaneLeft/VBox"]
+[node name="ChSelectPanelContainer" type="PanelContainer" parent="World/UI/SidePanes/LeftPane/VBox"]
 self_modulate = Color( 1, 1, 1, 0.862745 )
 margin_top = 104.0
 margin_right = 186.0
 margin_bottom = 210.0
 script = ExtResource( 9 )
 
-[node name="Team" type="VBoxContainer" parent="World/UIPanes/UIPaneLeft/VBox/ChSelectPanelContainer"]
+[node name="Team" type="VBoxContainer" parent="World/UI/SidePanes/LeftPane/VBox/ChSelectPanelContainer"]
 margin_left = 7.0
 margin_top = 7.0
 margin_right = 179.0
 margin_bottom = 99.0
 
-[node name="Slot1" type="HBoxContainer" parent="World/UIPanes/UIPaneLeft/VBox/ChSelectPanelContainer/Team"]
+[node name="Slot1" type="HBoxContainer" parent="World/UI/SidePanes/LeftPane/VBox/ChSelectPanelContainer/Team"]
 margin_right = 172.0
 margin_bottom = 20.0
 grow_horizontal = 2
 alignment = 2
 
-[node name="Selector" type="TextureRect" parent="World/UIPanes/UIPaneLeft/VBox/ChSelectPanelContainer/Team/Slot1"]
+[node name="Selector" type="TextureRect" parent="World/UI/SidePanes/LeftPane/VBox/ChSelectPanelContainer/Team/Slot1"]
 margin_left = 46.0
 margin_right = 66.0
 margin_bottom = 20.0
@@ -104,13 +111,13 @@ size_flags_vertical = 4
 texture = ExtResource( 6 )
 stretch_mode = 5
 
-[node name="pad2" type="Control" parent="World/UIPanes/UIPaneLeft/VBox/ChSelectPanelContainer/Team/Slot1"]
+[node name="pad2" type="Control" parent="World/UI/SidePanes/LeftPane/VBox/ChSelectPanelContainer/Team/Slot1"]
 margin_left = 70.0
 margin_right = 90.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 20, 0 )
 
-[node name="Label" type="Label" parent="World/UIPanes/UIPaneLeft/VBox/ChSelectPanelContainer/Team/Slot1"]
+[node name="Label" type="Label" parent="World/UI/SidePanes/LeftPane/VBox/ChSelectPanelContainer/Team/Slot1"]
 margin_left = 94.0
 margin_right = 138.0
 margin_bottom = 20.0
@@ -119,20 +126,20 @@ size_flags_horizontal = 8
 text = "TEAM"
 valign = 1
 
-[node name="pad1" type="Control" parent="World/UIPanes/UIPaneLeft/VBox/ChSelectPanelContainer/Team/Slot1"]
+[node name="pad1" type="Control" parent="World/UI/SidePanes/LeftPane/VBox/ChSelectPanelContainer/Team/Slot1"]
 margin_left = 142.0
 margin_right = 172.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 30, 0 )
 
-[node name="Slot2" type="HBoxContainer" parent="World/UIPanes/UIPaneLeft/VBox/ChSelectPanelContainer/Team"]
+[node name="Slot2" type="HBoxContainer" parent="World/UI/SidePanes/LeftPane/VBox/ChSelectPanelContainer/Team"]
 margin_top = 24.0
 margin_right = 172.0
 margin_bottom = 44.0
 grow_horizontal = 2
 alignment = 2
 
-[node name="Selector" type="TextureRect" parent="World/UIPanes/UIPaneLeft/VBox/ChSelectPanelContainer/Team/Slot2"]
+[node name="Selector" type="TextureRect" parent="World/UI/SidePanes/LeftPane/VBox/ChSelectPanelContainer/Team/Slot2"]
 margin_left = 46.0
 margin_right = 66.0
 margin_bottom = 20.0
@@ -142,13 +149,13 @@ size_flags_vertical = 4
 texture = ExtResource( 6 )
 stretch_mode = 5
 
-[node name="pad2" type="Control" parent="World/UIPanes/UIPaneLeft/VBox/ChSelectPanelContainer/Team/Slot2"]
+[node name="pad2" type="Control" parent="World/UI/SidePanes/LeftPane/VBox/ChSelectPanelContainer/Team/Slot2"]
 margin_left = 70.0
 margin_right = 90.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 20, 0 )
 
-[node name="Label" type="Label" parent="World/UIPanes/UIPaneLeft/VBox/ChSelectPanelContainer/Team/Slot2"]
+[node name="Label" type="Label" parent="World/UI/SidePanes/LeftPane/VBox/ChSelectPanelContainer/Team/Slot2"]
 margin_left = 94.0
 margin_right = 138.0
 margin_bottom = 20.0
@@ -157,20 +164,20 @@ size_flags_horizontal = 8
 text = "TEAM"
 valign = 1
 
-[node name="pad1" type="Control" parent="World/UIPanes/UIPaneLeft/VBox/ChSelectPanelContainer/Team/Slot2"]
+[node name="pad1" type="Control" parent="World/UI/SidePanes/LeftPane/VBox/ChSelectPanelContainer/Team/Slot2"]
 margin_left = 142.0
 margin_right = 172.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 30, 0 )
 
-[node name="Slot3" type="HBoxContainer" parent="World/UIPanes/UIPaneLeft/VBox/ChSelectPanelContainer/Team"]
+[node name="Slot3" type="HBoxContainer" parent="World/UI/SidePanes/LeftPane/VBox/ChSelectPanelContainer/Team"]
 margin_top = 48.0
 margin_right = 172.0
 margin_bottom = 68.0
 grow_horizontal = 2
 alignment = 2
 
-[node name="Selector" type="TextureRect" parent="World/UIPanes/UIPaneLeft/VBox/ChSelectPanelContainer/Team/Slot3"]
+[node name="Selector" type="TextureRect" parent="World/UI/SidePanes/LeftPane/VBox/ChSelectPanelContainer/Team/Slot3"]
 margin_left = 46.0
 margin_right = 66.0
 margin_bottom = 20.0
@@ -180,13 +187,13 @@ size_flags_vertical = 4
 texture = ExtResource( 6 )
 stretch_mode = 5
 
-[node name="pad2" type="Control" parent="World/UIPanes/UIPaneLeft/VBox/ChSelectPanelContainer/Team/Slot3"]
+[node name="pad2" type="Control" parent="World/UI/SidePanes/LeftPane/VBox/ChSelectPanelContainer/Team/Slot3"]
 margin_left = 70.0
 margin_right = 90.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 20, 0 )
 
-[node name="Label" type="Label" parent="World/UIPanes/UIPaneLeft/VBox/ChSelectPanelContainer/Team/Slot3"]
+[node name="Label" type="Label" parent="World/UI/SidePanes/LeftPane/VBox/ChSelectPanelContainer/Team/Slot3"]
 margin_left = 94.0
 margin_right = 138.0
 margin_bottom = 20.0
@@ -195,20 +202,20 @@ size_flags_horizontal = 8
 text = "TEAM"
 valign = 1
 
-[node name="pad1" type="Control" parent="World/UIPanes/UIPaneLeft/VBox/ChSelectPanelContainer/Team/Slot3"]
+[node name="pad1" type="Control" parent="World/UI/SidePanes/LeftPane/VBox/ChSelectPanelContainer/Team/Slot3"]
 margin_left = 142.0
 margin_right = 172.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 30, 0 )
 
-[node name="Slot4" type="HBoxContainer" parent="World/UIPanes/UIPaneLeft/VBox/ChSelectPanelContainer/Team"]
+[node name="Slot4" type="HBoxContainer" parent="World/UI/SidePanes/LeftPane/VBox/ChSelectPanelContainer/Team"]
 margin_top = 72.0
 margin_right = 172.0
 margin_bottom = 92.0
 grow_horizontal = 2
 alignment = 2
 
-[node name="Selector" type="TextureRect" parent="World/UIPanes/UIPaneLeft/VBox/ChSelectPanelContainer/Team/Slot4"]
+[node name="Selector" type="TextureRect" parent="World/UI/SidePanes/LeftPane/VBox/ChSelectPanelContainer/Team/Slot4"]
 margin_left = 46.0
 margin_right = 66.0
 margin_bottom = 20.0
@@ -218,13 +225,13 @@ size_flags_vertical = 4
 texture = ExtResource( 6 )
 stretch_mode = 5
 
-[node name="pad2" type="Control" parent="World/UIPanes/UIPaneLeft/VBox/ChSelectPanelContainer/Team/Slot4"]
+[node name="pad2" type="Control" parent="World/UI/SidePanes/LeftPane/VBox/ChSelectPanelContainer/Team/Slot4"]
 margin_left = 70.0
 margin_right = 90.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 20, 0 )
 
-[node name="Label" type="Label" parent="World/UIPanes/UIPaneLeft/VBox/ChSelectPanelContainer/Team/Slot4"]
+[node name="Label" type="Label" parent="World/UI/SidePanes/LeftPane/VBox/ChSelectPanelContainer/Team/Slot4"]
 margin_left = 94.0
 margin_right = 138.0
 margin_bottom = 20.0
@@ -233,36 +240,36 @@ size_flags_horizontal = 8
 text = "TEAM"
 valign = 1
 
-[node name="pad1" type="Control" parent="World/UIPanes/UIPaneLeft/VBox/ChSelectPanelContainer/Team/Slot4"]
+[node name="pad1" type="Control" parent="World/UI/SidePanes/LeftPane/VBox/ChSelectPanelContainer/Team/Slot4"]
 margin_left = 142.0
 margin_right = 172.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 30, 0 )
 
-[node name="StatsPanelContainer" type="PanelContainer" parent="World/UIPanes/UIPaneLeft/VBox"]
+[node name="StatsPanelContainer" type="PanelContainer" parent="World/UI/SidePanes/LeftPane/VBox"]
 self_modulate = Color( 1, 1, 1, 0.862745 )
 margin_top = 214.0
 margin_right = 186.0
 margin_bottom = 350.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="World/UIPanes/UIPaneLeft/VBox/StatsPanelContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="World/UI/SidePanes/LeftPane/VBox/StatsPanelContainer"]
 margin_left = 7.0
 margin_top = 7.0
 margin_right = 179.0
 margin_bottom = 129.0
 
-[node name="Stat1" type="HBoxContainer" parent="World/UIPanes/UIPaneLeft/VBox/StatsPanelContainer/VBoxContainer"]
+[node name="Stat1" type="HBoxContainer" parent="World/UI/SidePanes/LeftPane/VBox/StatsPanelContainer/VBoxContainer"]
 margin_right = 172.0
 margin_bottom = 17.0
 grow_horizontal = 2
 alignment = 1
 
-[node name="pad1" type="Control" parent="World/UIPanes/UIPaneLeft/VBox/StatsPanelContainer/VBoxContainer/Stat1"]
+[node name="pad1" type="Control" parent="World/UI/SidePanes/LeftPane/VBox/StatsPanelContainer/VBoxContainer/Stat1"]
 margin_right = 10.0
 margin_bottom = 17.0
 rect_min_size = Vector2( 10, 0 )
 
-[node name="StatLabel" type="Label" parent="World/UIPanes/UIPaneLeft/VBox/StatsPanelContainer/VBoxContainer/Stat1"]
+[node name="StatLabel" type="Label" parent="World/UI/SidePanes/LeftPane/VBox/StatsPanelContainer/VBoxContainer/Stat1"]
 margin_left = 14.0
 margin_right = 79.0
 margin_bottom = 17.0
@@ -271,13 +278,13 @@ size_flags_horizontal = 3
 text = "PWR"
 valign = 1
 
-[node name="pad2" type="Control" parent="World/UIPanes/UIPaneLeft/VBox/StatsPanelContainer/VBoxContainer/Stat1"]
+[node name="pad2" type="Control" parent="World/UI/SidePanes/LeftPane/VBox/StatsPanelContainer/VBoxContainer/Stat1"]
 margin_left = 83.0
 margin_right = 103.0
 margin_bottom = 17.0
 rect_min_size = Vector2( 20, 0 )
 
-[node name="Stat" type="Label" parent="World/UIPanes/UIPaneLeft/VBox/StatsPanelContainer/VBoxContainer/Stat1"]
+[node name="Stat" type="Label" parent="World/UI/SidePanes/LeftPane/VBox/StatsPanelContainer/VBoxContainer/Stat1"]
 margin_left = 107.0
 margin_right = 172.0
 margin_bottom = 17.0
@@ -286,19 +293,19 @@ size_flags_horizontal = 3
 text = "85"
 valign = 1
 
-[node name="Stat2" type="HBoxContainer" parent="World/UIPanes/UIPaneLeft/VBox/StatsPanelContainer/VBoxContainer"]
+[node name="Stat2" type="HBoxContainer" parent="World/UI/SidePanes/LeftPane/VBox/StatsPanelContainer/VBoxContainer"]
 margin_top = 21.0
 margin_right = 172.0
 margin_bottom = 38.0
 grow_horizontal = 2
 alignment = 1
 
-[node name="pad1" type="Control" parent="World/UIPanes/UIPaneLeft/VBox/StatsPanelContainer/VBoxContainer/Stat2"]
+[node name="pad1" type="Control" parent="World/UI/SidePanes/LeftPane/VBox/StatsPanelContainer/VBoxContainer/Stat2"]
 margin_right = 10.0
 margin_bottom = 17.0
 rect_min_size = Vector2( 10, 0 )
 
-[node name="StatLabel" type="Label" parent="World/UIPanes/UIPaneLeft/VBox/StatsPanelContainer/VBoxContainer/Stat2"]
+[node name="StatLabel" type="Label" parent="World/UI/SidePanes/LeftPane/VBox/StatsPanelContainer/VBoxContainer/Stat2"]
 margin_left = 14.0
 margin_right = 79.0
 margin_bottom = 17.0
@@ -307,13 +314,13 @@ size_flags_horizontal = 3
 text = "AGI"
 valign = 1
 
-[node name="pad2" type="Control" parent="World/UIPanes/UIPaneLeft/VBox/StatsPanelContainer/VBoxContainer/Stat2"]
+[node name="pad2" type="Control" parent="World/UI/SidePanes/LeftPane/VBox/StatsPanelContainer/VBoxContainer/Stat2"]
 margin_left = 83.0
 margin_right = 103.0
 margin_bottom = 17.0
 rect_min_size = Vector2( 20, 0 )
 
-[node name="Stat" type="Label" parent="World/UIPanes/UIPaneLeft/VBox/StatsPanelContainer/VBoxContainer/Stat2"]
+[node name="Stat" type="Label" parent="World/UI/SidePanes/LeftPane/VBox/StatsPanelContainer/VBoxContainer/Stat2"]
 margin_left = 107.0
 margin_right = 172.0
 margin_bottom = 17.0
@@ -322,19 +329,19 @@ size_flags_horizontal = 3
 text = "85"
 valign = 1
 
-[node name="Stat3" type="HBoxContainer" parent="World/UIPanes/UIPaneLeft/VBox/StatsPanelContainer/VBoxContainer"]
+[node name="Stat3" type="HBoxContainer" parent="World/UI/SidePanes/LeftPane/VBox/StatsPanelContainer/VBoxContainer"]
 margin_top = 42.0
 margin_right = 172.0
 margin_bottom = 59.0
 grow_horizontal = 2
 alignment = 1
 
-[node name="pad1" type="Control" parent="World/UIPanes/UIPaneLeft/VBox/StatsPanelContainer/VBoxContainer/Stat3"]
+[node name="pad1" type="Control" parent="World/UI/SidePanes/LeftPane/VBox/StatsPanelContainer/VBoxContainer/Stat3"]
 margin_right = 10.0
 margin_bottom = 17.0
 rect_min_size = Vector2( 10, 0 )
 
-[node name="StatLabel" type="Label" parent="World/UIPanes/UIPaneLeft/VBox/StatsPanelContainer/VBoxContainer/Stat3"]
+[node name="StatLabel" type="Label" parent="World/UI/SidePanes/LeftPane/VBox/StatsPanelContainer/VBoxContainer/Stat3"]
 margin_left = 14.0
 margin_right = 79.0
 margin_bottom = 17.0
@@ -343,13 +350,13 @@ size_flags_horizontal = 3
 text = "END"
 valign = 1
 
-[node name="pad2" type="Control" parent="World/UIPanes/UIPaneLeft/VBox/StatsPanelContainer/VBoxContainer/Stat3"]
+[node name="pad2" type="Control" parent="World/UI/SidePanes/LeftPane/VBox/StatsPanelContainer/VBoxContainer/Stat3"]
 margin_left = 83.0
 margin_right = 103.0
 margin_bottom = 17.0
 rect_min_size = Vector2( 20, 0 )
 
-[node name="Stat" type="Label" parent="World/UIPanes/UIPaneLeft/VBox/StatsPanelContainer/VBoxContainer/Stat3"]
+[node name="Stat" type="Label" parent="World/UI/SidePanes/LeftPane/VBox/StatsPanelContainer/VBoxContainer/Stat3"]
 margin_left = 107.0
 margin_right = 172.0
 margin_bottom = 17.0
@@ -358,19 +365,19 @@ size_flags_horizontal = 3
 text = "85"
 valign = 1
 
-[node name="Stat4" type="HBoxContainer" parent="World/UIPanes/UIPaneLeft/VBox/StatsPanelContainer/VBoxContainer"]
+[node name="Stat4" type="HBoxContainer" parent="World/UI/SidePanes/LeftPane/VBox/StatsPanelContainer/VBoxContainer"]
 margin_top = 63.0
 margin_right = 172.0
 margin_bottom = 80.0
 grow_horizontal = 2
 alignment = 1
 
-[node name="pad1" type="Control" parent="World/UIPanes/UIPaneLeft/VBox/StatsPanelContainer/VBoxContainer/Stat4"]
+[node name="pad1" type="Control" parent="World/UI/SidePanes/LeftPane/VBox/StatsPanelContainer/VBoxContainer/Stat4"]
 margin_right = 10.0
 margin_bottom = 17.0
 rect_min_size = Vector2( 10, 0 )
 
-[node name="StatLabel" type="Label" parent="World/UIPanes/UIPaneLeft/VBox/StatsPanelContainer/VBoxContainer/Stat4"]
+[node name="StatLabel" type="Label" parent="World/UI/SidePanes/LeftPane/VBox/StatsPanelContainer/VBoxContainer/Stat4"]
 margin_left = 14.0
 margin_right = 79.0
 margin_bottom = 17.0
@@ -379,13 +386,13 @@ size_flags_horizontal = 3
 text = "INT"
 valign = 1
 
-[node name="pad2" type="Control" parent="World/UIPanes/UIPaneLeft/VBox/StatsPanelContainer/VBoxContainer/Stat4"]
+[node name="pad2" type="Control" parent="World/UI/SidePanes/LeftPane/VBox/StatsPanelContainer/VBoxContainer/Stat4"]
 margin_left = 83.0
 margin_right = 103.0
 margin_bottom = 17.0
 rect_min_size = Vector2( 20, 0 )
 
-[node name="Stat" type="Label" parent="World/UIPanes/UIPaneLeft/VBox/StatsPanelContainer/VBoxContainer/Stat4"]
+[node name="Stat" type="Label" parent="World/UI/SidePanes/LeftPane/VBox/StatsPanelContainer/VBoxContainer/Stat4"]
 margin_left = 107.0
 margin_right = 172.0
 margin_bottom = 17.0
@@ -394,19 +401,19 @@ size_flags_horizontal = 3
 text = "85"
 valign = 1
 
-[node name="Stat5" type="HBoxContainer" parent="World/UIPanes/UIPaneLeft/VBox/StatsPanelContainer/VBoxContainer"]
+[node name="Stat5" type="HBoxContainer" parent="World/UI/SidePanes/LeftPane/VBox/StatsPanelContainer/VBoxContainer"]
 margin_top = 84.0
 margin_right = 172.0
 margin_bottom = 101.0
 grow_horizontal = 2
 alignment = 1
 
-[node name="pad1" type="Control" parent="World/UIPanes/UIPaneLeft/VBox/StatsPanelContainer/VBoxContainer/Stat5"]
+[node name="pad1" type="Control" parent="World/UI/SidePanes/LeftPane/VBox/StatsPanelContainer/VBoxContainer/Stat5"]
 margin_right = 10.0
 margin_bottom = 17.0
 rect_min_size = Vector2( 10, 0 )
 
-[node name="StatLabel" type="Label" parent="World/UIPanes/UIPaneLeft/VBox/StatsPanelContainer/VBoxContainer/Stat5"]
+[node name="StatLabel" type="Label" parent="World/UI/SidePanes/LeftPane/VBox/StatsPanelContainer/VBoxContainer/Stat5"]
 margin_left = 14.0
 margin_right = 79.0
 margin_bottom = 17.0
@@ -415,13 +422,13 @@ size_flags_horizontal = 3
 text = "WIS"
 valign = 1
 
-[node name="pad2" type="Control" parent="World/UIPanes/UIPaneLeft/VBox/StatsPanelContainer/VBoxContainer/Stat5"]
+[node name="pad2" type="Control" parent="World/UI/SidePanes/LeftPane/VBox/StatsPanelContainer/VBoxContainer/Stat5"]
 margin_left = 83.0
 margin_right = 103.0
 margin_bottom = 17.0
 rect_min_size = Vector2( 20, 0 )
 
-[node name="Stat" type="Label" parent="World/UIPanes/UIPaneLeft/VBox/StatsPanelContainer/VBoxContainer/Stat5"]
+[node name="Stat" type="Label" parent="World/UI/SidePanes/LeftPane/VBox/StatsPanelContainer/VBoxContainer/Stat5"]
 margin_left = 107.0
 margin_right = 172.0
 margin_bottom = 17.0
@@ -430,19 +437,19 @@ size_flags_horizontal = 3
 text = "85"
 valign = 1
 
-[node name="Stat6" type="HBoxContainer" parent="World/UIPanes/UIPaneLeft/VBox/StatsPanelContainer/VBoxContainer"]
+[node name="Stat6" type="HBoxContainer" parent="World/UI/SidePanes/LeftPane/VBox/StatsPanelContainer/VBoxContainer"]
 margin_top = 105.0
 margin_right = 172.0
 margin_bottom = 122.0
 grow_horizontal = 2
 alignment = 1
 
-[node name="pad1" type="Control" parent="World/UIPanes/UIPaneLeft/VBox/StatsPanelContainer/VBoxContainer/Stat6"]
+[node name="pad1" type="Control" parent="World/UI/SidePanes/LeftPane/VBox/StatsPanelContainer/VBoxContainer/Stat6"]
 margin_right = 10.0
 margin_bottom = 17.0
 rect_min_size = Vector2( 10, 0 )
 
-[node name="StatLabel" type="Label" parent="World/UIPanes/UIPaneLeft/VBox/StatsPanelContainer/VBoxContainer/Stat6"]
+[node name="StatLabel" type="Label" parent="World/UI/SidePanes/LeftPane/VBox/StatsPanelContainer/VBoxContainer/Stat6"]
 margin_left = 14.0
 margin_right = 79.0
 margin_bottom = 17.0
@@ -451,13 +458,13 @@ size_flags_horizontal = 3
 text = "CHA"
 valign = 1
 
-[node name="pad2" type="Control" parent="World/UIPanes/UIPaneLeft/VBox/StatsPanelContainer/VBoxContainer/Stat6"]
+[node name="pad2" type="Control" parent="World/UI/SidePanes/LeftPane/VBox/StatsPanelContainer/VBoxContainer/Stat6"]
 margin_left = 83.0
 margin_right = 103.0
 margin_bottom = 17.0
 rect_min_size = Vector2( 20, 0 )
 
-[node name="Stat" type="Label" parent="World/UIPanes/UIPaneLeft/VBox/StatsPanelContainer/VBoxContainer/Stat6"]
+[node name="Stat" type="Label" parent="World/UI/SidePanes/LeftPane/VBox/StatsPanelContainer/VBoxContainer/Stat6"]
 margin_left = 107.0
 margin_right = 172.0
 margin_bottom = 17.0
@@ -466,30 +473,30 @@ size_flags_horizontal = 3
 text = "85"
 valign = 1
 
-[node name="ActionSelectPanelContainer" type="PanelContainer" parent="World/UIPanes/UIPaneLeft/VBox"]
+[node name="ActionSelectPanelContainer" type="PanelContainer" parent="World/UI/SidePanes/LeftPane/VBox"]
 visible = false
 margin_top = 330.0
 margin_right = 186.0
 margin_bottom = 436.0
 
-[node name="Actions" type="VBoxContainer" parent="World/UIPanes/UIPaneLeft/VBox/ActionSelectPanelContainer"]
+[node name="Actions" type="VBoxContainer" parent="World/UI/SidePanes/LeftPane/VBox/ActionSelectPanelContainer"]
 margin_left = 7.0
 margin_top = 7.0
 margin_right = 179.0
 margin_bottom = 99.0
 
-[node name="Slot1" type="HBoxContainer" parent="World/UIPanes/UIPaneLeft/VBox/ActionSelectPanelContainer/Actions"]
+[node name="Slot1" type="HBoxContainer" parent="World/UI/SidePanes/LeftPane/VBox/ActionSelectPanelContainer/Actions"]
 margin_right = 172.0
 margin_bottom = 20.0
 grow_horizontal = 2
 alignment = 1
 
-[node name="pad1" type="Control" parent="World/UIPanes/UIPaneLeft/VBox/ActionSelectPanelContainer/Actions/Slot1"]
+[node name="pad1" type="Control" parent="World/UI/SidePanes/LeftPane/VBox/ActionSelectPanelContainer/Actions/Slot1"]
 margin_right = 10.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 10, 0 )
 
-[node name="Selector" type="TextureRect" parent="World/UIPanes/UIPaneLeft/VBox/ActionSelectPanelContainer/Actions/Slot1"]
+[node name="Selector" type="TextureRect" parent="World/UI/SidePanes/LeftPane/VBox/ActionSelectPanelContainer/Actions/Slot1"]
 margin_left = 14.0
 margin_right = 34.0
 margin_bottom = 20.0
@@ -499,13 +506,13 @@ size_flags_vertical = 4
 texture = ExtResource( 6 )
 stretch_mode = 5
 
-[node name="pad2" type="Control" parent="World/UIPanes/UIPaneLeft/VBox/ActionSelectPanelContainer/Actions/Slot1"]
+[node name="pad2" type="Control" parent="World/UI/SidePanes/LeftPane/VBox/ActionSelectPanelContainer/Actions/Slot1"]
 margin_left = 38.0
 margin_right = 58.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 20, 0 )
 
-[node name="Label" type="Label" parent="World/UIPanes/UIPaneLeft/VBox/ActionSelectPanelContainer/Actions/Slot1"]
+[node name="Label" type="Label" parent="World/UI/SidePanes/LeftPane/VBox/ActionSelectPanelContainer/Actions/Slot1"]
 margin_left = 62.0
 margin_top = 1.0
 margin_right = 172.0
@@ -515,19 +522,19 @@ size_flags_horizontal = 3
 text = "Action 1"
 valign = 1
 
-[node name="Slot2" type="HBoxContainer" parent="World/UIPanes/UIPaneLeft/VBox/ActionSelectPanelContainer/Actions"]
+[node name="Slot2" type="HBoxContainer" parent="World/UI/SidePanes/LeftPane/VBox/ActionSelectPanelContainer/Actions"]
 margin_top = 24.0
 margin_right = 172.0
 margin_bottom = 44.0
 grow_horizontal = 2
 alignment = 1
 
-[node name="pad1" type="Control" parent="World/UIPanes/UIPaneLeft/VBox/ActionSelectPanelContainer/Actions/Slot2"]
+[node name="pad1" type="Control" parent="World/UI/SidePanes/LeftPane/VBox/ActionSelectPanelContainer/Actions/Slot2"]
 margin_right = 10.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 10, 0 )
 
-[node name="Selector" type="TextureRect" parent="World/UIPanes/UIPaneLeft/VBox/ActionSelectPanelContainer/Actions/Slot2"]
+[node name="Selector" type="TextureRect" parent="World/UI/SidePanes/LeftPane/VBox/ActionSelectPanelContainer/Actions/Slot2"]
 margin_left = 14.0
 margin_right = 34.0
 margin_bottom = 20.0
@@ -537,13 +544,13 @@ size_flags_vertical = 4
 texture = ExtResource( 6 )
 stretch_mode = 5
 
-[node name="pad2" type="Control" parent="World/UIPanes/UIPaneLeft/VBox/ActionSelectPanelContainer/Actions/Slot2"]
+[node name="pad2" type="Control" parent="World/UI/SidePanes/LeftPane/VBox/ActionSelectPanelContainer/Actions/Slot2"]
 margin_left = 38.0
 margin_right = 58.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 20, 0 )
 
-[node name="Label" type="Label" parent="World/UIPanes/UIPaneLeft/VBox/ActionSelectPanelContainer/Actions/Slot2"]
+[node name="Label" type="Label" parent="World/UI/SidePanes/LeftPane/VBox/ActionSelectPanelContainer/Actions/Slot2"]
 margin_left = 62.0
 margin_top = 1.0
 margin_right = 172.0
@@ -553,19 +560,19 @@ size_flags_horizontal = 3
 text = "Action 2"
 valign = 1
 
-[node name="Slot3" type="HBoxContainer" parent="World/UIPanes/UIPaneLeft/VBox/ActionSelectPanelContainer/Actions"]
+[node name="Slot3" type="HBoxContainer" parent="World/UI/SidePanes/LeftPane/VBox/ActionSelectPanelContainer/Actions"]
 margin_top = 48.0
 margin_right = 172.0
 margin_bottom = 68.0
 grow_horizontal = 2
 alignment = 1
 
-[node name="pad1" type="Control" parent="World/UIPanes/UIPaneLeft/VBox/ActionSelectPanelContainer/Actions/Slot3"]
+[node name="pad1" type="Control" parent="World/UI/SidePanes/LeftPane/VBox/ActionSelectPanelContainer/Actions/Slot3"]
 margin_right = 10.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 10, 0 )
 
-[node name="Selector" type="TextureRect" parent="World/UIPanes/UIPaneLeft/VBox/ActionSelectPanelContainer/Actions/Slot3"]
+[node name="Selector" type="TextureRect" parent="World/UI/SidePanes/LeftPane/VBox/ActionSelectPanelContainer/Actions/Slot3"]
 margin_left = 14.0
 margin_right = 34.0
 margin_bottom = 20.0
@@ -575,13 +582,13 @@ size_flags_vertical = 4
 texture = ExtResource( 6 )
 stretch_mode = 5
 
-[node name="pad2" type="Control" parent="World/UIPanes/UIPaneLeft/VBox/ActionSelectPanelContainer/Actions/Slot3"]
+[node name="pad2" type="Control" parent="World/UI/SidePanes/LeftPane/VBox/ActionSelectPanelContainer/Actions/Slot3"]
 margin_left = 38.0
 margin_right = 58.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 20, 0 )
 
-[node name="Label" type="Label" parent="World/UIPanes/UIPaneLeft/VBox/ActionSelectPanelContainer/Actions/Slot3"]
+[node name="Label" type="Label" parent="World/UI/SidePanes/LeftPane/VBox/ActionSelectPanelContainer/Actions/Slot3"]
 margin_left = 62.0
 margin_top = 1.0
 margin_right = 172.0
@@ -591,19 +598,19 @@ size_flags_horizontal = 3
 text = "Action 3"
 valign = 1
 
-[node name="Slot4" type="HBoxContainer" parent="World/UIPanes/UIPaneLeft/VBox/ActionSelectPanelContainer/Actions"]
+[node name="Slot4" type="HBoxContainer" parent="World/UI/SidePanes/LeftPane/VBox/ActionSelectPanelContainer/Actions"]
 margin_top = 72.0
 margin_right = 172.0
 margin_bottom = 92.0
 grow_horizontal = 2
 alignment = 1
 
-[node name="pad1" type="Control" parent="World/UIPanes/UIPaneLeft/VBox/ActionSelectPanelContainer/Actions/Slot4"]
+[node name="pad1" type="Control" parent="World/UI/SidePanes/LeftPane/VBox/ActionSelectPanelContainer/Actions/Slot4"]
 margin_right = 10.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 10, 0 )
 
-[node name="Selector" type="TextureRect" parent="World/UIPanes/UIPaneLeft/VBox/ActionSelectPanelContainer/Actions/Slot4"]
+[node name="Selector" type="TextureRect" parent="World/UI/SidePanes/LeftPane/VBox/ActionSelectPanelContainer/Actions/Slot4"]
 margin_left = 14.0
 margin_right = 34.0
 margin_bottom = 20.0
@@ -613,13 +620,13 @@ size_flags_vertical = 4
 texture = ExtResource( 6 )
 stretch_mode = 5
 
-[node name="pad2" type="Control" parent="World/UIPanes/UIPaneLeft/VBox/ActionSelectPanelContainer/Actions/Slot4"]
+[node name="pad2" type="Control" parent="World/UI/SidePanes/LeftPane/VBox/ActionSelectPanelContainer/Actions/Slot4"]
 margin_left = 38.0
 margin_right = 58.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 20, 0 )
 
-[node name="Label" type="Label" parent="World/UIPanes/UIPaneLeft/VBox/ActionSelectPanelContainer/Actions/Slot4"]
+[node name="Label" type="Label" parent="World/UI/SidePanes/LeftPane/VBox/ActionSelectPanelContainer/Actions/Slot4"]
 margin_left = 62.0
 margin_top = 1.0
 margin_right = 172.0
@@ -629,13 +636,13 @@ size_flags_horizontal = 3
 text = "Action 4"
 valign = 1
 
-[node name="ActionDescPanelContainer" type="PanelContainer" parent="World/UIPanes/UIPaneLeft/VBox"]
+[node name="ActionDescPanelContainer" type="PanelContainer" parent="World/UI/SidePanes/LeftPane/VBox"]
 visible = false
 margin_top = 330.0
 margin_right = 186.0
 margin_bottom = 553.0
 
-[node name="RichTextLabel" type="RichTextLabel" parent="World/UIPanes/UIPaneLeft/VBox/ActionDescPanelContainer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="World/UI/SidePanes/LeftPane/VBox/ActionDescPanelContainer"]
 margin_left = 7.0
 margin_top = 7.0
 margin_right = 179.0
@@ -645,7 +652,8 @@ text = "Description of action. RichText Label means you can have special effects
 Will list Special Effects with a bit of flavor."
 fit_content_height = true
 
-[node name="UIPaneRight" type="PanelContainer" parent="World/UIPanes"]
+[node name="RightPane" type="PanelContainer" parent="World/UI/SidePanes"]
+visible = false
 self_modulate = Color( 1, 1, 1, 0 )
 anchor_left = 1.0
 anchor_right = 1.0
@@ -661,34 +669,34 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBox" type="VBoxContainer" parent="World/UIPanes/UIPaneRight"]
+[node name="VBox" type="VBoxContainer" parent="World/UI/SidePanes/RightPane"]
 margin_left = 7.0
 margin_top = 7.0
 margin_right = 193.0
 margin_bottom = 402.0
 alignment = 1
 
-[node name="ScorePanelContainer" type="PanelContainer" parent="World/UIPanes/UIPaneRight/VBox"]
+[node name="ScorePanelContainer" type="PanelContainer" parent="World/UI/SidePanes/RightPane/VBox"]
 visible = false
 self_modulate = Color( 1, 1, 1, 0.862745 )
 margin_right = 186.0
 margin_bottom = 70.0
 
-[node name="VBox" type="VBoxContainer" parent="World/UIPanes/UIPaneRight/VBox/ScorePanelContainer"]
+[node name="VBox" type="VBoxContainer" parent="World/UI/SidePanes/RightPane/VBox/ScorePanelContainer"]
 margin_left = 7.0
 margin_top = 7.0
 margin_right = 179.0
 margin_bottom = 63.0
 
-[node name="Top" type="HBoxContainer" parent="World/UIPanes/UIPaneRight/VBox/ScorePanelContainer/VBox"]
+[node name="Top" type="HBoxContainer" parent="World/UI/SidePanes/RightPane/VBox/ScorePanelContainer/VBox"]
 margin_right = 172.0
 margin_bottom = 26.0
 
-[node name="Team1" type="HBoxContainer" parent="World/UIPanes/UIPaneRight/VBox/ScorePanelContainer/VBox/Top"]
+[node name="Team1" type="HBoxContainer" parent="World/UI/SidePanes/RightPane/VBox/ScorePanelContainer/VBox/Top"]
 margin_right = 101.0
 margin_bottom = 26.0
 
-[node name="Abbr" type="Label" parent="World/UIPanes/UIPaneRight/VBox/ScorePanelContainer/VBox/Top/Team1"]
+[node name="Abbr" type="Label" parent="World/UI/SidePanes/RightPane/VBox/ScorePanelContainer/VBox/Top/Team1"]
 margin_top = 4.0
 margin_right = 39.0
 margin_bottom = 22.0
@@ -696,7 +704,7 @@ theme = ExtResource( 3 )
 text = "CAN"
 valign = 1
 
-[node name="Flag" type="TextureRect" parent="World/UIPanes/UIPaneRight/VBox/ScorePanelContainer/VBox/Top/Team1"]
+[node name="Flag" type="TextureRect" parent="World/UI/SidePanes/RightPane/VBox/ScorePanelContainer/VBox/Top/Team1"]
 margin_left = 43.0
 margin_right = 73.0
 margin_bottom = 26.0
@@ -707,19 +715,19 @@ texture = ExtResource( 4 )
 expand = true
 stretch_mode = 6
 
-[node name="Serve" type="CheckBox" parent="World/UIPanes/UIPaneRight/VBox/ScorePanelContainer/VBox/Top/Team1"]
+[node name="Serve" type="CheckBox" parent="World/UI/SidePanes/RightPane/VBox/ScorePanelContainer/VBox/Top/Team1"]
 margin_left = 77.0
 margin_right = 101.0
 margin_bottom = 26.0
 button_mask = 0
 
-[node name="SetsWon" type="Panel" parent="World/UIPanes/UIPaneRight/VBox/ScorePanelContainer/VBox/Top"]
+[node name="SetsWon" type="Panel" parent="World/UI/SidePanes/RightPane/VBox/ScorePanelContainer/VBox/Top"]
 margin_left = 105.0
 margin_right = 127.0
 margin_bottom = 26.0
 rect_min_size = Vector2( 22, 0 )
 
-[node name="SetsWonLabel" type="Label" parent="World/UIPanes/UIPaneRight/VBox/ScorePanelContainer/VBox/Top/SetsWon"]
+[node name="SetsWonLabel" type="Label" parent="World/UI/SidePanes/RightPane/VBox/ScorePanelContainer/VBox/Top/SetsWon"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 1.0
@@ -731,14 +739,14 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Points" type="Panel" parent="World/UIPanes/UIPaneRight/VBox/ScorePanelContainer/VBox/Top"]
+[node name="Points" type="Panel" parent="World/UI/SidePanes/RightPane/VBox/ScorePanelContainer/VBox/Top"]
 margin_left = 131.0
 margin_right = 172.0
 margin_bottom = 26.0
 rect_min_size = Vector2( 22, 0 )
 size_flags_horizontal = 3
 
-[node name="PointsLabel" type="Label" parent="World/UIPanes/UIPaneRight/VBox/ScorePanelContainer/VBox/Top/Points"]
+[node name="PointsLabel" type="Label" parent="World/UI/SidePanes/RightPane/VBox/ScorePanelContainer/VBox/Top/Points"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 text = "00"
@@ -748,16 +756,16 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Bottom" type="HBoxContainer" parent="World/UIPanes/UIPaneRight/VBox/ScorePanelContainer/VBox"]
+[node name="Bottom" type="HBoxContainer" parent="World/UI/SidePanes/RightPane/VBox/ScorePanelContainer/VBox"]
 margin_top = 30.0
 margin_right = 172.0
 margin_bottom = 56.0
 
-[node name="Team2" type="HBoxContainer" parent="World/UIPanes/UIPaneRight/VBox/ScorePanelContainer/VBox/Bottom"]
+[node name="Team2" type="HBoxContainer" parent="World/UI/SidePanes/RightPane/VBox/ScorePanelContainer/VBox/Bottom"]
 margin_right = 101.0
 margin_bottom = 26.0
 
-[node name="Abbr" type="Label" parent="World/UIPanes/UIPaneRight/VBox/ScorePanelContainer/VBox/Bottom/Team2"]
+[node name="Abbr" type="Label" parent="World/UI/SidePanes/RightPane/VBox/ScorePanelContainer/VBox/Bottom/Team2"]
 margin_top = 4.0
 margin_right = 39.0
 margin_bottom = 22.0
@@ -765,7 +773,7 @@ theme = ExtResource( 3 )
 text = "USA"
 valign = 1
 
-[node name="Flag" type="TextureRect" parent="World/UIPanes/UIPaneRight/VBox/ScorePanelContainer/VBox/Bottom/Team2"]
+[node name="Flag" type="TextureRect" parent="World/UI/SidePanes/RightPane/VBox/ScorePanelContainer/VBox/Bottom/Team2"]
 margin_left = 43.0
 margin_right = 73.0
 margin_bottom = 26.0
@@ -776,19 +784,19 @@ texture = ExtResource( 2 )
 expand = true
 stretch_mode = 6
 
-[node name="Serve" type="CheckBox" parent="World/UIPanes/UIPaneRight/VBox/ScorePanelContainer/VBox/Bottom/Team2"]
+[node name="Serve" type="CheckBox" parent="World/UI/SidePanes/RightPane/VBox/ScorePanelContainer/VBox/Bottom/Team2"]
 margin_left = 77.0
 margin_right = 101.0
 margin_bottom = 26.0
 button_mask = 0
 
-[node name="SetsWon" type="Panel" parent="World/UIPanes/UIPaneRight/VBox/ScorePanelContainer/VBox/Bottom"]
+[node name="SetsWon" type="Panel" parent="World/UI/SidePanes/RightPane/VBox/ScorePanelContainer/VBox/Bottom"]
 margin_left = 105.0
 margin_right = 127.0
 margin_bottom = 26.0
 rect_min_size = Vector2( 22, 0 )
 
-[node name="SetsWonLabel" type="Label" parent="World/UIPanes/UIPaneRight/VBox/ScorePanelContainer/VBox/Bottom/SetsWon"]
+[node name="SetsWonLabel" type="Label" parent="World/UI/SidePanes/RightPane/VBox/ScorePanelContainer/VBox/Bottom/SetsWon"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 1.0
@@ -800,14 +808,14 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Points" type="Panel" parent="World/UIPanes/UIPaneRight/VBox/ScorePanelContainer/VBox/Bottom"]
+[node name="Points" type="Panel" parent="World/UI/SidePanes/RightPane/VBox/ScorePanelContainer/VBox/Bottom"]
 margin_left = 131.0
 margin_right = 172.0
 margin_bottom = 26.0
 rect_min_size = Vector2( 22, 0 )
 size_flags_horizontal = 3
 
-[node name="PointsLabel" type="Label" parent="World/UIPanes/UIPaneRight/VBox/ScorePanelContainer/VBox/Bottom/Points"]
+[node name="PointsLabel" type="Label" parent="World/UI/SidePanes/RightPane/VBox/ScorePanelContainer/VBox/Bottom/Points"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 text = "00"
@@ -817,32 +825,32 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="padding" type="Control" parent="World/UIPanes/UIPaneRight/VBox"]
+[node name="padding" type="Control" parent="World/UI/SidePanes/RightPane/VBox"]
 margin_top = 40.0
 margin_right = 186.0
 margin_bottom = 105.0
 rect_min_size = Vector2( 0, 65 )
 
-[node name="ChSelectPanelContainer" type="PanelContainer" parent="World/UIPanes/UIPaneRight/VBox"]
+[node name="ChSelectPanelContainer" type="PanelContainer" parent="World/UI/SidePanes/RightPane/VBox"]
 self_modulate = Color( 1, 1, 1, 0.862745 )
 margin_top = 109.0
 margin_right = 186.0
 margin_bottom = 215.0
 script = ExtResource( 9 )
 
-[node name="Team" type="VBoxContainer" parent="World/UIPanes/UIPaneRight/VBox/ChSelectPanelContainer"]
+[node name="Team" type="VBoxContainer" parent="World/UI/SidePanes/RightPane/VBox/ChSelectPanelContainer"]
 margin_left = 7.0
 margin_top = 7.0
 margin_right = 179.0
 margin_bottom = 99.0
 
-[node name="Slot1" type="HBoxContainer" parent="World/UIPanes/UIPaneRight/VBox/ChSelectPanelContainer/Team"]
+[node name="Slot1" type="HBoxContainer" parent="World/UI/SidePanes/RightPane/VBox/ChSelectPanelContainer/Team"]
 margin_right = 172.0
 margin_bottom = 20.0
 grow_horizontal = 2
 alignment = 2
 
-[node name="Selector" type="TextureRect" parent="World/UIPanes/UIPaneRight/VBox/ChSelectPanelContainer/Team/Slot1"]
+[node name="Selector" type="TextureRect" parent="World/UI/SidePanes/RightPane/VBox/ChSelectPanelContainer/Team/Slot1"]
 margin_left = 46.0
 margin_right = 66.0
 margin_bottom = 20.0
@@ -852,13 +860,13 @@ size_flags_vertical = 4
 texture = ExtResource( 6 )
 stretch_mode = 5
 
-[node name="pad2" type="Control" parent="World/UIPanes/UIPaneRight/VBox/ChSelectPanelContainer/Team/Slot1"]
+[node name="pad2" type="Control" parent="World/UI/SidePanes/RightPane/VBox/ChSelectPanelContainer/Team/Slot1"]
 margin_left = 70.0
 margin_right = 90.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 20, 0 )
 
-[node name="Label" type="Label" parent="World/UIPanes/UIPaneRight/VBox/ChSelectPanelContainer/Team/Slot1"]
+[node name="Label" type="Label" parent="World/UI/SidePanes/RightPane/VBox/ChSelectPanelContainer/Team/Slot1"]
 margin_left = 94.0
 margin_right = 138.0
 margin_bottom = 20.0
@@ -867,20 +875,20 @@ size_flags_horizontal = 8
 text = "TEAM"
 valign = 1
 
-[node name="pad1" type="Control" parent="World/UIPanes/UIPaneRight/VBox/ChSelectPanelContainer/Team/Slot1"]
+[node name="pad1" type="Control" parent="World/UI/SidePanes/RightPane/VBox/ChSelectPanelContainer/Team/Slot1"]
 margin_left = 142.0
 margin_right = 172.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 30, 0 )
 
-[node name="Slot2" type="HBoxContainer" parent="World/UIPanes/UIPaneRight/VBox/ChSelectPanelContainer/Team"]
+[node name="Slot2" type="HBoxContainer" parent="World/UI/SidePanes/RightPane/VBox/ChSelectPanelContainer/Team"]
 margin_top = 24.0
 margin_right = 172.0
 margin_bottom = 44.0
 grow_horizontal = 2
 alignment = 2
 
-[node name="Selector" type="TextureRect" parent="World/UIPanes/UIPaneRight/VBox/ChSelectPanelContainer/Team/Slot2"]
+[node name="Selector" type="TextureRect" parent="World/UI/SidePanes/RightPane/VBox/ChSelectPanelContainer/Team/Slot2"]
 margin_left = 46.0
 margin_right = 66.0
 margin_bottom = 20.0
@@ -890,13 +898,13 @@ size_flags_vertical = 4
 texture = ExtResource( 6 )
 stretch_mode = 5
 
-[node name="pad2" type="Control" parent="World/UIPanes/UIPaneRight/VBox/ChSelectPanelContainer/Team/Slot2"]
+[node name="pad2" type="Control" parent="World/UI/SidePanes/RightPane/VBox/ChSelectPanelContainer/Team/Slot2"]
 margin_left = 70.0
 margin_right = 90.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 20, 0 )
 
-[node name="Label" type="Label" parent="World/UIPanes/UIPaneRight/VBox/ChSelectPanelContainer/Team/Slot2"]
+[node name="Label" type="Label" parent="World/UI/SidePanes/RightPane/VBox/ChSelectPanelContainer/Team/Slot2"]
 margin_left = 94.0
 margin_right = 138.0
 margin_bottom = 20.0
@@ -905,20 +913,20 @@ size_flags_horizontal = 8
 text = "TEAM"
 valign = 1
 
-[node name="pad1" type="Control" parent="World/UIPanes/UIPaneRight/VBox/ChSelectPanelContainer/Team/Slot2"]
+[node name="pad1" type="Control" parent="World/UI/SidePanes/RightPane/VBox/ChSelectPanelContainer/Team/Slot2"]
 margin_left = 142.0
 margin_right = 172.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 30, 0 )
 
-[node name="Slot3" type="HBoxContainer" parent="World/UIPanes/UIPaneRight/VBox/ChSelectPanelContainer/Team"]
+[node name="Slot3" type="HBoxContainer" parent="World/UI/SidePanes/RightPane/VBox/ChSelectPanelContainer/Team"]
 margin_top = 48.0
 margin_right = 172.0
 margin_bottom = 68.0
 grow_horizontal = 2
 alignment = 2
 
-[node name="Selector" type="TextureRect" parent="World/UIPanes/UIPaneRight/VBox/ChSelectPanelContainer/Team/Slot3"]
+[node name="Selector" type="TextureRect" parent="World/UI/SidePanes/RightPane/VBox/ChSelectPanelContainer/Team/Slot3"]
 margin_left = 46.0
 margin_right = 66.0
 margin_bottom = 20.0
@@ -928,13 +936,13 @@ size_flags_vertical = 4
 texture = ExtResource( 6 )
 stretch_mode = 5
 
-[node name="pad2" type="Control" parent="World/UIPanes/UIPaneRight/VBox/ChSelectPanelContainer/Team/Slot3"]
+[node name="pad2" type="Control" parent="World/UI/SidePanes/RightPane/VBox/ChSelectPanelContainer/Team/Slot3"]
 margin_left = 70.0
 margin_right = 90.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 20, 0 )
 
-[node name="Label" type="Label" parent="World/UIPanes/UIPaneRight/VBox/ChSelectPanelContainer/Team/Slot3"]
+[node name="Label" type="Label" parent="World/UI/SidePanes/RightPane/VBox/ChSelectPanelContainer/Team/Slot3"]
 margin_left = 94.0
 margin_right = 138.0
 margin_bottom = 20.0
@@ -943,20 +951,20 @@ size_flags_horizontal = 8
 text = "TEAM"
 valign = 1
 
-[node name="pad1" type="Control" parent="World/UIPanes/UIPaneRight/VBox/ChSelectPanelContainer/Team/Slot3"]
+[node name="pad1" type="Control" parent="World/UI/SidePanes/RightPane/VBox/ChSelectPanelContainer/Team/Slot3"]
 margin_left = 142.0
 margin_right = 172.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 30, 0 )
 
-[node name="Slot4" type="HBoxContainer" parent="World/UIPanes/UIPaneRight/VBox/ChSelectPanelContainer/Team"]
+[node name="Slot4" type="HBoxContainer" parent="World/UI/SidePanes/RightPane/VBox/ChSelectPanelContainer/Team"]
 margin_top = 72.0
 margin_right = 172.0
 margin_bottom = 92.0
 grow_horizontal = 2
 alignment = 2
 
-[node name="Selector" type="TextureRect" parent="World/UIPanes/UIPaneRight/VBox/ChSelectPanelContainer/Team/Slot4"]
+[node name="Selector" type="TextureRect" parent="World/UI/SidePanes/RightPane/VBox/ChSelectPanelContainer/Team/Slot4"]
 margin_left = 46.0
 margin_right = 66.0
 margin_bottom = 20.0
@@ -966,13 +974,13 @@ size_flags_vertical = 4
 texture = ExtResource( 6 )
 stretch_mode = 5
 
-[node name="pad2" type="Control" parent="World/UIPanes/UIPaneRight/VBox/ChSelectPanelContainer/Team/Slot4"]
+[node name="pad2" type="Control" parent="World/UI/SidePanes/RightPane/VBox/ChSelectPanelContainer/Team/Slot4"]
 margin_left = 70.0
 margin_right = 90.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 20, 0 )
 
-[node name="Label" type="Label" parent="World/UIPanes/UIPaneRight/VBox/ChSelectPanelContainer/Team/Slot4"]
+[node name="Label" type="Label" parent="World/UI/SidePanes/RightPane/VBox/ChSelectPanelContainer/Team/Slot4"]
 margin_left = 94.0
 margin_right = 138.0
 margin_bottom = 20.0
@@ -981,36 +989,36 @@ size_flags_horizontal = 8
 text = "TEAM"
 valign = 1
 
-[node name="pad1" type="Control" parent="World/UIPanes/UIPaneRight/VBox/ChSelectPanelContainer/Team/Slot4"]
+[node name="pad1" type="Control" parent="World/UI/SidePanes/RightPane/VBox/ChSelectPanelContainer/Team/Slot4"]
 margin_left = 142.0
 margin_right = 172.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 30, 0 )
 
-[node name="StatsPanelContainer" type="PanelContainer" parent="World/UIPanes/UIPaneRight/VBox"]
+[node name="StatsPanelContainer" type="PanelContainer" parent="World/UI/SidePanes/RightPane/VBox"]
 self_modulate = Color( 1, 1, 1, 0.862745 )
 margin_top = 219.0
 margin_right = 186.0
 margin_bottom = 355.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="World/UIPanes/UIPaneRight/VBox/StatsPanelContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="World/UI/SidePanes/RightPane/VBox/StatsPanelContainer"]
 margin_left = 7.0
 margin_top = 7.0
 margin_right = 179.0
 margin_bottom = 129.0
 
-[node name="Stat1" type="HBoxContainer" parent="World/UIPanes/UIPaneRight/VBox/StatsPanelContainer/VBoxContainer"]
+[node name="Stat1" type="HBoxContainer" parent="World/UI/SidePanes/RightPane/VBox/StatsPanelContainer/VBoxContainer"]
 margin_right = 172.0
 margin_bottom = 17.0
 grow_horizontal = 2
 alignment = 1
 
-[node name="pad1" type="Control" parent="World/UIPanes/UIPaneRight/VBox/StatsPanelContainer/VBoxContainer/Stat1"]
+[node name="pad1" type="Control" parent="World/UI/SidePanes/RightPane/VBox/StatsPanelContainer/VBoxContainer/Stat1"]
 margin_right = 10.0
 margin_bottom = 17.0
 rect_min_size = Vector2( 10, 0 )
 
-[node name="StatLabel" type="Label" parent="World/UIPanes/UIPaneRight/VBox/StatsPanelContainer/VBoxContainer/Stat1"]
+[node name="StatLabel" type="Label" parent="World/UI/SidePanes/RightPane/VBox/StatsPanelContainer/VBoxContainer/Stat1"]
 margin_left = 14.0
 margin_right = 79.0
 margin_bottom = 17.0
@@ -1019,13 +1027,13 @@ size_flags_horizontal = 3
 text = "PWR"
 valign = 1
 
-[node name="pad2" type="Control" parent="World/UIPanes/UIPaneRight/VBox/StatsPanelContainer/VBoxContainer/Stat1"]
+[node name="pad2" type="Control" parent="World/UI/SidePanes/RightPane/VBox/StatsPanelContainer/VBoxContainer/Stat1"]
 margin_left = 83.0
 margin_right = 103.0
 margin_bottom = 17.0
 rect_min_size = Vector2( 20, 0 )
 
-[node name="Stat" type="Label" parent="World/UIPanes/UIPaneRight/VBox/StatsPanelContainer/VBoxContainer/Stat1"]
+[node name="Stat" type="Label" parent="World/UI/SidePanes/RightPane/VBox/StatsPanelContainer/VBoxContainer/Stat1"]
 margin_left = 107.0
 margin_right = 172.0
 margin_bottom = 17.0
@@ -1034,19 +1042,19 @@ size_flags_horizontal = 3
 text = "85"
 valign = 1
 
-[node name="Stat2" type="HBoxContainer" parent="World/UIPanes/UIPaneRight/VBox/StatsPanelContainer/VBoxContainer"]
+[node name="Stat2" type="HBoxContainer" parent="World/UI/SidePanes/RightPane/VBox/StatsPanelContainer/VBoxContainer"]
 margin_top = 21.0
 margin_right = 172.0
 margin_bottom = 38.0
 grow_horizontal = 2
 alignment = 1
 
-[node name="pad1" type="Control" parent="World/UIPanes/UIPaneRight/VBox/StatsPanelContainer/VBoxContainer/Stat2"]
+[node name="pad1" type="Control" parent="World/UI/SidePanes/RightPane/VBox/StatsPanelContainer/VBoxContainer/Stat2"]
 margin_right = 10.0
 margin_bottom = 17.0
 rect_min_size = Vector2( 10, 0 )
 
-[node name="StatLabel" type="Label" parent="World/UIPanes/UIPaneRight/VBox/StatsPanelContainer/VBoxContainer/Stat2"]
+[node name="StatLabel" type="Label" parent="World/UI/SidePanes/RightPane/VBox/StatsPanelContainer/VBoxContainer/Stat2"]
 margin_left = 14.0
 margin_right = 79.0
 margin_bottom = 17.0
@@ -1055,13 +1063,13 @@ size_flags_horizontal = 3
 text = "AGI"
 valign = 1
 
-[node name="pad2" type="Control" parent="World/UIPanes/UIPaneRight/VBox/StatsPanelContainer/VBoxContainer/Stat2"]
+[node name="pad2" type="Control" parent="World/UI/SidePanes/RightPane/VBox/StatsPanelContainer/VBoxContainer/Stat2"]
 margin_left = 83.0
 margin_right = 103.0
 margin_bottom = 17.0
 rect_min_size = Vector2( 20, 0 )
 
-[node name="Stat" type="Label" parent="World/UIPanes/UIPaneRight/VBox/StatsPanelContainer/VBoxContainer/Stat2"]
+[node name="Stat" type="Label" parent="World/UI/SidePanes/RightPane/VBox/StatsPanelContainer/VBoxContainer/Stat2"]
 margin_left = 107.0
 margin_right = 172.0
 margin_bottom = 17.0
@@ -1070,19 +1078,19 @@ size_flags_horizontal = 3
 text = "85"
 valign = 1
 
-[node name="Stat3" type="HBoxContainer" parent="World/UIPanes/UIPaneRight/VBox/StatsPanelContainer/VBoxContainer"]
+[node name="Stat3" type="HBoxContainer" parent="World/UI/SidePanes/RightPane/VBox/StatsPanelContainer/VBoxContainer"]
 margin_top = 42.0
 margin_right = 172.0
 margin_bottom = 59.0
 grow_horizontal = 2
 alignment = 1
 
-[node name="pad1" type="Control" parent="World/UIPanes/UIPaneRight/VBox/StatsPanelContainer/VBoxContainer/Stat3"]
+[node name="pad1" type="Control" parent="World/UI/SidePanes/RightPane/VBox/StatsPanelContainer/VBoxContainer/Stat3"]
 margin_right = 10.0
 margin_bottom = 17.0
 rect_min_size = Vector2( 10, 0 )
 
-[node name="StatLabel" type="Label" parent="World/UIPanes/UIPaneRight/VBox/StatsPanelContainer/VBoxContainer/Stat3"]
+[node name="StatLabel" type="Label" parent="World/UI/SidePanes/RightPane/VBox/StatsPanelContainer/VBoxContainer/Stat3"]
 margin_left = 14.0
 margin_right = 79.0
 margin_bottom = 17.0
@@ -1091,13 +1099,13 @@ size_flags_horizontal = 3
 text = "END"
 valign = 1
 
-[node name="pad2" type="Control" parent="World/UIPanes/UIPaneRight/VBox/StatsPanelContainer/VBoxContainer/Stat3"]
+[node name="pad2" type="Control" parent="World/UI/SidePanes/RightPane/VBox/StatsPanelContainer/VBoxContainer/Stat3"]
 margin_left = 83.0
 margin_right = 103.0
 margin_bottom = 17.0
 rect_min_size = Vector2( 20, 0 )
 
-[node name="Stat" type="Label" parent="World/UIPanes/UIPaneRight/VBox/StatsPanelContainer/VBoxContainer/Stat3"]
+[node name="Stat" type="Label" parent="World/UI/SidePanes/RightPane/VBox/StatsPanelContainer/VBoxContainer/Stat3"]
 margin_left = 107.0
 margin_right = 172.0
 margin_bottom = 17.0
@@ -1106,19 +1114,19 @@ size_flags_horizontal = 3
 text = "85"
 valign = 1
 
-[node name="Stat4" type="HBoxContainer" parent="World/UIPanes/UIPaneRight/VBox/StatsPanelContainer/VBoxContainer"]
+[node name="Stat4" type="HBoxContainer" parent="World/UI/SidePanes/RightPane/VBox/StatsPanelContainer/VBoxContainer"]
 margin_top = 63.0
 margin_right = 172.0
 margin_bottom = 80.0
 grow_horizontal = 2
 alignment = 1
 
-[node name="pad1" type="Control" parent="World/UIPanes/UIPaneRight/VBox/StatsPanelContainer/VBoxContainer/Stat4"]
+[node name="pad1" type="Control" parent="World/UI/SidePanes/RightPane/VBox/StatsPanelContainer/VBoxContainer/Stat4"]
 margin_right = 10.0
 margin_bottom = 17.0
 rect_min_size = Vector2( 10, 0 )
 
-[node name="StatLabel" type="Label" parent="World/UIPanes/UIPaneRight/VBox/StatsPanelContainer/VBoxContainer/Stat4"]
+[node name="StatLabel" type="Label" parent="World/UI/SidePanes/RightPane/VBox/StatsPanelContainer/VBoxContainer/Stat4"]
 margin_left = 14.0
 margin_right = 79.0
 margin_bottom = 17.0
@@ -1127,13 +1135,13 @@ size_flags_horizontal = 3
 text = "INT"
 valign = 1
 
-[node name="pad2" type="Control" parent="World/UIPanes/UIPaneRight/VBox/StatsPanelContainer/VBoxContainer/Stat4"]
+[node name="pad2" type="Control" parent="World/UI/SidePanes/RightPane/VBox/StatsPanelContainer/VBoxContainer/Stat4"]
 margin_left = 83.0
 margin_right = 103.0
 margin_bottom = 17.0
 rect_min_size = Vector2( 20, 0 )
 
-[node name="Stat" type="Label" parent="World/UIPanes/UIPaneRight/VBox/StatsPanelContainer/VBoxContainer/Stat4"]
+[node name="Stat" type="Label" parent="World/UI/SidePanes/RightPane/VBox/StatsPanelContainer/VBoxContainer/Stat4"]
 margin_left = 107.0
 margin_right = 172.0
 margin_bottom = 17.0
@@ -1142,19 +1150,19 @@ size_flags_horizontal = 3
 text = "85"
 valign = 1
 
-[node name="Stat5" type="HBoxContainer" parent="World/UIPanes/UIPaneRight/VBox/StatsPanelContainer/VBoxContainer"]
+[node name="Stat5" type="HBoxContainer" parent="World/UI/SidePanes/RightPane/VBox/StatsPanelContainer/VBoxContainer"]
 margin_top = 84.0
 margin_right = 172.0
 margin_bottom = 101.0
 grow_horizontal = 2
 alignment = 1
 
-[node name="pad1" type="Control" parent="World/UIPanes/UIPaneRight/VBox/StatsPanelContainer/VBoxContainer/Stat5"]
+[node name="pad1" type="Control" parent="World/UI/SidePanes/RightPane/VBox/StatsPanelContainer/VBoxContainer/Stat5"]
 margin_right = 10.0
 margin_bottom = 17.0
 rect_min_size = Vector2( 10, 0 )
 
-[node name="StatLabel" type="Label" parent="World/UIPanes/UIPaneRight/VBox/StatsPanelContainer/VBoxContainer/Stat5"]
+[node name="StatLabel" type="Label" parent="World/UI/SidePanes/RightPane/VBox/StatsPanelContainer/VBoxContainer/Stat5"]
 margin_left = 14.0
 margin_right = 79.0
 margin_bottom = 17.0
@@ -1163,13 +1171,13 @@ size_flags_horizontal = 3
 text = "WIS"
 valign = 1
 
-[node name="pad2" type="Control" parent="World/UIPanes/UIPaneRight/VBox/StatsPanelContainer/VBoxContainer/Stat5"]
+[node name="pad2" type="Control" parent="World/UI/SidePanes/RightPane/VBox/StatsPanelContainer/VBoxContainer/Stat5"]
 margin_left = 83.0
 margin_right = 103.0
 margin_bottom = 17.0
 rect_min_size = Vector2( 20, 0 )
 
-[node name="Stat" type="Label" parent="World/UIPanes/UIPaneRight/VBox/StatsPanelContainer/VBoxContainer/Stat5"]
+[node name="Stat" type="Label" parent="World/UI/SidePanes/RightPane/VBox/StatsPanelContainer/VBoxContainer/Stat5"]
 margin_left = 107.0
 margin_right = 172.0
 margin_bottom = 17.0
@@ -1178,19 +1186,19 @@ size_flags_horizontal = 3
 text = "85"
 valign = 1
 
-[node name="Stat6" type="HBoxContainer" parent="World/UIPanes/UIPaneRight/VBox/StatsPanelContainer/VBoxContainer"]
+[node name="Stat6" type="HBoxContainer" parent="World/UI/SidePanes/RightPane/VBox/StatsPanelContainer/VBoxContainer"]
 margin_top = 105.0
 margin_right = 172.0
 margin_bottom = 122.0
 grow_horizontal = 2
 alignment = 1
 
-[node name="pad1" type="Control" parent="World/UIPanes/UIPaneRight/VBox/StatsPanelContainer/VBoxContainer/Stat6"]
+[node name="pad1" type="Control" parent="World/UI/SidePanes/RightPane/VBox/StatsPanelContainer/VBoxContainer/Stat6"]
 margin_right = 10.0
 margin_bottom = 17.0
 rect_min_size = Vector2( 10, 0 )
 
-[node name="StatLabel" type="Label" parent="World/UIPanes/UIPaneRight/VBox/StatsPanelContainer/VBoxContainer/Stat6"]
+[node name="StatLabel" type="Label" parent="World/UI/SidePanes/RightPane/VBox/StatsPanelContainer/VBoxContainer/Stat6"]
 margin_left = 14.0
 margin_right = 79.0
 margin_bottom = 17.0
@@ -1199,13 +1207,13 @@ size_flags_horizontal = 3
 text = "CHA"
 valign = 1
 
-[node name="pad2" type="Control" parent="World/UIPanes/UIPaneRight/VBox/StatsPanelContainer/VBoxContainer/Stat6"]
+[node name="pad2" type="Control" parent="World/UI/SidePanes/RightPane/VBox/StatsPanelContainer/VBoxContainer/Stat6"]
 margin_left = 83.0
 margin_right = 103.0
 margin_bottom = 17.0
 rect_min_size = Vector2( 20, 0 )
 
-[node name="Stat" type="Label" parent="World/UIPanes/UIPaneRight/VBox/StatsPanelContainer/VBoxContainer/Stat6"]
+[node name="Stat" type="Label" parent="World/UI/SidePanes/RightPane/VBox/StatsPanelContainer/VBoxContainer/Stat6"]
 margin_left = 107.0
 margin_right = 172.0
 margin_bottom = 17.0
@@ -1214,30 +1222,30 @@ size_flags_horizontal = 3
 text = "85"
 valign = 1
 
-[node name="ActionSelectPanelContainer" type="PanelContainer" parent="World/UIPanes/UIPaneRight/VBox"]
+[node name="ActionSelectPanelContainer" type="PanelContainer" parent="World/UI/SidePanes/RightPane/VBox"]
 visible = false
 margin_top = 330.0
 margin_right = 186.0
 margin_bottom = 436.0
 
-[node name="Actions" type="VBoxContainer" parent="World/UIPanes/UIPaneRight/VBox/ActionSelectPanelContainer"]
+[node name="Actions" type="VBoxContainer" parent="World/UI/SidePanes/RightPane/VBox/ActionSelectPanelContainer"]
 margin_left = 7.0
 margin_top = 7.0
 margin_right = 179.0
 margin_bottom = 99.0
 
-[node name="Slot1" type="HBoxContainer" parent="World/UIPanes/UIPaneRight/VBox/ActionSelectPanelContainer/Actions"]
+[node name="Slot1" type="HBoxContainer" parent="World/UI/SidePanes/RightPane/VBox/ActionSelectPanelContainer/Actions"]
 margin_right = 172.0
 margin_bottom = 20.0
 grow_horizontal = 2
 alignment = 1
 
-[node name="pad1" type="Control" parent="World/UIPanes/UIPaneRight/VBox/ActionSelectPanelContainer/Actions/Slot1"]
+[node name="pad1" type="Control" parent="World/UI/SidePanes/RightPane/VBox/ActionSelectPanelContainer/Actions/Slot1"]
 margin_right = 10.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 10, 0 )
 
-[node name="Selector" type="TextureRect" parent="World/UIPanes/UIPaneRight/VBox/ActionSelectPanelContainer/Actions/Slot1"]
+[node name="Selector" type="TextureRect" parent="World/UI/SidePanes/RightPane/VBox/ActionSelectPanelContainer/Actions/Slot1"]
 margin_left = 14.0
 margin_right = 34.0
 margin_bottom = 20.0
@@ -1247,13 +1255,13 @@ size_flags_vertical = 4
 texture = ExtResource( 6 )
 stretch_mode = 5
 
-[node name="pad2" type="Control" parent="World/UIPanes/UIPaneRight/VBox/ActionSelectPanelContainer/Actions/Slot1"]
+[node name="pad2" type="Control" parent="World/UI/SidePanes/RightPane/VBox/ActionSelectPanelContainer/Actions/Slot1"]
 margin_left = 38.0
 margin_right = 58.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 20, 0 )
 
-[node name="Label" type="Label" parent="World/UIPanes/UIPaneRight/VBox/ActionSelectPanelContainer/Actions/Slot1"]
+[node name="Label" type="Label" parent="World/UI/SidePanes/RightPane/VBox/ActionSelectPanelContainer/Actions/Slot1"]
 margin_left = 62.0
 margin_top = 1.0
 margin_right = 172.0
@@ -1263,19 +1271,19 @@ size_flags_horizontal = 3
 text = "Action 1"
 valign = 1
 
-[node name="Slot2" type="HBoxContainer" parent="World/UIPanes/UIPaneRight/VBox/ActionSelectPanelContainer/Actions"]
+[node name="Slot2" type="HBoxContainer" parent="World/UI/SidePanes/RightPane/VBox/ActionSelectPanelContainer/Actions"]
 margin_top = 24.0
 margin_right = 172.0
 margin_bottom = 44.0
 grow_horizontal = 2
 alignment = 1
 
-[node name="pad1" type="Control" parent="World/UIPanes/UIPaneRight/VBox/ActionSelectPanelContainer/Actions/Slot2"]
+[node name="pad1" type="Control" parent="World/UI/SidePanes/RightPane/VBox/ActionSelectPanelContainer/Actions/Slot2"]
 margin_right = 10.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 10, 0 )
 
-[node name="Selector" type="TextureRect" parent="World/UIPanes/UIPaneRight/VBox/ActionSelectPanelContainer/Actions/Slot2"]
+[node name="Selector" type="TextureRect" parent="World/UI/SidePanes/RightPane/VBox/ActionSelectPanelContainer/Actions/Slot2"]
 margin_left = 14.0
 margin_right = 34.0
 margin_bottom = 20.0
@@ -1285,13 +1293,13 @@ size_flags_vertical = 4
 texture = ExtResource( 6 )
 stretch_mode = 5
 
-[node name="pad2" type="Control" parent="World/UIPanes/UIPaneRight/VBox/ActionSelectPanelContainer/Actions/Slot2"]
+[node name="pad2" type="Control" parent="World/UI/SidePanes/RightPane/VBox/ActionSelectPanelContainer/Actions/Slot2"]
 margin_left = 38.0
 margin_right = 58.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 20, 0 )
 
-[node name="Label" type="Label" parent="World/UIPanes/UIPaneRight/VBox/ActionSelectPanelContainer/Actions/Slot2"]
+[node name="Label" type="Label" parent="World/UI/SidePanes/RightPane/VBox/ActionSelectPanelContainer/Actions/Slot2"]
 margin_left = 62.0
 margin_top = 1.0
 margin_right = 172.0
@@ -1301,19 +1309,19 @@ size_flags_horizontal = 3
 text = "Action 2"
 valign = 1
 
-[node name="Slot3" type="HBoxContainer" parent="World/UIPanes/UIPaneRight/VBox/ActionSelectPanelContainer/Actions"]
+[node name="Slot3" type="HBoxContainer" parent="World/UI/SidePanes/RightPane/VBox/ActionSelectPanelContainer/Actions"]
 margin_top = 48.0
 margin_right = 172.0
 margin_bottom = 68.0
 grow_horizontal = 2
 alignment = 1
 
-[node name="pad1" type="Control" parent="World/UIPanes/UIPaneRight/VBox/ActionSelectPanelContainer/Actions/Slot3"]
+[node name="pad1" type="Control" parent="World/UI/SidePanes/RightPane/VBox/ActionSelectPanelContainer/Actions/Slot3"]
 margin_right = 10.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 10, 0 )
 
-[node name="Selector" type="TextureRect" parent="World/UIPanes/UIPaneRight/VBox/ActionSelectPanelContainer/Actions/Slot3"]
+[node name="Selector" type="TextureRect" parent="World/UI/SidePanes/RightPane/VBox/ActionSelectPanelContainer/Actions/Slot3"]
 margin_left = 14.0
 margin_right = 34.0
 margin_bottom = 20.0
@@ -1323,13 +1331,13 @@ size_flags_vertical = 4
 texture = ExtResource( 6 )
 stretch_mode = 5
 
-[node name="pad2" type="Control" parent="World/UIPanes/UIPaneRight/VBox/ActionSelectPanelContainer/Actions/Slot3"]
+[node name="pad2" type="Control" parent="World/UI/SidePanes/RightPane/VBox/ActionSelectPanelContainer/Actions/Slot3"]
 margin_left = 38.0
 margin_right = 58.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 20, 0 )
 
-[node name="Label" type="Label" parent="World/UIPanes/UIPaneRight/VBox/ActionSelectPanelContainer/Actions/Slot3"]
+[node name="Label" type="Label" parent="World/UI/SidePanes/RightPane/VBox/ActionSelectPanelContainer/Actions/Slot3"]
 margin_left = 62.0
 margin_top = 1.0
 margin_right = 172.0
@@ -1339,19 +1347,19 @@ size_flags_horizontal = 3
 text = "Action 3"
 valign = 1
 
-[node name="Slot4" type="HBoxContainer" parent="World/UIPanes/UIPaneRight/VBox/ActionSelectPanelContainer/Actions"]
+[node name="Slot4" type="HBoxContainer" parent="World/UI/SidePanes/RightPane/VBox/ActionSelectPanelContainer/Actions"]
 margin_top = 72.0
 margin_right = 172.0
 margin_bottom = 92.0
 grow_horizontal = 2
 alignment = 1
 
-[node name="pad1" type="Control" parent="World/UIPanes/UIPaneRight/VBox/ActionSelectPanelContainer/Actions/Slot4"]
+[node name="pad1" type="Control" parent="World/UI/SidePanes/RightPane/VBox/ActionSelectPanelContainer/Actions/Slot4"]
 margin_right = 10.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 10, 0 )
 
-[node name="Selector" type="TextureRect" parent="World/UIPanes/UIPaneRight/VBox/ActionSelectPanelContainer/Actions/Slot4"]
+[node name="Selector" type="TextureRect" parent="World/UI/SidePanes/RightPane/VBox/ActionSelectPanelContainer/Actions/Slot4"]
 margin_left = 14.0
 margin_right = 34.0
 margin_bottom = 20.0
@@ -1361,13 +1369,13 @@ size_flags_vertical = 4
 texture = ExtResource( 6 )
 stretch_mode = 5
 
-[node name="pad2" type="Control" parent="World/UIPanes/UIPaneRight/VBox/ActionSelectPanelContainer/Actions/Slot4"]
+[node name="pad2" type="Control" parent="World/UI/SidePanes/RightPane/VBox/ActionSelectPanelContainer/Actions/Slot4"]
 margin_left = 38.0
 margin_right = 58.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 20, 0 )
 
-[node name="Label" type="Label" parent="World/UIPanes/UIPaneRight/VBox/ActionSelectPanelContainer/Actions/Slot4"]
+[node name="Label" type="Label" parent="World/UI/SidePanes/RightPane/VBox/ActionSelectPanelContainer/Actions/Slot4"]
 margin_left = 62.0
 margin_top = 1.0
 margin_right = 172.0
@@ -1377,13 +1385,13 @@ size_flags_horizontal = 3
 text = "Action 4"
 valign = 1
 
-[node name="ActionDescPanelContainer" type="PanelContainer" parent="World/UIPanes/UIPaneRight/VBox"]
+[node name="ActionDescPanelContainer" type="PanelContainer" parent="World/UI/SidePanes/RightPane/VBox"]
 visible = false
 margin_top = 330.0
 margin_right = 186.0
 margin_bottom = 553.0
 
-[node name="RichTextLabel" type="RichTextLabel" parent="World/UIPanes/UIPaneRight/VBox/ActionDescPanelContainer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="World/UI/SidePanes/RightPane/VBox/ActionDescPanelContainer"]
 margin_left = 7.0
 margin_top = 7.0
 margin_right = 179.0
@@ -1393,7 +1401,7 @@ text = "Description of action. RichText Label means you can have special effects
 Will list Special Effects with a bit of flavor."
 fit_content_height = true
 
-[node name="ScorePanels" type="Control" parent="World"]
+[node name="ScorePanels" type="Control" parent="World/UI"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 11 )
@@ -1401,169 +1409,11 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ScorePanelLeft" type="PanelContainer" parent="World/ScorePanels"]
-modulate = Color( 1, 1, 1, 0 )
+[node name="ScorePanelLeft" type="PanelContainer" parent="World/UI/ScorePanels"]
 self_modulate = Color( 1, 1, 1, 0.862745 )
 margin_left = 10.0
-margin_top = -70.0
-margin_right = 170.0
-margin_bottom = -4.0
-rect_min_size = Vector2( 160, 50 )
-script = ExtResource( 12 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="VBox" type="VBoxContainer" parent="World/ScorePanels/ScorePanelLeft"]
-margin_left = 7.0
-margin_top = 7.0
-margin_right = 153.0
-margin_bottom = 59.0
-
-[node name="Top" type="HBoxContainer" parent="World/ScorePanels/ScorePanelLeft/VBox"]
-margin_right = 146.0
-margin_bottom = 24.0
-
-[node name="Team1" type="HBoxContainer" parent="World/ScorePanels/ScorePanelLeft/VBox/Top"]
-margin_right = 89.0
-margin_bottom = 24.0
-
-[node name="Abbr" type="Label" parent="World/ScorePanels/ScorePanelLeft/VBox/Top/Team1"]
-margin_top = 5.0
-margin_right = 27.0
-margin_bottom = 18.0
-text = "CAN"
-valign = 1
-
-[node name="Flag" type="TextureRect" parent="World/ScorePanels/ScorePanelLeft/VBox/Top/Team1"]
-margin_left = 31.0
-margin_right = 61.0
-margin_bottom = 24.0
-grow_vertical = 2
-rect_min_size = Vector2( 30, 16 )
-size_flags_horizontal = 3
-texture = ExtResource( 4 )
-expand = true
-stretch_mode = 6
-
-[node name="Serve" type="CheckBox" parent="World/ScorePanels/ScorePanelLeft/VBox/Top/Team1"]
-margin_left = 65.0
-margin_right = 89.0
-margin_bottom = 24.0
-button_mask = 0
-
-[node name="SetsWon" type="Panel" parent="World/ScorePanels/ScorePanelLeft/VBox/Top"]
-margin_left = 93.0
-margin_right = 111.0
-margin_bottom = 24.0
-rect_min_size = Vector2( 18, 0 )
-
-[node name="SetsWonLabel" type="Label" parent="World/ScorePanels/ScorePanelLeft/VBox/Top/SetsWon"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 1.0
-size_flags_horizontal = 5
-text = "0"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Points" type="Panel" parent="World/ScorePanels/ScorePanelLeft/VBox/Top"]
-margin_left = 115.0
-margin_right = 146.0
-margin_bottom = 24.0
-size_flags_horizontal = 3
-
-[node name="PointsLabel" type="Label" parent="World/ScorePanels/ScorePanelLeft/VBox/Top/Points"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-text = "00"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Bottom" type="HBoxContainer" parent="World/ScorePanels/ScorePanelLeft/VBox"]
-margin_top = 28.0
-margin_right = 146.0
-margin_bottom = 52.0
-
-[node name="Team2" type="HBoxContainer" parent="World/ScorePanels/ScorePanelLeft/VBox/Bottom"]
-margin_right = 89.0
-margin_bottom = 24.0
-
-[node name="Abbr" type="Label" parent="World/ScorePanels/ScorePanelLeft/VBox/Bottom/Team2"]
-margin_top = 5.0
-margin_right = 27.0
-margin_bottom = 18.0
-text = "USA"
-valign = 1
-
-[node name="Flag" type="TextureRect" parent="World/ScorePanels/ScorePanelLeft/VBox/Bottom/Team2"]
-margin_left = 31.0
-margin_right = 61.0
-margin_bottom = 24.0
-grow_vertical = 2
-rect_min_size = Vector2( 30, 16 )
-size_flags_horizontal = 3
-texture = ExtResource( 2 )
-expand = true
-stretch_mode = 6
-
-[node name="Serve" type="CheckBox" parent="World/ScorePanels/ScorePanelLeft/VBox/Bottom/Team2"]
-margin_left = 65.0
-margin_right = 89.0
-margin_bottom = 24.0
-button_mask = 0
-
-[node name="SetsWon" type="Panel" parent="World/ScorePanels/ScorePanelLeft/VBox/Bottom"]
-margin_left = 93.0
-margin_right = 111.0
-margin_bottom = 24.0
-rect_min_size = Vector2( 18, 0 )
-
-[node name="SetsWonLabel" type="Label" parent="World/ScorePanels/ScorePanelLeft/VBox/Bottom/SetsWon"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 1.0
-size_flags_horizontal = 5
-text = "0"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Points" type="Panel" parent="World/ScorePanels/ScorePanelLeft/VBox/Bottom"]
-margin_left = 115.0
-margin_right = 146.0
-margin_bottom = 24.0
-size_flags_horizontal = 3
-
-[node name="PointsLabel" type="Label" parent="World/ScorePanels/ScorePanelLeft/VBox/Bottom/Points"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-text = "00"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Tween" type="Tween" parent="World/ScorePanels/ScorePanelLeft"]
-
-[node name="GoToTranspTimer" type="Timer" parent="World/ScorePanels/ScorePanelLeft"]
-wait_time = 1.4
-one_shot = true
-
-[node name="ScorePanelRight" type="PanelContainer" parent="World/ScorePanels"]
-self_modulate = Color( 1, 1, 1, 0.862745 )
-margin_left = 230.0
 margin_top = 10.0
-margin_right = 390.0
+margin_right = 170.0
 margin_bottom = 76.0
 rect_min_size = Vector2( 160, 50 )
 script = ExtResource( 12 )
@@ -1571,28 +1421,28 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBox" type="VBoxContainer" parent="World/ScorePanels/ScorePanelRight"]
+[node name="VBox" type="VBoxContainer" parent="World/UI/ScorePanels/ScorePanelLeft"]
 margin_left = 7.0
 margin_top = 7.0
 margin_right = 153.0
 margin_bottom = 59.0
 
-[node name="Top" type="HBoxContainer" parent="World/ScorePanels/ScorePanelRight/VBox"]
+[node name="Top" type="HBoxContainer" parent="World/UI/ScorePanels/ScorePanelLeft/VBox"]
 margin_right = 146.0
 margin_bottom = 24.0
 
-[node name="Team1" type="HBoxContainer" parent="World/ScorePanels/ScorePanelRight/VBox/Top"]
+[node name="Team1" type="HBoxContainer" parent="World/UI/ScorePanels/ScorePanelLeft/VBox/Top"]
 margin_right = 89.0
 margin_bottom = 24.0
 
-[node name="Abbr" type="Label" parent="World/ScorePanels/ScorePanelRight/VBox/Top/Team1"]
+[node name="Abbr" type="Label" parent="World/UI/ScorePanels/ScorePanelLeft/VBox/Top/Team1"]
 margin_top = 5.0
 margin_right = 27.0
 margin_bottom = 18.0
 text = "CAN"
 valign = 1
 
-[node name="Flag" type="TextureRect" parent="World/ScorePanels/ScorePanelRight/VBox/Top/Team1"]
+[node name="Flag" type="TextureRect" parent="World/UI/ScorePanels/ScorePanelLeft/VBox/Top/Team1"]
 margin_left = 31.0
 margin_right = 61.0
 margin_bottom = 24.0
@@ -1603,19 +1453,19 @@ texture = ExtResource( 4 )
 expand = true
 stretch_mode = 6
 
-[node name="Serve" type="CheckBox" parent="World/ScorePanels/ScorePanelRight/VBox/Top/Team1"]
+[node name="Serve" type="CheckBox" parent="World/UI/ScorePanels/ScorePanelLeft/VBox/Top/Team1"]
 margin_left = 65.0
 margin_right = 89.0
 margin_bottom = 24.0
 button_mask = 0
 
-[node name="SetsWon" type="Panel" parent="World/ScorePanels/ScorePanelRight/VBox/Top"]
+[node name="SetsWon" type="Panel" parent="World/UI/ScorePanels/ScorePanelLeft/VBox/Top"]
 margin_left = 93.0
 margin_right = 111.0
 margin_bottom = 24.0
 rect_min_size = Vector2( 18, 0 )
 
-[node name="SetsWonLabel" type="Label" parent="World/ScorePanels/ScorePanelRight/VBox/Top/SetsWon"]
+[node name="SetsWonLabel" type="Label" parent="World/UI/ScorePanels/ScorePanelLeft/VBox/Top/SetsWon"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 1.0
@@ -1627,13 +1477,13 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Points" type="Panel" parent="World/ScorePanels/ScorePanelRight/VBox/Top"]
+[node name="Points" type="Panel" parent="World/UI/ScorePanels/ScorePanelLeft/VBox/Top"]
 margin_left = 115.0
 margin_right = 146.0
 margin_bottom = 24.0
 size_flags_horizontal = 3
 
-[node name="PointsLabel" type="Label" parent="World/ScorePanels/ScorePanelRight/VBox/Top/Points"]
+[node name="PointsLabel" type="Label" parent="World/UI/ScorePanels/ScorePanelLeft/VBox/Top/Points"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 text = "00"
@@ -1643,23 +1493,23 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Bottom" type="HBoxContainer" parent="World/ScorePanels/ScorePanelRight/VBox"]
+[node name="Bottom" type="HBoxContainer" parent="World/UI/ScorePanels/ScorePanelLeft/VBox"]
 margin_top = 28.0
 margin_right = 146.0
 margin_bottom = 52.0
 
-[node name="Team2" type="HBoxContainer" parent="World/ScorePanels/ScorePanelRight/VBox/Bottom"]
+[node name="Team2" type="HBoxContainer" parent="World/UI/ScorePanels/ScorePanelLeft/VBox/Bottom"]
 margin_right = 89.0
 margin_bottom = 24.0
 
-[node name="Abbr" type="Label" parent="World/ScorePanels/ScorePanelRight/VBox/Bottom/Team2"]
+[node name="Abbr" type="Label" parent="World/UI/ScorePanels/ScorePanelLeft/VBox/Bottom/Team2"]
 margin_top = 5.0
 margin_right = 27.0
 margin_bottom = 18.0
 text = "USA"
 valign = 1
 
-[node name="Flag" type="TextureRect" parent="World/ScorePanels/ScorePanelRight/VBox/Bottom/Team2"]
+[node name="Flag" type="TextureRect" parent="World/UI/ScorePanels/ScorePanelLeft/VBox/Bottom/Team2"]
 margin_left = 31.0
 margin_right = 61.0
 margin_bottom = 24.0
@@ -1670,19 +1520,19 @@ texture = ExtResource( 2 )
 expand = true
 stretch_mode = 6
 
-[node name="Serve" type="CheckBox" parent="World/ScorePanels/ScorePanelRight/VBox/Bottom/Team2"]
+[node name="Serve" type="CheckBox" parent="World/UI/ScorePanels/ScorePanelLeft/VBox/Bottom/Team2"]
 margin_left = 65.0
 margin_right = 89.0
 margin_bottom = 24.0
 button_mask = 0
 
-[node name="SetsWon" type="Panel" parent="World/ScorePanels/ScorePanelRight/VBox/Bottom"]
+[node name="SetsWon" type="Panel" parent="World/UI/ScorePanels/ScorePanelLeft/VBox/Bottom"]
 margin_left = 93.0
 margin_right = 111.0
 margin_bottom = 24.0
 rect_min_size = Vector2( 18, 0 )
 
-[node name="SetsWonLabel" type="Label" parent="World/ScorePanels/ScorePanelRight/VBox/Bottom/SetsWon"]
+[node name="SetsWonLabel" type="Label" parent="World/UI/ScorePanels/ScorePanelLeft/VBox/Bottom/SetsWon"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 1.0
@@ -1694,13 +1544,13 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Points" type="Panel" parent="World/ScorePanels/ScorePanelRight/VBox/Bottom"]
+[node name="Points" type="Panel" parent="World/UI/ScorePanels/ScorePanelLeft/VBox/Bottom"]
 margin_left = 115.0
 margin_right = 146.0
 margin_bottom = 24.0
 size_flags_horizontal = 3
 
-[node name="PointsLabel" type="Label" parent="World/ScorePanels/ScorePanelRight/VBox/Bottom/Points"]
+[node name="PointsLabel" type="Label" parent="World/UI/ScorePanels/ScorePanelLeft/VBox/Bottom/Points"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 text = "00"
@@ -1710,18 +1560,184 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Tween" type="Tween" parent="World/ScorePanels/ScorePanelRight"]
+[node name="Tween" type="Tween" parent="World/UI/ScorePanels/ScorePanelLeft"]
 
-[node name="GoToTranspTimer" type="Timer" parent="World/ScorePanels/ScorePanelRight"]
+[node name="GoToTranspTimer" type="Timer" parent="World/UI/ScorePanels/ScorePanelLeft"]
+wait_time = 1.4
+one_shot = true
+
+[node name="ScorePanelRight" type="PanelContainer" parent="World/UI/ScorePanels"]
+modulate = Color( 1, 1, 1, 0 )
+self_modulate = Color( 1, 1, 1, 0.862745 )
+margin_left = 230.0
+margin_top = -70.0
+margin_right = 390.0
+margin_bottom = -4.0
+rect_min_size = Vector2( 160, 50 )
+script = ExtResource( 12 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBox" type="VBoxContainer" parent="World/UI/ScorePanels/ScorePanelRight"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 153.0
+margin_bottom = 59.0
+
+[node name="Top" type="HBoxContainer" parent="World/UI/ScorePanels/ScorePanelRight/VBox"]
+margin_right = 146.0
+margin_bottom = 24.0
+
+[node name="Team1" type="HBoxContainer" parent="World/UI/ScorePanels/ScorePanelRight/VBox/Top"]
+margin_right = 89.0
+margin_bottom = 24.0
+
+[node name="Abbr" type="Label" parent="World/UI/ScorePanels/ScorePanelRight/VBox/Top/Team1"]
+margin_top = 5.0
+margin_right = 27.0
+margin_bottom = 18.0
+text = "CAN"
+valign = 1
+
+[node name="Flag" type="TextureRect" parent="World/UI/ScorePanels/ScorePanelRight/VBox/Top/Team1"]
+margin_left = 31.0
+margin_right = 61.0
+margin_bottom = 24.0
+grow_vertical = 2
+rect_min_size = Vector2( 30, 16 )
+size_flags_horizontal = 3
+texture = ExtResource( 4 )
+expand = true
+stretch_mode = 6
+
+[node name="Serve" type="CheckBox" parent="World/UI/ScorePanels/ScorePanelRight/VBox/Top/Team1"]
+margin_left = 65.0
+margin_right = 89.0
+margin_bottom = 24.0
+button_mask = 0
+
+[node name="SetsWon" type="Panel" parent="World/UI/ScorePanels/ScorePanelRight/VBox/Top"]
+margin_left = 93.0
+margin_right = 111.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 18, 0 )
+
+[node name="SetsWonLabel" type="Label" parent="World/UI/ScorePanels/ScorePanelRight/VBox/Top/SetsWon"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 1.0
+size_flags_horizontal = 5
+text = "0"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Points" type="Panel" parent="World/UI/ScorePanels/ScorePanelRight/VBox/Top"]
+margin_left = 115.0
+margin_right = 146.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+
+[node name="PointsLabel" type="Label" parent="World/UI/ScorePanels/ScorePanelRight/VBox/Top/Points"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "00"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Bottom" type="HBoxContainer" parent="World/UI/ScorePanels/ScorePanelRight/VBox"]
+margin_top = 28.0
+margin_right = 146.0
+margin_bottom = 52.0
+
+[node name="Team2" type="HBoxContainer" parent="World/UI/ScorePanels/ScorePanelRight/VBox/Bottom"]
+margin_right = 89.0
+margin_bottom = 24.0
+
+[node name="Abbr" type="Label" parent="World/UI/ScorePanels/ScorePanelRight/VBox/Bottom/Team2"]
+margin_top = 5.0
+margin_right = 27.0
+margin_bottom = 18.0
+text = "USA"
+valign = 1
+
+[node name="Flag" type="TextureRect" parent="World/UI/ScorePanels/ScorePanelRight/VBox/Bottom/Team2"]
+margin_left = 31.0
+margin_right = 61.0
+margin_bottom = 24.0
+grow_vertical = 2
+rect_min_size = Vector2( 30, 16 )
+size_flags_horizontal = 3
+texture = ExtResource( 2 )
+expand = true
+stretch_mode = 6
+
+[node name="Serve" type="CheckBox" parent="World/UI/ScorePanels/ScorePanelRight/VBox/Bottom/Team2"]
+margin_left = 65.0
+margin_right = 89.0
+margin_bottom = 24.0
+button_mask = 0
+
+[node name="SetsWon" type="Panel" parent="World/UI/ScorePanels/ScorePanelRight/VBox/Bottom"]
+margin_left = 93.0
+margin_right = 111.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 18, 0 )
+
+[node name="SetsWonLabel" type="Label" parent="World/UI/ScorePanels/ScorePanelRight/VBox/Bottom/SetsWon"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 1.0
+size_flags_horizontal = 5
+text = "0"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Points" type="Panel" parent="World/UI/ScorePanels/ScorePanelRight/VBox/Bottom"]
+margin_left = 115.0
+margin_right = 146.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+
+[node name="PointsLabel" type="Label" parent="World/UI/ScorePanels/ScorePanelRight/VBox/Bottom/Points"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "00"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tween" type="Tween" parent="World/UI/ScorePanels/ScorePanelRight"]
+
+[node name="GoToTranspTimer" type="Timer" parent="World/UI/ScorePanels/ScorePanelRight"]
 wait_time = 2.0
 one_shot = true
+
+[node name="SelectionIndicator" type="TextureRect" parent="World/UI"]
+margin_right = 20.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+texture = ExtResource( 15 )
+flip_v = true
+script = ExtResource( 16 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tween" type="Tween" parent="World/UI/SelectionIndicator"]
 
 [node name="Tween" type="Tween" parent="World"]
 
 [node name="PlaceholderTimer" type="Timer" parent="."]
 one_shot = true
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/move_screen_left = SubResource( 1 )
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]

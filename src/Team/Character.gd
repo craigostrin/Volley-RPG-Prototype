@@ -1,6 +1,11 @@
 class_name Character
 extends Position2D
 
+const RIGHT_SIDE_X = 200.0
+
+var health   := 5
+var stamina  := 3
+
 var stats := {
 	"Name" : "Rodrigo",
 	"PWR" : 85,
@@ -19,7 +24,6 @@ var side: int = Side.LEFT setget _set_side
 
 var anim_names: PoolStringArray = []
 
-onready var selection_indic: TextureRect = $SelectionIndicator
 onready var body: KinematicBody2D = $KinematicBody2D
 onready var anim_sprite: AnimatedSprite = $KinematicBody2D/AnimatedSprite
 
@@ -39,7 +43,6 @@ func play_anim(name: String) -> void:
 
 func set_is_hovered(val: bool) -> void:
 	is_hovered = val
-	selection_indic.visible = is_hovered
 
 
 func set_is_selected(val: bool) -> void:
@@ -53,4 +56,14 @@ func _set_side(val: int) -> void:
 		return
 	
 	side = val
+	prints("side:", side)
+	
 	body.scale.x = side
+
+
+# PUBLIC GETTERS
+func get_selection_indic_global_pos() -> Vector2:
+	return $SelectionIndicatorPosition.global_position
+
+func get_global_position() -> Vector2:
+	return global_position
