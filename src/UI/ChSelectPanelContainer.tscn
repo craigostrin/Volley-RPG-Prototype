@@ -1,0 +1,168 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://src/UI/ChSelectPanelContainer.gd" type="Script" id=1]
+[ext_resource path="res://assets/art/ui/hand_right.png" type="Texture" id=2]
+
+[node name="ChSelectPanelContainer" type="PanelContainer"]
+self_modulate = Color( 1, 1, 1, 0.862745 )
+margin_top = 104.0
+margin_right = 186.0
+margin_bottom = 210.0
+script = ExtResource( 1 )
+
+[node name="Team" type="VBoxContainer" parent="."]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 179.0
+margin_bottom = 99.0
+
+[node name="Slot1" type="HBoxContainer" parent="Team"]
+margin_right = 172.0
+margin_bottom = 20.0
+grow_horizontal = 2
+alignment = 2
+
+[node name="Selector" type="TextureRect" parent="Team/Slot1"]
+margin_left = 46.0
+margin_right = 66.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+size_flags_horizontal = 8
+size_flags_vertical = 4
+texture = ExtResource( 2 )
+stretch_mode = 5
+
+[node name="pad2" type="Control" parent="Team/Slot1"]
+margin_left = 70.0
+margin_right = 90.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 0 )
+
+[node name="Label" type="Label" parent="Team/Slot1"]
+margin_left = 94.0
+margin_right = 138.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 0, 20 )
+size_flags_horizontal = 8
+text = "TEAM"
+valign = 1
+
+[node name="pad1" type="Control" parent="Team/Slot1"]
+margin_left = 142.0
+margin_right = 172.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 30, 0 )
+
+[node name="Slot2" type="HBoxContainer" parent="Team"]
+margin_top = 24.0
+margin_right = 172.0
+margin_bottom = 44.0
+grow_horizontal = 2
+alignment = 2
+
+[node name="Selector" type="TextureRect" parent="Team/Slot2"]
+margin_left = 46.0
+margin_right = 66.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+size_flags_horizontal = 8
+size_flags_vertical = 4
+texture = ExtResource( 2 )
+stretch_mode = 5
+
+[node name="pad2" type="Control" parent="Team/Slot2"]
+margin_left = 70.0
+margin_right = 90.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 0 )
+
+[node name="Label" type="Label" parent="Team/Slot2"]
+margin_left = 94.0
+margin_right = 138.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 0, 20 )
+size_flags_horizontal = 8
+text = "TEAM"
+valign = 1
+
+[node name="pad1" type="Control" parent="Team/Slot2"]
+margin_left = 142.0
+margin_right = 172.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 30, 0 )
+
+[node name="Slot3" type="HBoxContainer" parent="Team"]
+margin_top = 48.0
+margin_right = 172.0
+margin_bottom = 68.0
+grow_horizontal = 2
+alignment = 2
+
+[node name="Selector" type="TextureRect" parent="Team/Slot3"]
+margin_left = 46.0
+margin_right = 66.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+size_flags_horizontal = 8
+size_flags_vertical = 4
+texture = ExtResource( 2 )
+stretch_mode = 5
+
+[node name="pad2" type="Control" parent="Team/Slot3"]
+margin_left = 70.0
+margin_right = 90.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 0 )
+
+[node name="Label" type="Label" parent="Team/Slot3"]
+margin_left = 94.0
+margin_right = 138.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 0, 20 )
+size_flags_horizontal = 8
+text = "TEAM"
+valign = 1
+
+[node name="pad1" type="Control" parent="Team/Slot3"]
+margin_left = 142.0
+margin_right = 172.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 30, 0 )
+
+[node name="Slot4" type="HBoxContainer" parent="Team"]
+margin_top = 72.0
+margin_right = 172.0
+margin_bottom = 92.0
+grow_horizontal = 2
+alignment = 2
+
+[node name="Selector" type="TextureRect" parent="Team/Slot4"]
+margin_left = 46.0
+margin_right = 66.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+size_flags_horizontal = 8
+size_flags_vertical = 4
+texture = ExtResource( 2 )
+stretch_mode = 5
+
+[node name="pad2" type="Control" parent="Team/Slot4"]
+margin_left = 70.0
+margin_right = 90.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 0 )
+
+[node name="Label" type="Label" parent="Team/Slot4"]
+margin_left = 94.0
+margin_right = 138.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 0, 20 )
+size_flags_horizontal = 8
+text = "TEAM"
+valign = 1
+
+[node name="pad1" type="Control" parent="Team/Slot4"]
+margin_left = 142.0
+margin_right = 172.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 30, 0 )

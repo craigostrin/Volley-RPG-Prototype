@@ -3,17 +3,17 @@ extends Position2D
 
 const RIGHT_SIDE_X = 200.0
 
-var health   := 5
-var stamina  := 3
-
 var stats := {
-	"Name" : "Rodrigo",
-	"PWR" : 85,
-	"AGI" : 85,
-	"END" : 85,
-	"INT" : 85,
-	"WIS" : 85,
-	"CHA" : 85
+	   "Name" : "Rodrigo",
+	 "health" : 100,
+	"stamina" : 85,
+	
+		"PWR" : 85,
+		"AGI" : 85,
+		"END" : 85,
+		"INT" : 85,
+		"WIS" : 85,
+		"CHA" : 85
 }
 
 var is_hovered := false
@@ -66,3 +66,6 @@ func get_indic_pos() -> Vector2:
 
 func get_global_position() -> Vector2:
 	return global_position
+
+func get_stats() -> Dictionary:
+	return stats

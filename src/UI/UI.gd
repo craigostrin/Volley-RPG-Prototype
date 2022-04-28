@@ -45,3 +45,7 @@ func reset_indic_to(pos: Vector2) -> void:
 
 func _on_selec_indic_move_finished() -> void:
 	emit_signal("hover_finished")
+
+
+func is_ready_to_hover() -> bool:
+	return selec_indic.ready_to_move

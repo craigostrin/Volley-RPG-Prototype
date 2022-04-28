@@ -6,6 +6,7 @@ const LEFT_POS  = Vector2(  0, 0)
 const RIGHT_POS = Vector2(200, 0)
 
 var slots_per_team := 4
+var rows_per_team := 2
 
 var slot_to_hover := Vector3.ZERO
 var hovered_slot := Vector3.ZERO
@@ -29,16 +30,18 @@ func _ready() -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_left"):
-		var slot3 := Vector3(-1, 0, 0 )
+		var slot3 := Vector3.LEFT
 		hover(slot3)
 	if event.is_action_pressed("ui_right"):
-		var slot3 := Vector3( 1, 0, 0 )
+		var slot3 := Vector3.RIGHT
 		hover(slot3)
 	if event.is_action_pressed("ui_down"):
-		var slot3 := Vector3( 0, 1, 0 )
+		# UP is positive, which is down in 2D
+		var slot3 := Vector3.UP
 		hover(slot3)
 	if event.is_action_pressed("ui_up"):
-		var slot3 := Vector3( 0,-1, 0 )
+		# DOWN is negative, which is up in 2D
+		var slot3 := Vector3.DOWN
 		hover(slot3)
 
 
@@ -52,7 +55,13 @@ func init_teams() -> void:
 
 
 func hover(slot3_to_move: Vector3) -> void:
+	if not ui.is_ready_to_hover():
+		return
+	
 	slot_to_hover = hovered_slot + slot3_to_move
+	if not is_in_grid(slot_to_hover):
+		return
+	
 	var target_pos := get_ch_indic_pos(slot_to_hover)
 	
 	ui.move_hover_to(target_pos)
@@ -116,3 +125,25 @@ func _on_hover_finished() -> void:
 func _on_hovered_slot_selected() -> void:
 	var ch_selected = get_ch_by_slot3(hovered_slot)
 	emit_signal("ch_selected", ch_selected)
+
+
+func is_in_grid(slot3) -> bool:
+	var is_in_grid := true
+	
+	var col: int = slot3.x
+	var row: int = slot3.y
+	var width: int = slots_per_team / rows_per_team
+	
+	var index := col + row * width
+	
+	if index < 0 or index > slots_per_team - 1:
+		is_in_grid = false
+	
+	if col < 0 or row < 0 or col >= width:
+		is_in_grid = false
+	
+#	if row < 0 or row * col > slots_per_team:
+#		is_in_grid = false
+	
+	
+	return is_in_grid

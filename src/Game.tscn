@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://src/World/World.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/art/flags/320px-Flag_of_the_United_States_(Pantone).svg.png" type="Texture" id=2]
@@ -8,7 +8,6 @@
 [ext_resource path="res://assets/art/ui/hand_right.png" type="Texture" id=6]
 [ext_resource path="res://src/Game.gd" type="Script" id=7]
 [ext_resource path="res://src/UI/UIPane.gd" type="Script" id=8]
-[ext_resource path="res://src/UI/ChSelectPanelContainer.gd" type="Script" id=9]
 [ext_resource path="res://src/CombatManager.gd" type="Script" id=10]
 [ext_resource path="res://src/ThemeScore.tres" type="Theme" id=11]
 [ext_resource path="res://src/UI/ScorePanel.gd" type="Script" id=12]
@@ -56,7 +55,6 @@ __meta__ = {
 }
 
 [node name="LeftPane" type="PanelContainer" parent="World/UI/SidePanes"]
-visible = false
 self_modulate = Color( 1, 1, 1, 0 )
 anchor_left = 1.0
 anchor_right = 1.0
@@ -79,179 +77,84 @@ margin_bottom = 357.0
 alignment = 1
 
 [node name="padding" type="Control" parent="World/UI/SidePanes/LeftPane/VBox"]
+margin_top = 16.0
 margin_right = 186.0
-margin_bottom = 100.0
+margin_bottom = 116.0
 rect_min_size = Vector2( 0, 100 )
 
-[node name="ChSelectPanelContainer" type="PanelContainer" parent="World/UI/SidePanes/LeftPane/VBox"]
+[node name="CharacterPane" type="PanelContainer" parent="World/UI/SidePanes/LeftPane/VBox"]
 self_modulate = Color( 1, 1, 1, 0.862745 )
-margin_top = 104.0
+margin_top = 120.0
 margin_right = 186.0
-margin_bottom = 210.0
-script = ExtResource( 9 )
+margin_bottom = 193.0
+size_flags_horizontal = 3
+size_flags_vertical = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Team" type="VBoxContainer" parent="World/UI/SidePanes/LeftPane/VBox/ChSelectPanelContainer"]
+[node name="VBox" type="VBoxContainer" parent="World/UI/SidePanes/LeftPane/VBox/CharacterPane"]
 margin_left = 7.0
 margin_top = 7.0
 margin_right = 179.0
-margin_bottom = 99.0
+margin_bottom = 66.0
 
-[node name="Slot1" type="HBoxContainer" parent="World/UI/SidePanes/LeftPane/VBox/ChSelectPanelContainer/Team"]
+[node name="Label" type="Label" parent="World/UI/SidePanes/LeftPane/VBox/CharacterPane/VBox"]
 margin_right = 172.0
-margin_bottom = 20.0
+margin_bottom = 17.0
 grow_horizontal = 2
+text = "Name"
+align = 1
+
+[node name="HBox" type="HBoxContainer" parent="World/UI/SidePanes/LeftPane/VBox/CharacterPane/VBox"]
+margin_top = 21.0
+margin_right = 172.0
+margin_bottom = 38.0
 alignment = 2
 
-[node name="Selector" type="TextureRect" parent="World/UI/SidePanes/LeftPane/VBox/ChSelectPanelContainer/Team/Slot1"]
-margin_left = 46.0
-margin_right = 66.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 20, 20 )
-size_flags_horizontal = 8
-size_flags_vertical = 4
-texture = ExtResource( 6 )
-stretch_mode = 5
-
-[node name="pad2" type="Control" parent="World/UI/SidePanes/LeftPane/VBox/ChSelectPanelContainer/Team/Slot1"]
-margin_left = 70.0
-margin_right = 90.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 20, 0 )
-
-[node name="Label" type="Label" parent="World/UI/SidePanes/LeftPane/VBox/ChSelectPanelContainer/Team/Slot1"]
-margin_left = 94.0
-margin_right = 138.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 0, 20 )
-size_flags_horizontal = 8
-text = "TEAM"
+[node name="HpLabel" type="Label" parent="World/UI/SidePanes/LeftPane/VBox/CharacterPane/VBox/HBox"]
+margin_left = 28.0
+margin_right = 48.0
+margin_bottom = 17.0
+text = "hp"
+align = 2
 valign = 1
 
-[node name="pad1" type="Control" parent="World/UI/SidePanes/LeftPane/VBox/ChSelectPanelContainer/Team/Slot1"]
-margin_left = 142.0
+[node name="ProgressBar" type="ProgressBar" parent="World/UI/SidePanes/LeftPane/VBox/CharacterPane/VBox/HBox"]
+margin_left = 52.0
 margin_right = 172.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 30, 0 )
+margin_bottom = 17.0
+rect_min_size = Vector2( 120, 0 )
+step = 1.0
+value = 100.0
 
-[node name="Slot2" type="HBoxContainer" parent="World/UI/SidePanes/LeftPane/VBox/ChSelectPanelContainer/Team"]
-margin_top = 24.0
+[node name="HBox2" type="HBoxContainer" parent="World/UI/SidePanes/LeftPane/VBox/CharacterPane/VBox"]
+margin_top = 42.0
 margin_right = 172.0
-margin_bottom = 44.0
-grow_horizontal = 2
+margin_bottom = 59.0
 alignment = 2
 
-[node name="Selector" type="TextureRect" parent="World/UI/SidePanes/LeftPane/VBox/ChSelectPanelContainer/Team/Slot2"]
-margin_left = 46.0
-margin_right = 66.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 20, 20 )
-size_flags_horizontal = 8
-size_flags_vertical = 4
-texture = ExtResource( 6 )
-stretch_mode = 5
-
-[node name="pad2" type="Control" parent="World/UI/SidePanes/LeftPane/VBox/ChSelectPanelContainer/Team/Slot2"]
-margin_left = 70.0
-margin_right = 90.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 20, 0 )
-
-[node name="Label" type="Label" parent="World/UI/SidePanes/LeftPane/VBox/ChSelectPanelContainer/Team/Slot2"]
-margin_left = 94.0
-margin_right = 138.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 0, 20 )
-size_flags_horizontal = 8
-text = "TEAM"
+[node name="StamLabel" type="Label" parent="World/UI/SidePanes/LeftPane/VBox/CharacterPane/VBox/HBox2"]
+margin_left = 8.0
+margin_right = 48.0
+margin_bottom = 17.0
+text = "stam"
+align = 2
 valign = 1
 
-[node name="pad1" type="Control" parent="World/UI/SidePanes/LeftPane/VBox/ChSelectPanelContainer/Team/Slot2"]
-margin_left = 142.0
+[node name="ProgressBar" type="ProgressBar" parent="World/UI/SidePanes/LeftPane/VBox/CharacterPane/VBox/HBox2"]
+margin_left = 52.0
 margin_right = 172.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 30, 0 )
-
-[node name="Slot3" type="HBoxContainer" parent="World/UI/SidePanes/LeftPane/VBox/ChSelectPanelContainer/Team"]
-margin_top = 48.0
-margin_right = 172.0
-margin_bottom = 68.0
-grow_horizontal = 2
-alignment = 2
-
-[node name="Selector" type="TextureRect" parent="World/UI/SidePanes/LeftPane/VBox/ChSelectPanelContainer/Team/Slot3"]
-margin_left = 46.0
-margin_right = 66.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 20, 20 )
-size_flags_horizontal = 8
-size_flags_vertical = 4
-texture = ExtResource( 6 )
-stretch_mode = 5
-
-[node name="pad2" type="Control" parent="World/UI/SidePanes/LeftPane/VBox/ChSelectPanelContainer/Team/Slot3"]
-margin_left = 70.0
-margin_right = 90.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 20, 0 )
-
-[node name="Label" type="Label" parent="World/UI/SidePanes/LeftPane/VBox/ChSelectPanelContainer/Team/Slot3"]
-margin_left = 94.0
-margin_right = 138.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 0, 20 )
-size_flags_horizontal = 8
-text = "TEAM"
-valign = 1
-
-[node name="pad1" type="Control" parent="World/UI/SidePanes/LeftPane/VBox/ChSelectPanelContainer/Team/Slot3"]
-margin_left = 142.0
-margin_right = 172.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 30, 0 )
-
-[node name="Slot4" type="HBoxContainer" parent="World/UI/SidePanes/LeftPane/VBox/ChSelectPanelContainer/Team"]
-margin_top = 72.0
-margin_right = 172.0
-margin_bottom = 92.0
-grow_horizontal = 2
-alignment = 2
-
-[node name="Selector" type="TextureRect" parent="World/UI/SidePanes/LeftPane/VBox/ChSelectPanelContainer/Team/Slot4"]
-margin_left = 46.0
-margin_right = 66.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 20, 20 )
-size_flags_horizontal = 8
-size_flags_vertical = 4
-texture = ExtResource( 6 )
-stretch_mode = 5
-
-[node name="pad2" type="Control" parent="World/UI/SidePanes/LeftPane/VBox/ChSelectPanelContainer/Team/Slot4"]
-margin_left = 70.0
-margin_right = 90.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 20, 0 )
-
-[node name="Label" type="Label" parent="World/UI/SidePanes/LeftPane/VBox/ChSelectPanelContainer/Team/Slot4"]
-margin_left = 94.0
-margin_right = 138.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 0, 20 )
-size_flags_horizontal = 8
-text = "TEAM"
-valign = 1
-
-[node name="pad1" type="Control" parent="World/UI/SidePanes/LeftPane/VBox/ChSelectPanelContainer/Team/Slot4"]
-margin_left = 142.0
-margin_right = 172.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 30, 0 )
+margin_bottom = 17.0
+rect_min_size = Vector2( 120, 0 )
+step = 1.0
+value = 75.0
 
 [node name="StatsPanelContainer" type="PanelContainer" parent="World/UI/SidePanes/LeftPane/VBox"]
 self_modulate = Color( 1, 1, 1, 0.862745 )
-margin_top = 214.0
+margin_top = 197.0
 margin_right = 186.0
-margin_bottom = 350.0
+margin_bottom = 333.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="World/UI/SidePanes/LeftPane/VBox/StatsPanelContainer"]
 margin_left = 7.0
@@ -654,7 +557,6 @@ Will list Special Effects with a bit of flavor."
 fit_content_height = true
 
 [node name="RightPane" type="PanelContainer" parent="World/UI/SidePanes"]
-visible = false
 self_modulate = Color( 1, 1, 1, 0 )
 anchor_left = 1.0
 anchor_right = 1.0
@@ -677,330 +579,85 @@ margin_right = 193.0
 margin_bottom = 402.0
 alignment = 1
 
-[node name="ScorePanelContainer" type="PanelContainer" parent="World/UI/SidePanes/RightPane/VBox"]
-visible = false
-self_modulate = Color( 1, 1, 1, 0.862745 )
-margin_right = 186.0
-margin_bottom = 70.0
-
-[node name="VBox" type="VBoxContainer" parent="World/UI/SidePanes/RightPane/VBox/ScorePanelContainer"]
-margin_left = 7.0
-margin_top = 7.0
-margin_right = 179.0
-margin_bottom = 63.0
-
-[node name="Top" type="HBoxContainer" parent="World/UI/SidePanes/RightPane/VBox/ScorePanelContainer/VBox"]
-margin_right = 172.0
-margin_bottom = 26.0
-
-[node name="Team1" type="HBoxContainer" parent="World/UI/SidePanes/RightPane/VBox/ScorePanelContainer/VBox/Top"]
-margin_right = 101.0
-margin_bottom = 26.0
-
-[node name="Abbr" type="Label" parent="World/UI/SidePanes/RightPane/VBox/ScorePanelContainer/VBox/Top/Team1"]
-margin_top = 4.0
-margin_right = 39.0
-margin_bottom = 22.0
-theme = ExtResource( 3 )
-text = "CAN"
-valign = 1
-
-[node name="Flag" type="TextureRect" parent="World/UI/SidePanes/RightPane/VBox/ScorePanelContainer/VBox/Top/Team1"]
-margin_left = 43.0
-margin_right = 73.0
-margin_bottom = 26.0
-grow_vertical = 2
-rect_min_size = Vector2( 30, 19 )
-size_flags_horizontal = 3
-texture = ExtResource( 4 )
-expand = true
-stretch_mode = 6
-
-[node name="Serve" type="CheckBox" parent="World/UI/SidePanes/RightPane/VBox/ScorePanelContainer/VBox/Top/Team1"]
-margin_left = 77.0
-margin_right = 101.0
-margin_bottom = 26.0
-button_mask = 0
-
-[node name="SetsWon" type="Panel" parent="World/UI/SidePanes/RightPane/VBox/ScorePanelContainer/VBox/Top"]
-margin_left = 105.0
-margin_right = 127.0
-margin_bottom = 26.0
-rect_min_size = Vector2( 22, 0 )
-
-[node name="SetsWonLabel" type="Label" parent="World/UI/SidePanes/RightPane/VBox/ScorePanelContainer/VBox/Top/SetsWon"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 1.0
-size_flags_horizontal = 5
-text = "0"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Points" type="Panel" parent="World/UI/SidePanes/RightPane/VBox/ScorePanelContainer/VBox/Top"]
-margin_left = 131.0
-margin_right = 172.0
-margin_bottom = 26.0
-rect_min_size = Vector2( 22, 0 )
-size_flags_horizontal = 3
-
-[node name="PointsLabel" type="Label" parent="World/UI/SidePanes/RightPane/VBox/ScorePanelContainer/VBox/Top/Points"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-text = "00"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Bottom" type="HBoxContainer" parent="World/UI/SidePanes/RightPane/VBox/ScorePanelContainer/VBox"]
-margin_top = 30.0
-margin_right = 172.0
-margin_bottom = 56.0
-
-[node name="Team2" type="HBoxContainer" parent="World/UI/SidePanes/RightPane/VBox/ScorePanelContainer/VBox/Bottom"]
-margin_right = 101.0
-margin_bottom = 26.0
-
-[node name="Abbr" type="Label" parent="World/UI/SidePanes/RightPane/VBox/ScorePanelContainer/VBox/Bottom/Team2"]
-margin_top = 4.0
-margin_right = 39.0
-margin_bottom = 22.0
-theme = ExtResource( 3 )
-text = "USA"
-valign = 1
-
-[node name="Flag" type="TextureRect" parent="World/UI/SidePanes/RightPane/VBox/ScorePanelContainer/VBox/Bottom/Team2"]
-margin_left = 43.0
-margin_right = 73.0
-margin_bottom = 26.0
-grow_vertical = 2
-rect_min_size = Vector2( 30, 19 )
-size_flags_horizontal = 3
-texture = ExtResource( 2 )
-expand = true
-stretch_mode = 6
-
-[node name="Serve" type="CheckBox" parent="World/UI/SidePanes/RightPane/VBox/ScorePanelContainer/VBox/Bottom/Team2"]
-margin_left = 77.0
-margin_right = 101.0
-margin_bottom = 26.0
-button_mask = 0
-
-[node name="SetsWon" type="Panel" parent="World/UI/SidePanes/RightPane/VBox/ScorePanelContainer/VBox/Bottom"]
-margin_left = 105.0
-margin_right = 127.0
-margin_bottom = 26.0
-rect_min_size = Vector2( 22, 0 )
-
-[node name="SetsWonLabel" type="Label" parent="World/UI/SidePanes/RightPane/VBox/ScorePanelContainer/VBox/Bottom/SetsWon"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 1.0
-size_flags_horizontal = 5
-text = "0"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Points" type="Panel" parent="World/UI/SidePanes/RightPane/VBox/ScorePanelContainer/VBox/Bottom"]
-margin_left = 131.0
-margin_right = 172.0
-margin_bottom = 26.0
-rect_min_size = Vector2( 22, 0 )
-size_flags_horizontal = 3
-
-[node name="PointsLabel" type="Label" parent="World/UI/SidePanes/RightPane/VBox/ScorePanelContainer/VBox/Bottom/Points"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-text = "00"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="padding" type="Control" parent="World/UI/SidePanes/RightPane/VBox"]
-margin_top = 40.0
+margin_top = 56.0
 margin_right = 186.0
-margin_bottom = 105.0
+margin_bottom = 121.0
 rect_min_size = Vector2( 0, 65 )
 
-[node name="ChSelectPanelContainer" type="PanelContainer" parent="World/UI/SidePanes/RightPane/VBox"]
+[node name="CharacterPane" type="PanelContainer" parent="World/UI/SidePanes/RightPane/VBox"]
 self_modulate = Color( 1, 1, 1, 0.862745 )
-margin_top = 109.0
+margin_top = 125.0
 margin_right = 186.0
-margin_bottom = 215.0
-script = ExtResource( 9 )
+margin_bottom = 198.0
+size_flags_horizontal = 3
+size_flags_vertical = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Team" type="VBoxContainer" parent="World/UI/SidePanes/RightPane/VBox/ChSelectPanelContainer"]
+[node name="VBox" type="VBoxContainer" parent="World/UI/SidePanes/RightPane/VBox/CharacterPane"]
 margin_left = 7.0
 margin_top = 7.0
 margin_right = 179.0
-margin_bottom = 99.0
+margin_bottom = 66.0
 
-[node name="Slot1" type="HBoxContainer" parent="World/UI/SidePanes/RightPane/VBox/ChSelectPanelContainer/Team"]
+[node name="Label" type="Label" parent="World/UI/SidePanes/RightPane/VBox/CharacterPane/VBox"]
 margin_right = 172.0
-margin_bottom = 20.0
+margin_bottom = 17.0
 grow_horizontal = 2
+text = "Name"
+align = 1
+
+[node name="HBox" type="HBoxContainer" parent="World/UI/SidePanes/RightPane/VBox/CharacterPane/VBox"]
+margin_top = 21.0
+margin_right = 172.0
+margin_bottom = 38.0
 alignment = 2
 
-[node name="Selector" type="TextureRect" parent="World/UI/SidePanes/RightPane/VBox/ChSelectPanelContainer/Team/Slot1"]
-margin_left = 46.0
-margin_right = 66.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 20, 20 )
-size_flags_horizontal = 8
-size_flags_vertical = 4
-texture = ExtResource( 6 )
-stretch_mode = 5
-
-[node name="pad2" type="Control" parent="World/UI/SidePanes/RightPane/VBox/ChSelectPanelContainer/Team/Slot1"]
-margin_left = 70.0
-margin_right = 90.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 20, 0 )
-
-[node name="Label" type="Label" parent="World/UI/SidePanes/RightPane/VBox/ChSelectPanelContainer/Team/Slot1"]
-margin_left = 94.0
-margin_right = 138.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 0, 20 )
-size_flags_horizontal = 8
-text = "TEAM"
+[node name="HpLabel" type="Label" parent="World/UI/SidePanes/RightPane/VBox/CharacterPane/VBox/HBox"]
+margin_left = 28.0
+margin_right = 48.0
+margin_bottom = 17.0
+text = "hp"
+align = 2
 valign = 1
 
-[node name="pad1" type="Control" parent="World/UI/SidePanes/RightPane/VBox/ChSelectPanelContainer/Team/Slot1"]
-margin_left = 142.0
+[node name="ProgressBar" type="ProgressBar" parent="World/UI/SidePanes/RightPane/VBox/CharacterPane/VBox/HBox"]
+margin_left = 52.0
 margin_right = 172.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 30, 0 )
+margin_bottom = 17.0
+rect_min_size = Vector2( 120, 0 )
+step = 1.0
+value = 100.0
 
-[node name="Slot2" type="HBoxContainer" parent="World/UI/SidePanes/RightPane/VBox/ChSelectPanelContainer/Team"]
-margin_top = 24.0
+[node name="HBox2" type="HBoxContainer" parent="World/UI/SidePanes/RightPane/VBox/CharacterPane/VBox"]
+margin_top = 42.0
 margin_right = 172.0
-margin_bottom = 44.0
-grow_horizontal = 2
+margin_bottom = 59.0
 alignment = 2
 
-[node name="Selector" type="TextureRect" parent="World/UI/SidePanes/RightPane/VBox/ChSelectPanelContainer/Team/Slot2"]
-margin_left = 46.0
-margin_right = 66.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 20, 20 )
-size_flags_horizontal = 8
-size_flags_vertical = 4
-texture = ExtResource( 6 )
-stretch_mode = 5
-
-[node name="pad2" type="Control" parent="World/UI/SidePanes/RightPane/VBox/ChSelectPanelContainer/Team/Slot2"]
-margin_left = 70.0
-margin_right = 90.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 20, 0 )
-
-[node name="Label" type="Label" parent="World/UI/SidePanes/RightPane/VBox/ChSelectPanelContainer/Team/Slot2"]
-margin_left = 94.0
-margin_right = 138.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 0, 20 )
-size_flags_horizontal = 8
-text = "TEAM"
+[node name="StamLabel" type="Label" parent="World/UI/SidePanes/RightPane/VBox/CharacterPane/VBox/HBox2"]
+margin_left = 8.0
+margin_right = 48.0
+margin_bottom = 17.0
+text = "stam"
+align = 2
 valign = 1
 
-[node name="pad1" type="Control" parent="World/UI/SidePanes/RightPane/VBox/ChSelectPanelContainer/Team/Slot2"]
-margin_left = 142.0
+[node name="ProgressBar" type="ProgressBar" parent="World/UI/SidePanes/RightPane/VBox/CharacterPane/VBox/HBox2"]
+margin_left = 52.0
 margin_right = 172.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 30, 0 )
-
-[node name="Slot3" type="HBoxContainer" parent="World/UI/SidePanes/RightPane/VBox/ChSelectPanelContainer/Team"]
-margin_top = 48.0
-margin_right = 172.0
-margin_bottom = 68.0
-grow_horizontal = 2
-alignment = 2
-
-[node name="Selector" type="TextureRect" parent="World/UI/SidePanes/RightPane/VBox/ChSelectPanelContainer/Team/Slot3"]
-margin_left = 46.0
-margin_right = 66.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 20, 20 )
-size_flags_horizontal = 8
-size_flags_vertical = 4
-texture = ExtResource( 6 )
-stretch_mode = 5
-
-[node name="pad2" type="Control" parent="World/UI/SidePanes/RightPane/VBox/ChSelectPanelContainer/Team/Slot3"]
-margin_left = 70.0
-margin_right = 90.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 20, 0 )
-
-[node name="Label" type="Label" parent="World/UI/SidePanes/RightPane/VBox/ChSelectPanelContainer/Team/Slot3"]
-margin_left = 94.0
-margin_right = 138.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 0, 20 )
-size_flags_horizontal = 8
-text = "TEAM"
-valign = 1
-
-[node name="pad1" type="Control" parent="World/UI/SidePanes/RightPane/VBox/ChSelectPanelContainer/Team/Slot3"]
-margin_left = 142.0
-margin_right = 172.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 30, 0 )
-
-[node name="Slot4" type="HBoxContainer" parent="World/UI/SidePanes/RightPane/VBox/ChSelectPanelContainer/Team"]
-margin_top = 72.0
-margin_right = 172.0
-margin_bottom = 92.0
-grow_horizontal = 2
-alignment = 2
-
-[node name="Selector" type="TextureRect" parent="World/UI/SidePanes/RightPane/VBox/ChSelectPanelContainer/Team/Slot4"]
-margin_left = 46.0
-margin_right = 66.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 20, 20 )
-size_flags_horizontal = 8
-size_flags_vertical = 4
-texture = ExtResource( 6 )
-stretch_mode = 5
-
-[node name="pad2" type="Control" parent="World/UI/SidePanes/RightPane/VBox/ChSelectPanelContainer/Team/Slot4"]
-margin_left = 70.0
-margin_right = 90.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 20, 0 )
-
-[node name="Label" type="Label" parent="World/UI/SidePanes/RightPane/VBox/ChSelectPanelContainer/Team/Slot4"]
-margin_left = 94.0
-margin_right = 138.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 0, 20 )
-size_flags_horizontal = 8
-text = "TEAM"
-valign = 1
-
-[node name="pad1" type="Control" parent="World/UI/SidePanes/RightPane/VBox/ChSelectPanelContainer/Team/Slot4"]
-margin_left = 142.0
-margin_right = 172.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 30, 0 )
+margin_bottom = 17.0
+rect_min_size = Vector2( 120, 0 )
+step = 1.0
+value = 75.0
 
 [node name="StatsPanelContainer" type="PanelContainer" parent="World/UI/SidePanes/RightPane/VBox"]
 self_modulate = Color( 1, 1, 1, 0.862745 )
-margin_top = 219.0
+margin_top = 202.0
 margin_right = 186.0
-margin_bottom = 355.0
+margin_bottom = 338.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="World/UI/SidePanes/RightPane/VBox/StatsPanelContainer"]
 margin_left = 7.0
