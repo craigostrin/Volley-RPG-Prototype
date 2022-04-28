@@ -6,15 +6,15 @@
 [node name="Team" type="Node2D"]
 script = ExtResource( 2 )
 
+[node name="Character0" parent="." instance=ExtResource( 1 )]
+position = Vector2( 53, 220 )
+
 [node name="Character1" parent="." instance=ExtResource( 1 )]
+position = Vector2( 147, 220 )
+
+[node name="Character2" parent="." instance=ExtResource( 1 )]
 position = Vector2( 53, 360 )
 is_weapon = true
 
-[node name="Character2" parent="." instance=ExtResource( 1 )]
-position = Vector2( 53, 220 )
-
 [node name="Character3" parent="." instance=ExtResource( 1 )]
-position = Vector2( 147, 220 )
-
-[node name="Character4" parent="." instance=ExtResource( 1 )]
 position = Vector2( 147, 360 )

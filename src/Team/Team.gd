@@ -3,7 +3,7 @@ extends Node2D
 
 
 export(Side.Enum) var side := Side.LEFT
-export var slots := 4
+var slots: int
 
 # Characters arranged by Vector2 slot
 #   (0, 0) = slot 0, (1, 0) = slot 1
@@ -12,11 +12,6 @@ export var slots := 4
 var characters := {}
 var weapons := []
 var teammates := []
-
-
-func _ready() -> void:
-	get_characters()
-	setup_team()
 
 
 func get_characters() -> void:
@@ -38,13 +33,13 @@ func setup_team() -> void:
 			teammates.append(ch)
 
 
-func hover(ch_slot: Vector2) -> void:
-	var ch_to_hover: Character = characters[ch_slot]
-	for ch in characters.values():
-		if not ch == ch_to_hover:
-			ch.set_is_hovered(false)
-		else:
-			ch.set_is_hovered(true)
+#func hover(ch_slot: Vector2) -> void:
+#	var ch_to_hover: Character = characters[ch_slot]
+#	for ch in characters.values():
+#		if not ch == ch_to_hover:
+#			ch.set_is_hovered(false)
+#		else:
+#			ch.set_is_hovered(true)
 
 
 func select(ch_slot: int) -> void:
