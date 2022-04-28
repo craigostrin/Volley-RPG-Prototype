@@ -28,6 +28,7 @@ script = ExtResource( 10 )
 one_shot = true
 
 [node name="World" parent="." instance=ExtResource( 1 )]
+position = Vector2( 200, 0 )
 script = ExtResource( 13 )
 
 [node name="Teams" type="Node2D" parent="World"]
@@ -1410,11 +1411,12 @@ __meta__ = {
 }
 
 [node name="ScorePanelLeft" type="PanelContainer" parent="World/UI/ScorePanels"]
+modulate = Color( 1, 1, 1, 0 )
 self_modulate = Color( 1, 1, 1, 0.862745 )
 margin_left = 10.0
-margin_top = 10.0
+margin_top = -70.0
 margin_right = 170.0
-margin_bottom = 76.0
+margin_bottom = -4.0
 rect_min_size = Vector2( 160, 50 )
 script = ExtResource( 12 )
 __meta__ = {
@@ -1567,12 +1569,11 @@ wait_time = 1.4
 one_shot = true
 
 [node name="ScorePanelRight" type="PanelContainer" parent="World/UI/ScorePanels"]
-modulate = Color( 1, 1, 1, 0 )
 self_modulate = Color( 1, 1, 1, 0.862745 )
 margin_left = 230.0
-margin_top = -70.0
+margin_top = 10.0
 margin_right = 390.0
-margin_bottom = -4.0
+margin_bottom = 76.0
 rect_min_size = Vector2( 160, 50 )
 script = ExtResource( 12 )
 __meta__ = {

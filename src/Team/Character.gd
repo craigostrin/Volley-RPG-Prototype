@@ -56,14 +56,13 @@ func _set_side(val: int) -> void:
 		return
 	
 	side = val
-	prints("side:", side)
 	
 	body.scale.x = side
 
 
 # PUBLIC GETTERS
-func get_selection_indic_global_pos() -> Vector2:
-	return $SelectionIndicatorPosition.global_position
+func get_indic_pos() -> Vector2:
+	return $SelectionIndicatorPosition.position
 
 func get_global_position() -> Vector2:
 	return global_position

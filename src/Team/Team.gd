@@ -16,7 +16,6 @@ var teammates := []
 
 func _ready() -> void:
 	get_characters()
-	print(characters)
 	setup_team()
 
 

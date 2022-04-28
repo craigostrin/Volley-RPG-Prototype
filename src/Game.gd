@@ -14,7 +14,7 @@ extends Node2D
 const WORLD_LEFT_POS  = Vector2(  0, 0)
 const WORLD_RIGHT_POS = Vector2(200, 0)
 
-var active_side: int  = Side.RIGHT setget _set_active_side
+var active_side: int  = Side.LEFT setget _set_active_side
 var active_team: Team
 #TODO ch stat manager
 ## Game should just manage turns, active team, UI hookups + selection, etc
@@ -63,7 +63,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 # MATCH MANAGEMENT
 func init_match() -> void:
-	self.active_side = Side.LEFT
+	self.active_side = Side.RIGHT
 	active_team.hover(Vector2.ZERO)
 
 
