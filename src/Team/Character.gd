@@ -3,17 +3,20 @@ extends Position2D
 
 const RIGHT_SIDE_X = 200.0
 
-var stats := {
+export var dict := {
+	"stats"  : {
 	   "Name" : "Rodrigo",
-	 "health" : 100,
-	"stamina" : 85,
-	
-		"PWR" : 85,
-		"AGI" : 85,
-		"END" : 85,
-		"INT" : 85,
-		"WIS" : 85,
-		"CHA" : 85
+	 "health" : 90,
+	"stamina" : 65,
+	},
+	"scores" : [
+		{ "label" : "PWR", "score" : 99 },
+		{ "label" : "AGI", "score" : 99 },
+		{ "label" : "END", "score" : 99 },
+		{ "label" : "INT", "score" : 99 },
+		{ "label" : "WIS", "score" : 99 },
+		{ "label" : "CHA", "score" : 99 },
+	]
 }
 
 var is_hovered := false
@@ -67,5 +70,11 @@ func get_indic_pos() -> Vector2:
 func get_global_position() -> Vector2:
 	return global_position
 
+func get_dict() -> Dictionary:
+	return dict
+
 func get_stats() -> Dictionary:
-	return stats
+	return dict.stats
+
+func get_scores() -> Dictionary:
+	return dict.scores

@@ -9,7 +9,6 @@ extends Node2D
 ## UI Pane:
 ### Make it switch between left and right, and reset to 0th ch slot
 ### Make the list a grid or do away with the list entirely
-### Add player panel with name, HP, and Stamina bars instead of ch select list
 
 const WORLD_LEFT_POS  = Vector2(  0, 0)
 const WORLD_RIGHT_POS = Vector2(200, 0)
@@ -17,7 +16,7 @@ const WORLD_RIGHT_POS = Vector2(200, 0)
 var active_side: int  = Side.LEFT setget _set_active_side
 var active_team: Team
 #TODO ch stat manager
-## Game should just manage turns, active team, UI hookups + selection, etc
+## Game should just manage turns, active team, UI hookups, etc
 #TODO combat manager
 var team_l_ch_dicts := []
 var team_r_ch_dicts := []
@@ -36,8 +35,6 @@ onready var team_r: Team = $World/Teams/Team2
 
 
 func _ready() -> void:
-#	ch_select_panel.connect("selector_moved", self, "_on_ui_selector_moved")
-#	ch_select_panel.connect("ch_selected", self, "_on_ch_selected")
 	combat_manager.connect(\
 		 "attack_action_completed", self, "_on_attack_action_completed")
 	combat_manager.connect(\
@@ -68,7 +65,7 @@ func init_match() -> void:
 
 
 func start_next_turn() -> void:
-	# active team changes in End_Turn() unless there's a reason to do it here
+	# active team changes in End_Turn() unless reason to do here
 	
 	#1 move screen
 	#2 swap active teams

@@ -25,7 +25,8 @@ func _ready() -> void:
 	ui.connect("hovered_slot_selected", self, "_on_hovered_slot_selected")
 	
 	init_teams()
-	ui.reset_indic_to(get_ch_indic_pos(Vector3(0, 0, 1)))
+	ui.reset_indic_to(get_ch_indic_pos(Vector3.BACK))
+	
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -53,6 +54,8 @@ func init_teams() -> void:
 		team.get_characters()
 		team.setup_team()
 
+
+### CHARACTER SELECTION ###
 
 func hover(slot3_to_move: Vector3) -> void:
 	if not ui.is_ready_to_hover():
@@ -117,9 +120,9 @@ func move_screen_to(_Side: int) -> void:
 
 func _on_hover_finished() -> void:
 	hovered_slot = slot_to_hover
-	var ch_dict := {}
-	#TODO
-	ui.update_stats(ch_dict)
+	var ch := get_ch_by_slot3(hovered_slot)
+	var ch_dict := ch.get_dict()
+	ui.update_ch_display(ch_dict)
 
 
 func _on_hovered_slot_selected() -> void:

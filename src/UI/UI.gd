@@ -7,16 +7,29 @@ signal hovered_slot_selected
 var _active_side: int = Side.LEFT
 
 onready var selec_indic: TextureRect = $SelectionIndicator
+onready var left_stats_panel   = $SidePanes/LeftPane/VBox/StatsPanel
+onready var right_stats_panel  = $SidePanes/RightPane/VBox/StatsPanel
+onready var left_scores_panel  = $SidePanes/LeftPane/VBox/AbilityScoresPanel
+onready var right_scores_panel = $SidePanes/RightPane/VBox/AbilityScoresPanel
 
 
 func _ready() -> void:
 	selec_indic.connect("move_finished", self, "_on_selec_indic_move_finished")
 
 
-# STAT DISPLAY
-func update_stats(ch_dict: Dictionary) -> void:
-	# update ch stat display on hover finished
-	pass
+# CH DISPLAY
+func update_ch_display(ch_dict: Dictionary) -> void:
+	update_stats(ch_dict.stats)
+	update_ability_scores(ch_dict.scores)
+
+
+func update_stats(stats: Dictionary) -> void:
+	left_stats_panel.update_stat_display(stats)
+
+
+func update_ability_scores(scores: Array) -> void:
+	#TODO address active side
+	left_scores_panel.update_score_display(scores)
 
 
 # CHARACTER SELECTION
