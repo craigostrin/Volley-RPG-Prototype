@@ -3,20 +3,17 @@ extends Position2D
 
 const RIGHT_SIDE_X = 200.0
 
-export var dict := {
-	"stats"  : {
-	   "Name" : "Rodrigo",
-	 "health" : 90,
-	"stamina" : 65,
-	},
-	"scores" : [
-		{ "label" : "PWR", "score" : 99 },
-		{ "label" : "AGI", "score" : 99 },
-		{ "label" : "END", "score" : 99 },
-		{ "label" : "INT", "score" : 99 },
-		{ "label" : "WIS", "score" : 99 },
-		{ "label" : "CHA", "score" : 99 },
-	]
+export(Resource) var data
+
+var health: int
+var stamina: int
+
+onready var stats  : Dictionary = data.stats
+onready var scores : Array      = data.scores 
+
+onready var dict := {
+	"stats"  : stats,
+	"scores" : scores
 }
 
 var is_hovered := false

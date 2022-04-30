@@ -4,12 +4,12 @@
 
 [resource]
 script = ExtResource( 1 )
-name = "Rodrigo"
-max_health = 100
-max_stamina = 65
-PWR = 90
-AGI = 80
-END = 85
-INT = 70
-WIS = 75
-CHA = 80
+name = "Perez"
+max_health = 80
+max_stamina = 80
+PWR = 65
+AGI = 90
+END = 80
+INT = 80
+WIS = 60
+CHA = 85
