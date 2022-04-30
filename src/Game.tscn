@@ -1,9 +1,7 @@
 [gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://src/World/World.tscn" type="PackedScene" id=1]
-[ext_resource path="res://assets/art/flags/320px-Flag_of_the_United_States_(Pantone).svg.png" type="Texture" id=2]
 [ext_resource path="res://src/ThemeDefault.tres" type="Theme" id=3]
-[ext_resource path="res://assets/art/flags/320px-Flag_of_Canada_(Pantone).svg.png" type="Texture" id=4]
 [ext_resource path="res://src/Team/Team.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/art/ui/hand_right.png" type="Texture" id=6]
 [ext_resource path="res://src/Game.gd" type="Script" id=7]
@@ -17,6 +15,8 @@
 [ext_resource path="res://assets/art/ui/hand_up.png" type="Texture" id=15]
 [ext_resource path="res://src/UI/SelectionIndicator.gd" type="Script" id=16]
 [ext_resource path="res://src/UI/StatsPanel.gd" type="Script" id=17]
+[ext_resource path="res://assets/art/flags/320px-Transgender_Pride_flag.svg.png" type="Texture" id=18]
+[ext_resource path="res://assets/art/flags/320px-Estelada_roja.svg.png" type="Texture" id=19]
 
 [node name="Game" type="Node2D"]
 position = Vector2( 1, 0 )
@@ -1095,36 +1095,37 @@ margin_right = 146.0
 margin_bottom = 24.0
 
 [node name="Team1" type="HBoxContainer" parent="World/UI/ScorePanels/ScorePanelLeft/VBox/Top"]
-margin_right = 89.0
+margin_right = 94.0
 margin_bottom = 24.0
 
 [node name="Abbr" type="Label" parent="World/UI/ScorePanels/ScorePanelLeft/VBox/Top/Team1"]
 margin_top = 5.0
-margin_right = 27.0
+margin_right = 32.0
 margin_bottom = 18.0
-text = "CAN"
+rect_min_size = Vector2( 32, 0 )
+text = "IND"
 valign = 1
 
 [node name="Flag" type="TextureRect" parent="World/UI/ScorePanels/ScorePanelLeft/VBox/Top/Team1"]
-margin_left = 31.0
-margin_right = 61.0
+margin_left = 36.0
+margin_right = 66.0
 margin_bottom = 24.0
 grow_vertical = 2
 rect_min_size = Vector2( 30, 16 )
 size_flags_horizontal = 3
-texture = ExtResource( 4 )
+texture = ExtResource( 19 )
 expand = true
 stretch_mode = 6
 
 [node name="Serve" type="CheckBox" parent="World/UI/ScorePanels/ScorePanelLeft/VBox/Top/Team1"]
-margin_left = 65.0
-margin_right = 89.0
+margin_left = 70.0
+margin_right = 94.0
 margin_bottom = 24.0
 button_mask = 0
 
 [node name="SetsWon" type="Panel" parent="World/UI/ScorePanels/ScorePanelLeft/VBox/Top"]
-margin_left = 93.0
-margin_right = 111.0
+margin_left = 98.0
+margin_right = 116.0
 margin_bottom = 24.0
 rect_min_size = Vector2( 18, 0 )
 
@@ -1141,7 +1142,7 @@ __meta__ = {
 }
 
 [node name="Points" type="Panel" parent="World/UI/ScorePanels/ScorePanelLeft/VBox/Top"]
-margin_left = 115.0
+margin_left = 120.0
 margin_right = 146.0
 margin_bottom = 24.0
 size_flags_horizontal = 3
@@ -1162,36 +1163,37 @@ margin_right = 146.0
 margin_bottom = 52.0
 
 [node name="Team2" type="HBoxContainer" parent="World/UI/ScorePanels/ScorePanelLeft/VBox/Bottom"]
-margin_right = 89.0
+margin_right = 94.0
 margin_bottom = 24.0
 
 [node name="Abbr" type="Label" parent="World/UI/ScorePanels/ScorePanelLeft/VBox/Bottom/Team2"]
 margin_top = 5.0
-margin_right = 27.0
+margin_right = 32.0
 margin_bottom = 18.0
-text = "USA"
+rect_min_size = Vector2( 32, 0 )
+text = "TRA"
 valign = 1
 
 [node name="Flag" type="TextureRect" parent="World/UI/ScorePanels/ScorePanelLeft/VBox/Bottom/Team2"]
-margin_left = 31.0
-margin_right = 61.0
+margin_left = 36.0
+margin_right = 66.0
 margin_bottom = 24.0
 grow_vertical = 2
 rect_min_size = Vector2( 30, 16 )
 size_flags_horizontal = 3
-texture = ExtResource( 2 )
+texture = ExtResource( 18 )
 expand = true
 stretch_mode = 6
 
 [node name="Serve" type="CheckBox" parent="World/UI/ScorePanels/ScorePanelLeft/VBox/Bottom/Team2"]
-margin_left = 65.0
-margin_right = 89.0
+margin_left = 70.0
+margin_right = 94.0
 margin_bottom = 24.0
 button_mask = 0
 
 [node name="SetsWon" type="Panel" parent="World/UI/ScorePanels/ScorePanelLeft/VBox/Bottom"]
-margin_left = 93.0
-margin_right = 111.0
+margin_left = 98.0
+margin_right = 116.0
 margin_bottom = 24.0
 rect_min_size = Vector2( 18, 0 )
 
@@ -1208,7 +1210,7 @@ __meta__ = {
 }
 
 [node name="Points" type="Panel" parent="World/UI/ScorePanels/ScorePanelLeft/VBox/Bottom"]
-margin_left = 115.0
+margin_left = 120.0
 margin_right = 146.0
 margin_bottom = 24.0
 size_flags_horizontal = 3
@@ -1252,36 +1254,37 @@ margin_right = 146.0
 margin_bottom = 24.0
 
 [node name="Team1" type="HBoxContainer" parent="World/UI/ScorePanels/ScorePanelRight/VBox/Top"]
-margin_right = 89.0
+margin_right = 94.0
 margin_bottom = 24.0
 
 [node name="Abbr" type="Label" parent="World/UI/ScorePanels/ScorePanelRight/VBox/Top/Team1"]
 margin_top = 5.0
-margin_right = 27.0
+margin_right = 32.0
 margin_bottom = 18.0
-text = "CAN"
+rect_min_size = Vector2( 32, 0 )
+text = "IND"
 valign = 1
 
 [node name="Flag" type="TextureRect" parent="World/UI/ScorePanels/ScorePanelRight/VBox/Top/Team1"]
-margin_left = 31.0
-margin_right = 61.0
+margin_left = 36.0
+margin_right = 66.0
 margin_bottom = 24.0
 grow_vertical = 2
 rect_min_size = Vector2( 30, 16 )
 size_flags_horizontal = 3
-texture = ExtResource( 4 )
+texture = ExtResource( 19 )
 expand = true
 stretch_mode = 6
 
 [node name="Serve" type="CheckBox" parent="World/UI/ScorePanels/ScorePanelRight/VBox/Top/Team1"]
-margin_left = 65.0
-margin_right = 89.0
+margin_left = 70.0
+margin_right = 94.0
 margin_bottom = 24.0
 button_mask = 0
 
 [node name="SetsWon" type="Panel" parent="World/UI/ScorePanels/ScorePanelRight/VBox/Top"]
-margin_left = 93.0
-margin_right = 111.0
+margin_left = 98.0
+margin_right = 116.0
 margin_bottom = 24.0
 rect_min_size = Vector2( 18, 0 )
 
@@ -1298,7 +1301,7 @@ __meta__ = {
 }
 
 [node name="Points" type="Panel" parent="World/UI/ScorePanels/ScorePanelRight/VBox/Top"]
-margin_left = 115.0
+margin_left = 120.0
 margin_right = 146.0
 margin_bottom = 24.0
 size_flags_horizontal = 3
@@ -1319,36 +1322,37 @@ margin_right = 146.0
 margin_bottom = 52.0
 
 [node name="Team2" type="HBoxContainer" parent="World/UI/ScorePanels/ScorePanelRight/VBox/Bottom"]
-margin_right = 89.0
+margin_right = 94.0
 margin_bottom = 24.0
 
 [node name="Abbr" type="Label" parent="World/UI/ScorePanels/ScorePanelRight/VBox/Bottom/Team2"]
 margin_top = 5.0
-margin_right = 27.0
+margin_right = 32.0
 margin_bottom = 18.0
-text = "USA"
+rect_min_size = Vector2( 32, 0 )
+text = "TRA"
 valign = 1
 
 [node name="Flag" type="TextureRect" parent="World/UI/ScorePanels/ScorePanelRight/VBox/Bottom/Team2"]
-margin_left = 31.0
-margin_right = 61.0
+margin_left = 36.0
+margin_right = 66.0
 margin_bottom = 24.0
 grow_vertical = 2
 rect_min_size = Vector2( 30, 16 )
 size_flags_horizontal = 3
-texture = ExtResource( 2 )
+texture = ExtResource( 18 )
 expand = true
 stretch_mode = 6
 
 [node name="Serve" type="CheckBox" parent="World/UI/ScorePanels/ScorePanelRight/VBox/Bottom/Team2"]
-margin_left = 65.0
-margin_right = 89.0
+margin_left = 70.0
+margin_right = 94.0
 margin_bottom = 24.0
 button_mask = 0
 
 [node name="SetsWon" type="Panel" parent="World/UI/ScorePanels/ScorePanelRight/VBox/Bottom"]
-margin_left = 93.0
-margin_right = 111.0
+margin_left = 98.0
+margin_right = 116.0
 margin_bottom = 24.0
 rect_min_size = Vector2( 18, 0 )
 
@@ -1365,7 +1369,7 @@ __meta__ = {
 }
 
 [node name="Points" type="Panel" parent="World/UI/ScorePanels/ScorePanelRight/VBox/Bottom"]
-margin_left = 115.0
+margin_left = 120.0
 margin_right = 146.0
 margin_bottom = 24.0
 size_flags_horizontal = 3

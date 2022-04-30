@@ -51,16 +51,14 @@ func _unhandled_input(event: InputEvent) -> void:
 	#DEBUG BUTTON
 	if event.is_action_pressed("ui_focus_next"):
 		if active_side == Side.LEFT:
-			active_side = Side.RIGHT
-			world.move_screen_to(Side.LEFT)
+			self.active_side = Side.RIGHT
 		else:
-			active_side = Side.LEFT
-			world.move_screen_to(Side.RIGHT)
+			self.active_side = Side.LEFT
 
 
 # MATCH MANAGEMENT
 func init_match() -> void:
-	self.active_side = Side.RIGHT
+	active_side = Side.LEFT
 	#active_team.hover(Vector2.ZERO)
 
 
@@ -84,24 +82,17 @@ func end_turn() -> void:
 	#world.move_screen_to(Enum.Team[active_side])
 
 
-#func get_team_stats() -> void:
-#	team_l_ch_dicts = team_l.get_ch_stats()
-#	team_r_ch_dicts = team_r.get_ch_stats()
-#
-#func populate_player_ch_names() -> void:
-#	var ch_names: PoolStringArray = []
-#	for dict in team_l_ch_dicts:
-#		ch_names.append(dict["Name"])
-#
-#	ch_select_panel.populate_team_names(ch_names)
-
 func _set_active_side(val: int) -> void:
 	if not val in Side.values():
 		printerr("Error setting sides in Game.gd.")
 		return
 	
+	world.move_screen_to(active_side)
+	
 	active_side = val
 	active_team = team_l if active_side == Side.LEFT else team_r
+	
+	
 
 
 # UI SIGNALS
@@ -133,4 +124,4 @@ func _on_attack_action_completed() -> void:
 	#animation plays
 	yield(test_timer.start(), "timeout")
 	print("attack completed, start next player's turn")
-	end_turn()
+	#end_turn()

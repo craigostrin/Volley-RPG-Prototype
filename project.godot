@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Resource",
+"class": "ChData",
+"language": "GDScript",
+"path": "res://src/CharacterData/ChData.gd"
+}, {
 "base": "Position2D",
 "class": "Character",
 "language": "GDScript",
@@ -35,6 +40,7 @@ _global_script_classes=[ {
 "path": "res://src/UI/UI.gd"
 } ]
 _global_script_class_icons={
+"ChData": "",
 "Character": "",
 "CombatManager": "",
 "ScorePanel": "",
