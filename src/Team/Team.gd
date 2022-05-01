@@ -2,20 +2,30 @@ class_name Team
 extends Node2D
 
 
-export(Enum.Teams) var side := Enum.Teams.LEFT
+export(Side.Enum) var side := Side.LEFT
+var slots: int
 
-onready var characters := get_children()
+# Characters arranged by Vector2 slot
+#   (0, 0) = slot 0, (1, 0) = slot 1
+#   (0, 1) = slot 2, (1, 1) = slot 3
+#   (0, 2) = slot 4, (1, 2) = slot 5
+var characters := {}
 var weapons := []
 var teammates := []
 
 
-func _ready() -> void:
-	setup_team()
+func get_characters() -> void:
+	var ch_array := get_children()
+	
+	var i := 0
+	for slot in slots:
+		characters[Vector2( i % 2, floor(i / 2) )] = ch_array[i]
+		i += 1
 
 
 func setup_team() -> void:
-	for ch in characters:
-		ch.team = side
+	for ch in characters.values():
+		ch.side = side
 		
 		if ch.is_weapon:
 			weapons.append(ch)
@@ -23,13 +33,13 @@ func setup_team() -> void:
 			teammates.append(ch)
 
 
-func hover(ch_slot: int) -> void:
-	var ch_to_hover: Character = characters[ch_slot]
-	for ch in characters:
-		if not ch == ch_to_hover:
-			ch.set_is_hovered(false)
-		else:
-			ch.set_is_hovered(true)
+#func hover(ch_slot: Vector2) -> void:
+#	var ch_to_hover: Character = characters[ch_slot]
+#	for ch in characters.values():
+#		if not ch == ch_to_hover:
+#			ch.set_is_hovered(false)
+#		else:
+#			ch.set_is_hovered(true)
 
 
 func select(ch_slot: int) -> void:

@@ -1,20 +1,23 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://src/Team/Character.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Team/Team.gd" type="Script" id=2]
+[ext_resource path="res://src/CharacterData/Perez.tres" type="Resource" id=3]
 
 [node name="Team" type="Node2D"]
 script = ExtResource( 2 )
 
+[node name="Character0" parent="." instance=ExtResource( 1 )]
+position = Vector2( 53, 220 )
+
 [node name="Character1" parent="." instance=ExtResource( 1 )]
-position = Vector2( -60, 80 )
-is_weapon = true
+position = Vector2( 147, 220 )
 
 [node name="Character2" parent="." instance=ExtResource( 1 )]
-position = Vector2( -60, -60 )
+position = Vector2( 53, 360 )
+data = ExtResource( 3 )
+is_weapon = true
 
 [node name="Character3" parent="." instance=ExtResource( 1 )]
-position = Vector2( 34, -60 )
-
-[node name="Character4" parent="." instance=ExtResource( 1 )]
-position = Vector2( 34, 80 )
+position = Vector2( 147, 360 )
+data = ExtResource( 3 )

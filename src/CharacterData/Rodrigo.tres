@@ -1,0 +1,15 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://src/CharacterData/ChData.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+name = "Rodrigo"
+max_health = 100
+max_stamina = 65
+PWR = 90
+AGI = 80
+END = 85
+INT = 70
+WIS = 75
+CHA = 80
