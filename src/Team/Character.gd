@@ -1,3 +1,5 @@
+#TODO - fix the health / max_health issue
+
 class_name Character
 extends Position2D
 
@@ -8,13 +10,8 @@ export(Resource) var data
 var health: int
 var stamina: int
 
-onready var stats  : Dictionary = data.stats
-onready var scores : Array      = data.scores 
-
-onready var dict := {
-	"stats"  : stats,
-	"scores" : scores
-}
+var stat_data: Dictionary
+var ability_data: Array
 
 var is_hovered := false
 var is_selected := false setget set_is_selected
@@ -30,6 +27,8 @@ onready var anim_sprite: AnimatedSprite = $KinematicBody2D/AnimatedSprite
 
 func _ready() -> void:
 	anim_names = anim_sprite.frames.get_animation_names()
+	stat_data = data.get_stats()
+	ability_data = data.get_ability_scores()
 	play_anim("idle")
 
 
@@ -68,10 +67,13 @@ func get_global_position() -> Vector2:
 	return global_position
 
 func get_dict() -> Dictionary:
-	return dict
+	return {
+		"stats"  : stat_data,
+		"scores" : ability_data
+	}
 
 func get_stats() -> Dictionary:
-	return dict.stats
+	return stat_data
 
-func get_scores() -> Dictionary:
-	return dict.scores
+func get_scores() -> Array:
+	return ability_data
