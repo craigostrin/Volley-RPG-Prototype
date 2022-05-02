@@ -52,7 +52,7 @@ _global_script_class_icons={
 
 config/name="Volleyball: A Love Story"
 run/main_scene="res://src/Game.tscn"
-config/icon="res://icon.png"
+config/icon="res://assets/art/flags/320px-Transgender_Pride_flag.svg.png"
 
 [autoload]
 
