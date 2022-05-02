@@ -1,0 +1,15 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://src/CharacterData/ChData.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+name = "Blackbeard"
+max_health = 120
+max_stamina = 100
+PWR = 80
+AGI = 90
+END = 95
+INT = 85
+WIS = 60
+CHA = 99

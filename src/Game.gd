@@ -59,7 +59,6 @@ func _unhandled_input(event: InputEvent) -> void:
 # MATCH MANAGEMENT
 func init_match() -> void:
 	active_side = Side.LEFT
-	#active_team.hover(Vector2.ZERO)
 
 
 func start_next_turn() -> void:

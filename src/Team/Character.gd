@@ -5,13 +5,14 @@ extends Position2D
 
 const RIGHT_SIDE_X = 200.0
 
-export(Resource) var data
+export(Resource) var _data
 
+var _name: String
 var health: int
 var stamina: int
 
-var stat_data: Dictionary
-var ability_data: Array
+var _stat_data: Dictionary
+var _ability_data: Array
 
 var is_hovered := false
 var is_selected := false setget set_is_selected
@@ -27,8 +28,12 @@ onready var anim_sprite: AnimatedSprite = $KinematicBody2D/AnimatedSprite
 
 func _ready() -> void:
 	anim_names = anim_sprite.frames.get_animation_names()
-	stat_data = data.get_stats()
-	ability_data = data.get_ability_scores()
+	_stat_data = _data.get_stats()
+	_ability_data = _data.get_ability_scores()
+	
+	_name = _stat_data.name
+	health = _stat_data.max_health
+	stamina = _stat_data.max_stamina
 	play_anim("idle")
 
 
@@ -68,12 +73,16 @@ func get_global_position() -> Vector2:
 
 func get_dict() -> Dictionary:
 	return {
-		"stats"  : stat_data,
-		"scores" : ability_data
+		 "stats" : get_stats(),
+		"scores" : get_scores()
 	}
 
 func get_stats() -> Dictionary:
-	return stat_data
+	return {
+		   "name" : _name,
+		 "health" : health,
+		"stamina" : stamina
+	}
 
 func get_scores() -> Array:
-	return ability_data
+	return _ability_data

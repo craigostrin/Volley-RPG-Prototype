@@ -1,0 +1,15 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://src/CharacterData/ChData.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+name = "Frenchie"
+max_health = 65
+max_stamina = 85
+PWR = 60
+AGI = 80
+END = 70
+INT = 90
+WIS = 85
+CHA = 90

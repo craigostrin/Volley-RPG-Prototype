@@ -16,9 +16,9 @@ export var CHA: int
 
 func get_stats() -> Dictionary:
 	return {
-	 "Name" : "Rodrigo",
-	 "health" : max_health,
-	"stamina" : max_stamina,
+		   "name" : name,
+	 "max_health" : max_health,
+	"max_stamina" : max_stamina,
 }
 
 func get_ability_scores() -> Array:

@@ -26,6 +26,8 @@ func _ready() -> void:
 	
 	init_teams()
 	ui.reset_indic_to(get_ch_indic_pos(Vector3.BACK))
+	var starting_ch_d := get_ch_by_slot3(Vector3.BACK).get_dict()
+	ui.update_ch_display(starting_ch_d)
 	
 
 
