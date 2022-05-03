@@ -4,8 +4,6 @@ extends Control
 signal hover_finished
 signal hovered_slot_selected
 
-var _active_side: int = Side.LEFT
-
 onready var selec_indic: TextureRect = $SelectionIndicator
 onready var left_stats_panel   = $SidePanes/LeftPane/VBox/StatsPanel
 onready var right_stats_panel  = $SidePanes/RightPane/VBox/StatsPanel

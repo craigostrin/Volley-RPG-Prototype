@@ -86,7 +86,7 @@ func _set_active_side(val: int) -> void:
 		printerr("Error setting sides in Game.gd.")
 		return
 	
-	world.move_screen_to(active_side)
+	world.switch_side_to(active_side)
 	
 	active_side = val
 	active_team = team_l if active_side == Side.LEFT else team_r
@@ -98,8 +98,9 @@ func _set_active_side(val: int) -> void:
 #func _on_ui_selector_moved(ch_slot_hovered: Vector2) -> void:
 #	active_team.hover(ch_slot_hovered)
 
-func _on_ch_selected(ch_slot: int) -> void:
-	active_team.select(ch_slot)
+func _on_ch_selected(ch_slot: Vector3) -> void:
+	#active_team.select(ch_slot)
+	pass
 
 
 # COMBAT SIGNALS

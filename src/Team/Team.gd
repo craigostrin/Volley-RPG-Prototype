@@ -42,7 +42,7 @@ func setup_team() -> void:
 #			ch.set_is_hovered(true)
 
 
-func select(ch_slot: int) -> void:
+func select(ch_slot: Vector2) -> void:
 	var ch_to_select: Character = characters[ch_slot]
 	ch_to_select.set_is_selected(true)
 

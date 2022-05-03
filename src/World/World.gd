@@ -1,5 +1,9 @@
 extends Node2D
 
+#TODO: Before selection, make sure the hover hand/active side switches teams
+## On screen anims finished, send signal so World can swap sides and swap pointer
+## BUG: After screen_move, can't move Right on first try
+
 signal ch_selected(character)
 
 const LEFT_POS  = Vector2(  0, 0)
@@ -8,8 +12,11 @@ const RIGHT_POS = Vector2(200, 0)
 var slots_per_team := 4
 var rows_per_team := 2
 
-var slot_to_hover := Vector3.ZERO
-var hovered_slot := Vector3.ZERO
+var active_side := Side.LEFT
+
+var can_select := false
+var slot_to_hover := Vector3(0, 0, Side.LEFT)
+var hovered_slot  := Vector3(0, 0, Side.LEFT)
 var selected_ch: Character
 
 onready var left_team        : Team       = $Teams/Team
@@ -28,6 +35,7 @@ func _ready() -> void:
 	ui.reset_indic_to(get_ch_indic_pos(Vector3.BACK))
 	var starting_ch_d := get_ch_by_slot3(Vector3.BACK).get_dict()
 	ui.update_ch_display(starting_ch_d)
+	can_select = true
 	
 
 
@@ -46,6 +54,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		# DOWN is negative, which is up in 2D
 		var slot3 := Vector3.DOWN
 		hover(slot3)
+#	if event.is_action_pressed("ui_accept"):
+#		select(hovered_slot)
 
 
 func init_teams() -> void:
@@ -59,6 +69,20 @@ func init_teams() -> void:
 
 ### CHARACTER SELECTION ###
 
+func select(slot3: Vector3) -> void:
+	if not can_select:
+		printerr("Invalid selection attempt.")
+		return
+	
+	var slot2 = Vector2(slot3.x, slot3.y)
+	var side = slot3.z
+	print(side)
+	var team: Team = _get_team_by_side(side)
+	print(team.name)
+	
+	team.select(slot2)
+
+
 func hover(slot3_to_move: Vector3) -> void:
 	if not ui.is_ready_to_hover():
 		return
@@ -68,6 +92,8 @@ func hover(slot3_to_move: Vector3) -> void:
 		return
 	
 	var target_pos := get_ch_indic_pos(slot_to_hover)
+	if active_side == Side.RIGHT:
+		target_pos += RIGHT_POS
 	
 	ui.move_hover_to(target_pos)
 
@@ -75,7 +101,7 @@ func hover(slot3_to_move: Vector3) -> void:
 func get_ch_by_slot3(slot3: Vector3) -> Character:
 	var ch: Character
 	var side = slot3.z
-	var team = left_team if side == Side.LEFT else right_team
+	var team = _get_team_by_side(side)
 	
 	var slot2 := Vector2(slot3.x, slot3.y)
 	ch = team.characters[slot2]
@@ -95,12 +121,22 @@ func get_ch_indic_pos(slot3: Vector3) -> Vector2:
 	return indic_pos
 
 
-func move_screen_to(_Side: int) -> void:
-	if not _Side in Side.values():
+func switch_side_to(next_side: int) -> void:
+	if not next_side in Side.values():
 		return
 	
+	move_screen_to(next_side)
+	
+	var sp_to_activate := score_panel_left  if next_side == Side.LEFT else score_panel_right
+	var sp_to_deactive := score_panel_right if next_side == Side.LEFT else score_panel_left
+	
+	sp_to_activate.fade_in()
+	sp_to_deactive.fade_out()
+
+
+func move_screen_to(side: int) -> void:
 	var target_pos := Vector2.ZERO
-	target_pos = LEFT_POS if _Side == Side.LEFT else RIGHT_POS
+	target_pos = LEFT_POS if side == Side.LEFT else RIGHT_POS
 	
 	t.interpolate_property(
 		self,
@@ -112,16 +148,20 @@ func move_screen_to(_Side: int) -> void:
 		Tween.EASE_IN_OUT
 	)
 	t.start()
-	
-	var sp_to_activate := score_panel_left  if _Side == Side.LEFT else score_panel_right
-	var sp_to_deactive := score_panel_right if _Side == Side.LEFT else score_panel_left
-	
-	sp_to_activate.fade_in()
-	sp_to_deactive.fade_out()
+	yield(t, "tween_all_completed")
+	_on_screen_move_finished()
+
+
+func _on_screen_move_finished() -> void:
+	active_side = Side.LEFT if active_side == Side.RIGHT else Side.RIGHT
+	var default_ch_slot3 := Vector3( 0, 0, active_side)
+	var target_pos := get_ch_indic_pos(default_ch_slot3)
+	ui.reset_indic_to(target_pos)
 
 
 func _on_hover_finished() -> void:
 	hovered_slot = slot_to_hover
+	can_select = true
 	var ch := get_ch_by_slot3(hovered_slot)
 	var ch_dict := ch.get_dict()
 	ui.update_ch_display(ch_dict)
@@ -130,6 +170,21 @@ func _on_hover_finished() -> void:
 func _on_hovered_slot_selected() -> void:
 	var ch_selected = get_ch_by_slot3(hovered_slot)
 	emit_signal("ch_selected", ch_selected)
+
+
+### HELPERS ###
+
+func _get_team_by_side(side: int) -> Team:
+	var t: Team
+	
+	if side == Side.LEFT:
+		t = left_team
+	elif side == Side.RIGHT:
+		t = right_team
+	else:
+		printerr("Invalid _get_team request. Try a valid side.")
+	
+	return t
 
 
 func is_in_grid(slot3) -> bool:
