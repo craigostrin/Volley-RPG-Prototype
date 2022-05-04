@@ -9,6 +9,7 @@ var slots: int
 #   (0, 0) = slot 0, (1, 0) = slot 1
 #   (0, 1) = slot 2, (1, 1) = slot 3
 #   (0, 2) = slot 4, (1, 2) = slot 5
+# There will always be a backline and frontline player (1 row)
 var characters := {}
 var weapons := []
 var teammates := []

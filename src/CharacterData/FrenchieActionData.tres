@@ -1,0 +1,14 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://src/CharacterData/ActionData.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+action1 = "Con Job"
+uses1 = 10
+action2 = "Witty Remark"
+uses2 = 10
+action3 = "Play Music"
+uses3 = 10
+action4 = "Sew Flag"
+uses4 = 10

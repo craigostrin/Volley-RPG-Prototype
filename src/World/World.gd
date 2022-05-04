@@ -54,8 +54,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		# DOWN is negative, which is up in 2D
 		var slot3 := Vector3.DOWN
 		hover(slot3)
-#	if event.is_action_pressed("ui_accept"):
-#		select(hovered_slot)
+	if event.is_action_pressed("ui_accept"):
+		select(hovered_slot)
 
 
 func init_teams() -> void:

@@ -1,18 +1,23 @@
 #TODO - fix the health / max_health issue
+#TODO - when character selected, send Signal with this Ch's action data
 
 class_name Character
 extends Position2D
 
+signal selected( available_actions )
+
 const RIGHT_SIDE_X = 200.0
 
 export(Resource) var _data
+export(Resource) var _action_data
 
 var _name: String
 var health: int
 var stamina: int
 
-var _stat_data: Dictionary
-var _ability_data: Array
+var _stats: Dictionary
+var _ability_scores: Array
+var _available_actions: Array # Array of Dicts with up-to-date action data
 
 var is_hovered := false
 var is_selected := false setget set_is_selected
@@ -28,12 +33,13 @@ onready var anim_sprite: AnimatedSprite = $KinematicBody2D/AnimatedSprite
 
 func _ready() -> void:
 	anim_names = anim_sprite.frames.get_animation_names()
-	_stat_data = _data.get_stats()
-	_ability_data = _data.get_ability_scores()
+	_stats = _data.get_stats()
+	_ability_scores = _data.get_ability_scores()
+	_available_actions = _action_data.get_actions()
 	
-	_name = _stat_data.name
-	health = _stat_data.max_health
-	stamina = _stat_data.max_stamina
+	_name = _stats.name
+	health = _stats.max_health
+	stamina = _stats.max_stamina
 	play_anim("idle")
 
 
@@ -52,6 +58,7 @@ func set_is_hovered(val: bool) -> void:
 func set_is_selected(val: bool) -> void:
 	is_selected = val
 	body.modulate = Color.blueviolet
+	emit_signal("selected", _available_actions)
 
 
 func _set_side(val: int) -> void:
@@ -74,7 +81,7 @@ func get_global_position() -> Vector2:
 func get_dict() -> Dictionary:
 	return {
 		 "stats" : get_stats(),
-		"scores" : get_scores()
+		"scores" : get_ability_scores()
 	}
 
 func get_stats() -> Dictionary:
@@ -84,5 +91,5 @@ func get_stats() -> Dictionary:
 		"stamina" : stamina
 	}
 
-func get_scores() -> Array:
-	return _ability_data
+func get_ability_scores() -> Array:
+	return _ability_scores
