@@ -92,9 +92,6 @@ func hover(slot3_to_move: Vector3) -> void:
 		return
 	
 	var target_pos := get_ch_indic_pos(slot_to_hover)
-	if active_side == Side.RIGHT:
-		target_pos += RIGHT_POS
-	
 	ui.move_hover_to(target_pos)
 
 
@@ -132,6 +129,7 @@ func switch_side_to(next_side: int) -> void:
 	
 	sp_to_activate.fade_in()
 	sp_to_deactive.fade_out()
+	print("swap screen side")
 
 
 func move_screen_to(side: int) -> void:
@@ -154,8 +152,9 @@ func move_screen_to(side: int) -> void:
 
 func _on_screen_move_finished() -> void:
 	active_side = Side.LEFT if active_side == Side.RIGHT else Side.RIGHT
-	var default_ch_slot3 := Vector3( 0, 0, active_side)
-	var target_pos := get_ch_indic_pos(default_ch_slot3)
+	hovered_slot = Vector3( 0, 0, active_side)
+	
+	var target_pos := get_ch_indic_pos(hovered_slot)
 	ui.reset_indic_to(target_pos)
 
 
