@@ -1,0 +1,15 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://src/CharacterData/ChData.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+name = "Stede"
+max_health = 60
+max_stamina = 70
+PWR = 60
+AGI = 50
+END = 75
+INT = 95
+WIS = 90
+CHA = 80

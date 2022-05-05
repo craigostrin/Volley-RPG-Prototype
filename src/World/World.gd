@@ -1,9 +1,5 @@
 extends Node2D
 
-#TODO: Before selection, make sure the hover hand/active side switches teams
-## On screen anims finished, send signal so World can swap sides and swap pointer
-## BUG: After screen_move, can't move Right on first try
-
 signal ch_selected(character)
 
 const LEFT_POS  = Vector2(  0, 0)
@@ -32,9 +28,7 @@ func _ready() -> void:
 	ui.connect("hovered_slot_selected", self, "_on_hovered_slot_selected")
 	
 	init_teams()
-	ui.reset_indic_to(get_ch_indic_pos(Vector3.BACK))
-	var starting_ch_d := get_ch_by_slot3(Vector3.BACK).get_dict()
-	ui.update_ch_display(starting_ch_d)
+	init_ui()
 	can_select = true
 	
 
@@ -65,6 +59,13 @@ func init_teams() -> void:
 		team.slots = slots_per_team
 		team.get_characters()
 		team.setup_team()
+
+
+func init_ui() -> void:
+	ui.active_side = Side.LEFT
+	ui.reset_indic_to(get_ch_indic_pos(Vector3.BACK))
+	var starting_ch_d := get_ch_by_slot3(Vector3.BACK).get_dict()
+	ui.update_ch_display(starting_ch_d)
 
 
 ### CHARACTER SELECTION ###
@@ -120,6 +121,13 @@ func _on_ch_deselected() -> void:
 func switch_side_to(next_side: int) -> void:
 	if not next_side in Side.values():
 		return
+	active_side = Side.LEFT if active_side == Side.RIGHT else Side.RIGHT
+	hovered_slot = Vector3( 0, 0, active_side)
+	
+	ui.active_side = active_side
+	var starting_ch := get_ch_by_slot3(Vector3(0,0,active_side))
+	var starting_ch_d := starting_ch.get_dict()
+	ui.update_ch_display(starting_ch_d)
 	
 	move_screen_to(next_side)
 	
@@ -150,9 +158,6 @@ func move_screen_to(side: int) -> void:
 
 
 func _on_screen_move_finished() -> void:
-	active_side = Side.LEFT if active_side == Side.RIGHT else Side.RIGHT
-	hovered_slot = Vector3( 0, 0, active_side)
-	
 	var target_pos := get_ch_indic_pos(hovered_slot)
 	ui.reset_indic_to(target_pos)
 

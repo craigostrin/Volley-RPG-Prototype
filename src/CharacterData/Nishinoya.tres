@@ -1,0 +1,15 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://src/CharacterData/ChData.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+name = "Nishinoya"
+max_health = 90
+max_stamina = 90
+PWR = 80
+AGI = 90
+END = 80
+INT = 65
+WIS = 80
+CHA = 99

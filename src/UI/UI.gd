@@ -4,6 +4,8 @@ extends Control
 signal hover_finished
 signal hovered_slot_selected
 
+var active_side: int
+
 onready var selec_indic: TextureRect = $SelectionIndicator
 onready var left_stats_panel   = $SidePanes/LeftPane/VBox/StatsPanel
 onready var right_stats_panel  = $SidePanes/RightPane/VBox/StatsPanel
@@ -22,12 +24,17 @@ func update_ch_display(ch_dict: Dictionary) -> void:
 
 
 func update_stats(stats: Dictionary) -> void:
-	left_stats_panel.update_stat_display(stats)
+	if active_side == Side.LEFT:
+		left_stats_panel.update_stat_display(stats)
+	elif active_side == Side.RIGHT:
+		right_stats_panel.update_stat_display(stats)
 
 
 func update_ability_scores(scores: Array) -> void:
-	#TODO address active side
-	left_scores_panel.update_score_display(scores)
+	if active_side == Side.LEFT:
+		left_scores_panel.update_score_display(scores)
+	elif active_side == Side.RIGHT:
+		right_scores_panel.update_score_display(scores)
 
 
 # CHARACTER SELECTION

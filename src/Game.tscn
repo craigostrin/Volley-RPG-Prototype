@@ -1,7 +1,9 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://src/World/World.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/CharacterData/StedeActionData.tres" type="Resource" id=2]
 [ext_resource path="res://src/ThemeDefault.tres" type="Theme" id=3]
+[ext_resource path="res://src/CharacterData/Stede.tres" type="Resource" id=4]
 [ext_resource path="res://src/Team/Team.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/art/ui/hand_right.png" type="Texture" id=6]
 [ext_resource path="res://src/Game.gd" type="Script" id=7]
@@ -17,6 +19,12 @@
 [ext_resource path="res://src/UI/StatsPanel.gd" type="Script" id=17]
 [ext_resource path="res://assets/art/flags/320px-Transgender_Pride_flag.svg.png" type="Texture" id=18]
 [ext_resource path="res://assets/art/flags/320px-Estelada_roja.svg.png" type="Texture" id=19]
+[ext_resource path="res://src/CharacterData/Jim.tres" type="Resource" id=20]
+[ext_resource path="res://src/CharacterData/JimActionData.tres" type="Resource" id=21]
+[ext_resource path="res://src/CharacterData/NishinoyaActionData.tres" type="Resource" id=22]
+[ext_resource path="res://src/CharacterData/KageyamaActionData.tres" type="Resource" id=23]
+[ext_resource path="res://src/CharacterData/Nishinoya.tres" type="Resource" id=24]
+[ext_resource path="res://src/CharacterData/Kageyama.tres" type="Resource" id=25]
 
 [node name="Game" type="Node2D"]
 position = Vector2( 1, 0 )
@@ -36,9 +44,30 @@ script = ExtResource( 13 )
 
 [node name="Team" parent="World/Teams" groups=["teams"] instance=ExtResource( 5 )]
 
+[node name="Character1" parent="World/Teams/Team" index="1"]
+_data = ExtResource( 4 )
+_action_data = ExtResource( 2 )
+
+[node name="Character3" parent="World/Teams/Team" index="3"]
+_data = ExtResource( 20 )
+_action_data = ExtResource( 21 )
+is_weapon = true
+
 [node name="Team2" parent="World/Teams" groups=["teams"] instance=ExtResource( 5 )]
 position = Vector2( 200, 0 )
 side = -1
+
+[node name="Character0" parent="World/Teams/Team2" index="0"]
+_data = ExtResource( 25 )
+_action_data = ExtResource( 23 )
+
+[node name="Character1" parent="World/Teams/Team2" index="1"]
+is_weapon = true
+
+[node name="Character2" parent="World/Teams/Team2" index="2"]
+_data = ExtResource( 24 )
+_action_data = ExtResource( 22 )
+is_weapon = true
 
 [node name="UI" type="Control" parent="World"]
 anchor_right = 1.0
@@ -1408,3 +1437,6 @@ __meta__ = {
 
 [node name="PlaceholderTimer" type="Timer" parent="."]
 one_shot = true
+
+[editable path="World/Teams/Team"]
+[editable path="World/Teams/Team2"]
