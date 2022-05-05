@@ -58,7 +58,7 @@ func set_is_hovered(val: bool) -> void:
 func set_is_selected(val: bool) -> void:
 	is_selected = val
 	body.modulate = Color.blueviolet
-	emit_signal("selected", _available_actions)
+	emit_signal("selected", _available_actions) # send to World to hook up to UI
 
 
 func _set_side(val: int) -> void:

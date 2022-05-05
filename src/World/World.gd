@@ -80,7 +80,8 @@ func select(slot3: Vector3) -> void:
 	var team: Team = _get_team_by_side(side)
 	print(team.name)
 	
-	team.select(slot2)
+	var ch_to_select: Character = team.select(slot2)
+	ch_to_select.connect("selected", self, "_on_ch_selected", [ch_to_select])
 
 
 func hover(slot3_to_move: Vector3) -> void:
@@ -95,28 +96,26 @@ func hover(slot3_to_move: Vector3) -> void:
 	ui.move_hover_to(target_pos)
 
 
-func get_ch_by_slot3(slot3: Vector3) -> Character:
-	var ch: Character
-	var side = slot3.z
-	var team = _get_team_by_side(side)
-	
-	var slot2 := Vector2(slot3.x, slot3.y)
-	ch = team.characters[slot2]
-	
-	return ch
+func _on_hover_finished() -> void:
+	hovered_slot = slot_to_hover
+	can_select = true
+	var ch := get_ch_by_slot3(hovered_slot)
+	var ch_dict := ch.get_dict()
+	ui.update_ch_display(ch_dict)
 
 
-func get_ch_indic_pos(slot3: Vector3) -> Vector2:
-	var indic_pos := Vector2.ZERO
-	var ch := get_ch_by_slot3(slot3)
-	var side = slot3.z
-	
-	indic_pos = ch.position + ch.get_indic_pos()
-	if side == Side.RIGHT:
-		indic_pos += right_team.position
-	
-	return indic_pos
+func _on_ch_selected(ch: Character) -> void:
+	# ui.freeze_selection
+	# ui.display_selected_ch
+	pass
 
+func _on_ch_deselected() -> void:
+	# ui.unfreeze_selection
+	# ui.display_default
+	pass
+
+
+### MOVE SCREEN ###
 
 func switch_side_to(next_side: int) -> void:
 	if not next_side in Side.values():
@@ -158,20 +157,30 @@ func _on_screen_move_finished() -> void:
 	ui.reset_indic_to(target_pos)
 
 
-func _on_hover_finished() -> void:
-	hovered_slot = slot_to_hover
-	can_select = true
-	var ch := get_ch_by_slot3(hovered_slot)
-	var ch_dict := ch.get_dict()
-	ui.update_ch_display(ch_dict)
-
-
-func _on_hovered_slot_selected() -> void:
-	var ch_selected = get_ch_by_slot3(hovered_slot)
-	emit_signal("ch_selected", ch_selected)
-
-
 ### HELPERS ###
+
+func get_ch_by_slot3(slot3: Vector3) -> Character:
+	var ch: Character
+	var side = slot3.z
+	var team = _get_team_by_side(side)
+	
+	var slot2 := Vector2(slot3.x, slot3.y)
+	ch = team.characters[slot2]
+	
+	return ch
+
+
+func get_ch_indic_pos(slot3: Vector3) -> Vector2:
+	var indic_pos := Vector2.ZERO
+	var ch := get_ch_by_slot3(slot3)
+	var side = slot3.z
+	
+	indic_pos = ch.position + ch.get_indic_pos()
+	if side == Side.RIGHT:
+		indic_pos += right_team.position
+	
+	return indic_pos
+
 
 func _get_team_by_side(side: int) -> Team:
 	var t: Team
@@ -200,9 +209,5 @@ func is_in_grid(slot3) -> bool:
 	
 	if col < 0 or row < 0 or col >= width:
 		is_in_grid = false
-	
-#	if row < 0 or row * col > slots_per_team:
-#		is_in_grid = false
-	
 	
 	return is_in_grid

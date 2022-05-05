@@ -43,9 +43,12 @@ func setup_team() -> void:
 #			ch.set_is_hovered(true)
 
 
-func select(ch_slot: Vector2) -> void:
+func select(ch_slot: Vector2) -> Character:
 	var ch_to_select: Character = characters[ch_slot]
 	ch_to_select.set_is_selected(true)
+	
+	# Return the Ch to connect to its "selected" signal
+	return ch_to_select
 
 
 func get_ch_stats() -> Array:

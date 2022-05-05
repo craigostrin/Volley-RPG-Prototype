@@ -1,22 +1,12 @@
+# Top-level node for managing turns and combat
 extends Node2D
-
-#WORKING ON
-## refactoring character slots in Team and Character
-
-#CENTRAL TODO LIST
-## Mechanics
-### Players need HP and Stamina
-## UI Pane:
-### Make it switch between left and right, and reset to 0th ch slot
-### Make the list a grid or do away with the list entirely
 
 const WORLD_LEFT_POS  = Vector2(  0, 0)
 const WORLD_RIGHT_POS = Vector2(200, 0)
 
 var active_side: int  = Side.LEFT setget _set_active_side
 var active_team: Team
-#TODO ch stat manager
-## Game should just manage turns, active team, UI hookups, etc
+
 #TODO combat manager
 var team_l_ch_dicts := []
 var team_r_ch_dicts := []
@@ -90,17 +80,6 @@ func _set_active_side(val: int) -> void:
 	
 	active_side = val
 	active_team = team_l if active_side == Side.LEFT else team_r
-	
-	
-
-
-# UI SIGNALS
-#func _on_ui_selector_moved(ch_slot_hovered: Vector2) -> void:
-#	active_team.hover(ch_slot_hovered)
-
-func _on_ch_selected(ch_slot: Vector3) -> void:
-	#active_team.select(ch_slot)
-	pass
 
 
 # COMBAT SIGNALS

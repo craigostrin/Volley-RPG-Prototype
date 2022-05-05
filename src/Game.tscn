@@ -62,7 +62,7 @@ anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -200.0
-margin_bottom = 364.0
+margin_bottom = 430.0
 grow_horizontal = 0
 rect_min_size = Vector2( 200, 0 )
 theme = ExtResource( 3 )
@@ -75,89 +75,14 @@ __meta__ = {
 margin_left = 7.0
 margin_top = 7.0
 margin_right = 193.0
-margin_bottom = 357.0
-alignment = 1
-
-[node name="padding" type="Control" parent="World/UI/SidePanes/LeftPane/VBox"]
-margin_top = 16.0
-margin_right = 186.0
-margin_bottom = 116.0
-rect_min_size = Vector2( 0, 100 )
-
-[node name="StatsPanel" type="PanelContainer" parent="World/UI/SidePanes/LeftPane/VBox"]
-self_modulate = Color( 1, 1, 1, 0.862745 )
-margin_top = 120.0
-margin_right = 186.0
-margin_bottom = 193.0
-size_flags_horizontal = 3
-size_flags_vertical = 5
-script = ExtResource( 17 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="VBox" type="VBoxContainer" parent="World/UI/SidePanes/LeftPane/VBox/StatsPanel"]
-margin_left = 7.0
-margin_top = 7.0
-margin_right = 179.0
-margin_bottom = 66.0
-
-[node name="NameLabel" type="Label" parent="World/UI/SidePanes/LeftPane/VBox/StatsPanel/VBox"]
-margin_right = 172.0
-margin_bottom = 17.0
-grow_horizontal = 2
-text = "Name"
-align = 1
-
-[node name="HP" type="HBoxContainer" parent="World/UI/SidePanes/LeftPane/VBox/StatsPanel/VBox"]
-margin_top = 21.0
-margin_right = 172.0
-margin_bottom = 38.0
+margin_bottom = 423.0
 alignment = 2
-
-[node name="HpLabel" type="Label" parent="World/UI/SidePanes/LeftPane/VBox/StatsPanel/VBox/HP"]
-margin_left = 28.0
-margin_right = 48.0
-margin_bottom = 17.0
-text = "hp"
-align = 2
-valign = 1
-
-[node name="ProgressBar" type="ProgressBar" parent="World/UI/SidePanes/LeftPane/VBox/StatsPanel/VBox/HP"]
-margin_left = 52.0
-margin_right = 172.0
-margin_bottom = 17.0
-rect_min_size = Vector2( 120, 0 )
-step = 1.0
-value = 100.0
-
-[node name="Stamina" type="HBoxContainer" parent="World/UI/SidePanes/LeftPane/VBox/StatsPanel/VBox"]
-margin_top = 42.0
-margin_right = 172.0
-margin_bottom = 59.0
-alignment = 2
-
-[node name="StamLabel" type="Label" parent="World/UI/SidePanes/LeftPane/VBox/StatsPanel/VBox/Stamina"]
-margin_left = 8.0
-margin_right = 48.0
-margin_bottom = 17.0
-text = "stam"
-align = 2
-valign = 1
-
-[node name="ProgressBar" type="ProgressBar" parent="World/UI/SidePanes/LeftPane/VBox/StatsPanel/VBox/Stamina"]
-margin_left = 52.0
-margin_right = 172.0
-margin_bottom = 17.0
-rect_min_size = Vector2( 120, 0 )
-step = 1.0
-value = 75.0
 
 [node name="AbilityScoresPanel" type="PanelContainer" parent="World/UI/SidePanes/LeftPane/VBox"]
 self_modulate = Color( 1, 1, 1, 0.862745 )
-margin_top = 197.0
+margin_top = 198.0
 margin_right = 186.0
-margin_bottom = 333.0
+margin_bottom = 334.0
 script = ExtResource( 9 )
 
 [node name="VBox" type="VBoxContainer" parent="World/UI/SidePanes/LeftPane/VBox/AbilityScoresPanel"]
@@ -560,6 +485,81 @@ text = "Description of action. RichText Label means you can have special effects
 Will list Special Effects with a bit of flavor."
 fit_content_height = true
 
+[node name="StatsPanel" type="PanelContainer" parent="World/UI/SidePanes/LeftPane/VBox"]
+self_modulate = Color( 1, 1, 1, 0.862745 )
+margin_top = 338.0
+margin_right = 186.0
+margin_bottom = 411.0
+size_flags_horizontal = 3
+size_flags_vertical = 5
+script = ExtResource( 17 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBox" type="VBoxContainer" parent="World/UI/SidePanes/LeftPane/VBox/StatsPanel"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 179.0
+margin_bottom = 66.0
+
+[node name="NameLabel" type="Label" parent="World/UI/SidePanes/LeftPane/VBox/StatsPanel/VBox"]
+margin_right = 172.0
+margin_bottom = 17.0
+grow_horizontal = 2
+text = "Name"
+align = 1
+
+[node name="HP" type="HBoxContainer" parent="World/UI/SidePanes/LeftPane/VBox/StatsPanel/VBox"]
+margin_top = 21.0
+margin_right = 172.0
+margin_bottom = 38.0
+alignment = 2
+
+[node name="HpLabel" type="Label" parent="World/UI/SidePanes/LeftPane/VBox/StatsPanel/VBox/HP"]
+margin_left = 28.0
+margin_right = 48.0
+margin_bottom = 17.0
+text = "hp"
+align = 2
+valign = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="World/UI/SidePanes/LeftPane/VBox/StatsPanel/VBox/HP"]
+margin_left = 52.0
+margin_right = 172.0
+margin_bottom = 17.0
+rect_min_size = Vector2( 120, 0 )
+step = 1.0
+value = 100.0
+
+[node name="Stamina" type="HBoxContainer" parent="World/UI/SidePanes/LeftPane/VBox/StatsPanel/VBox"]
+margin_top = 42.0
+margin_right = 172.0
+margin_bottom = 59.0
+alignment = 2
+
+[node name="StamLabel" type="Label" parent="World/UI/SidePanes/LeftPane/VBox/StatsPanel/VBox/Stamina"]
+margin_left = 8.0
+margin_right = 48.0
+margin_bottom = 17.0
+text = "stam"
+align = 2
+valign = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="World/UI/SidePanes/LeftPane/VBox/StatsPanel/VBox/Stamina"]
+margin_left = 52.0
+margin_right = 172.0
+margin_bottom = 17.0
+rect_min_size = Vector2( 120, 0 )
+step = 1.0
+value = 75.0
+
+[node name="padding" type="Control" parent="World/UI/SidePanes/LeftPane/VBox"]
+margin_top = 415.0
+margin_right = 186.0
+margin_bottom = 416.0
+rect_min_size = Vector2( 0, 1 )
+
 [node name="RightPane" type="PanelContainer" parent="World/UI/SidePanes"]
 self_modulate = Color( 1, 1, 1, 0 )
 anchor_left = 1.0
@@ -567,8 +567,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 400.0
 margin_right = 600.0
-margin_bottom = 409.0
-grow_horizontal = 0
+margin_bottom = 430.0
 rect_min_size = Vector2( 200, 0 )
 theme = ExtResource( 3 )
 script = ExtResource( 8 )
@@ -580,107 +579,34 @@ __meta__ = {
 margin_left = 7.0
 margin_top = 7.0
 margin_right = 193.0
-margin_bottom = 402.0
-alignment = 1
-
-[node name="padding" type="Control" parent="World/UI/SidePanes/RightPane/VBox"]
-margin_top = 56.0
-margin_right = 186.0
-margin_bottom = 121.0
-rect_min_size = Vector2( 0, 65 )
-
-[node name="CharacterPanel" type="PanelContainer" parent="World/UI/SidePanes/RightPane/VBox"]
-self_modulate = Color( 1, 1, 1, 0.862745 )
-margin_top = 125.0
-margin_right = 186.0
-margin_bottom = 198.0
-size_flags_horizontal = 3
-size_flags_vertical = 5
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="VBox" type="VBoxContainer" parent="World/UI/SidePanes/RightPane/VBox/CharacterPanel"]
-margin_left = 7.0
-margin_top = 7.0
-margin_right = 179.0
-margin_bottom = 66.0
-
-[node name="Label" type="Label" parent="World/UI/SidePanes/RightPane/VBox/CharacterPanel/VBox"]
-margin_right = 172.0
-margin_bottom = 17.0
-grow_horizontal = 2
-text = "Name"
-align = 1
-
-[node name="HBox" type="HBoxContainer" parent="World/UI/SidePanes/RightPane/VBox/CharacterPanel/VBox"]
-margin_top = 21.0
-margin_right = 172.0
-margin_bottom = 38.0
+margin_bottom = 423.0
 alignment = 2
 
-[node name="HpLabel" type="Label" parent="World/UI/SidePanes/RightPane/VBox/CharacterPanel/VBox/HBox"]
-margin_left = 28.0
-margin_right = 48.0
-margin_bottom = 17.0
-text = "hp"
-align = 2
-valign = 1
-
-[node name="ProgressBar" type="ProgressBar" parent="World/UI/SidePanes/RightPane/VBox/CharacterPanel/VBox/HBox"]
-margin_left = 52.0
-margin_right = 172.0
-margin_bottom = 17.0
-rect_min_size = Vector2( 120, 0 )
-step = 1.0
-value = 100.0
-
-[node name="HBox2" type="HBoxContainer" parent="World/UI/SidePanes/RightPane/VBox/CharacterPanel/VBox"]
-margin_top = 42.0
-margin_right = 172.0
-margin_bottom = 59.0
-alignment = 2
-
-[node name="StamLabel" type="Label" parent="World/UI/SidePanes/RightPane/VBox/CharacterPanel/VBox/HBox2"]
-margin_left = 8.0
-margin_right = 48.0
-margin_bottom = 17.0
-text = "stam"
-align = 2
-valign = 1
-
-[node name="ProgressBar" type="ProgressBar" parent="World/UI/SidePanes/RightPane/VBox/CharacterPanel/VBox/HBox2"]
-margin_left = 52.0
-margin_right = 172.0
-margin_bottom = 17.0
-rect_min_size = Vector2( 120, 0 )
-step = 1.0
-value = 75.0
-
-[node name="StatsPanel" type="PanelContainer" parent="World/UI/SidePanes/RightPane/VBox"]
+[node name="AbilityScoresPanel" type="PanelContainer" parent="World/UI/SidePanes/RightPane/VBox"]
 self_modulate = Color( 1, 1, 1, 0.862745 )
-margin_top = 202.0
+margin_top = 198.0
 margin_right = 186.0
-margin_bottom = 338.0
+margin_bottom = 334.0
+script = ExtResource( 9 )
 
-[node name="VBoxContainer" type="VBoxContainer" parent="World/UI/SidePanes/RightPane/VBox/StatsPanel"]
+[node name="VBox" type="VBoxContainer" parent="World/UI/SidePanes/RightPane/VBox/AbilityScoresPanel"]
 margin_left = 7.0
 margin_top = 7.0
 margin_right = 179.0
 margin_bottom = 129.0
 
-[node name="Stat1" type="HBoxContainer" parent="World/UI/SidePanes/RightPane/VBox/StatsPanel/VBoxContainer"]
+[node name="Stat1" type="HBoxContainer" parent="World/UI/SidePanes/RightPane/VBox/AbilityScoresPanel/VBox"]
 margin_right = 172.0
 margin_bottom = 17.0
 grow_horizontal = 2
 alignment = 1
 
-[node name="pad1" type="Control" parent="World/UI/SidePanes/RightPane/VBox/StatsPanel/VBoxContainer/Stat1"]
+[node name="pad1" type="Control" parent="World/UI/SidePanes/RightPane/VBox/AbilityScoresPanel/VBox/Stat1"]
 margin_right = 10.0
 margin_bottom = 17.0
 rect_min_size = Vector2( 10, 0 )
 
-[node name="StatLabel" type="Label" parent="World/UI/SidePanes/RightPane/VBox/StatsPanel/VBoxContainer/Stat1"]
+[node name="StatLabel" type="Label" parent="World/UI/SidePanes/RightPane/VBox/AbilityScoresPanel/VBox/Stat1"]
 margin_left = 14.0
 margin_right = 79.0
 margin_bottom = 17.0
@@ -689,13 +615,13 @@ size_flags_horizontal = 3
 text = "PWR"
 valign = 1
 
-[node name="pad2" type="Control" parent="World/UI/SidePanes/RightPane/VBox/StatsPanel/VBoxContainer/Stat1"]
+[node name="pad2" type="Control" parent="World/UI/SidePanes/RightPane/VBox/AbilityScoresPanel/VBox/Stat1"]
 margin_left = 83.0
 margin_right = 103.0
 margin_bottom = 17.0
 rect_min_size = Vector2( 20, 0 )
 
-[node name="Stat" type="Label" parent="World/UI/SidePanes/RightPane/VBox/StatsPanel/VBoxContainer/Stat1"]
+[node name="Stat" type="Label" parent="World/UI/SidePanes/RightPane/VBox/AbilityScoresPanel/VBox/Stat1"]
 margin_left = 107.0
 margin_right = 172.0
 margin_bottom = 17.0
@@ -704,19 +630,19 @@ size_flags_horizontal = 3
 text = "85"
 valign = 1
 
-[node name="Stat2" type="HBoxContainer" parent="World/UI/SidePanes/RightPane/VBox/StatsPanel/VBoxContainer"]
+[node name="Stat2" type="HBoxContainer" parent="World/UI/SidePanes/RightPane/VBox/AbilityScoresPanel/VBox"]
 margin_top = 21.0
 margin_right = 172.0
 margin_bottom = 38.0
 grow_horizontal = 2
 alignment = 1
 
-[node name="pad1" type="Control" parent="World/UI/SidePanes/RightPane/VBox/StatsPanel/VBoxContainer/Stat2"]
+[node name="pad1" type="Control" parent="World/UI/SidePanes/RightPane/VBox/AbilityScoresPanel/VBox/Stat2"]
 margin_right = 10.0
 margin_bottom = 17.0
 rect_min_size = Vector2( 10, 0 )
 
-[node name="StatLabel" type="Label" parent="World/UI/SidePanes/RightPane/VBox/StatsPanel/VBoxContainer/Stat2"]
+[node name="StatLabel" type="Label" parent="World/UI/SidePanes/RightPane/VBox/AbilityScoresPanel/VBox/Stat2"]
 margin_left = 14.0
 margin_right = 79.0
 margin_bottom = 17.0
@@ -725,13 +651,13 @@ size_flags_horizontal = 3
 text = "AGI"
 valign = 1
 
-[node name="pad2" type="Control" parent="World/UI/SidePanes/RightPane/VBox/StatsPanel/VBoxContainer/Stat2"]
+[node name="pad2" type="Control" parent="World/UI/SidePanes/RightPane/VBox/AbilityScoresPanel/VBox/Stat2"]
 margin_left = 83.0
 margin_right = 103.0
 margin_bottom = 17.0
 rect_min_size = Vector2( 20, 0 )
 
-[node name="Stat" type="Label" parent="World/UI/SidePanes/RightPane/VBox/StatsPanel/VBoxContainer/Stat2"]
+[node name="Stat" type="Label" parent="World/UI/SidePanes/RightPane/VBox/AbilityScoresPanel/VBox/Stat2"]
 margin_left = 107.0
 margin_right = 172.0
 margin_bottom = 17.0
@@ -740,19 +666,19 @@ size_flags_horizontal = 3
 text = "85"
 valign = 1
 
-[node name="Stat3" type="HBoxContainer" parent="World/UI/SidePanes/RightPane/VBox/StatsPanel/VBoxContainer"]
+[node name="Stat3" type="HBoxContainer" parent="World/UI/SidePanes/RightPane/VBox/AbilityScoresPanel/VBox"]
 margin_top = 42.0
 margin_right = 172.0
 margin_bottom = 59.0
 grow_horizontal = 2
 alignment = 1
 
-[node name="pad1" type="Control" parent="World/UI/SidePanes/RightPane/VBox/StatsPanel/VBoxContainer/Stat3"]
+[node name="pad1" type="Control" parent="World/UI/SidePanes/RightPane/VBox/AbilityScoresPanel/VBox/Stat3"]
 margin_right = 10.0
 margin_bottom = 17.0
 rect_min_size = Vector2( 10, 0 )
 
-[node name="StatLabel" type="Label" parent="World/UI/SidePanes/RightPane/VBox/StatsPanel/VBoxContainer/Stat3"]
+[node name="StatLabel" type="Label" parent="World/UI/SidePanes/RightPane/VBox/AbilityScoresPanel/VBox/Stat3"]
 margin_left = 14.0
 margin_right = 79.0
 margin_bottom = 17.0
@@ -761,13 +687,13 @@ size_flags_horizontal = 3
 text = "END"
 valign = 1
 
-[node name="pad2" type="Control" parent="World/UI/SidePanes/RightPane/VBox/StatsPanel/VBoxContainer/Stat3"]
+[node name="pad2" type="Control" parent="World/UI/SidePanes/RightPane/VBox/AbilityScoresPanel/VBox/Stat3"]
 margin_left = 83.0
 margin_right = 103.0
 margin_bottom = 17.0
 rect_min_size = Vector2( 20, 0 )
 
-[node name="Stat" type="Label" parent="World/UI/SidePanes/RightPane/VBox/StatsPanel/VBoxContainer/Stat3"]
+[node name="Stat" type="Label" parent="World/UI/SidePanes/RightPane/VBox/AbilityScoresPanel/VBox/Stat3"]
 margin_left = 107.0
 margin_right = 172.0
 margin_bottom = 17.0
@@ -776,19 +702,19 @@ size_flags_horizontal = 3
 text = "85"
 valign = 1
 
-[node name="Stat4" type="HBoxContainer" parent="World/UI/SidePanes/RightPane/VBox/StatsPanel/VBoxContainer"]
+[node name="Stat4" type="HBoxContainer" parent="World/UI/SidePanes/RightPane/VBox/AbilityScoresPanel/VBox"]
 margin_top = 63.0
 margin_right = 172.0
 margin_bottom = 80.0
 grow_horizontal = 2
 alignment = 1
 
-[node name="pad1" type="Control" parent="World/UI/SidePanes/RightPane/VBox/StatsPanel/VBoxContainer/Stat4"]
+[node name="pad1" type="Control" parent="World/UI/SidePanes/RightPane/VBox/AbilityScoresPanel/VBox/Stat4"]
 margin_right = 10.0
 margin_bottom = 17.0
 rect_min_size = Vector2( 10, 0 )
 
-[node name="StatLabel" type="Label" parent="World/UI/SidePanes/RightPane/VBox/StatsPanel/VBoxContainer/Stat4"]
+[node name="StatLabel" type="Label" parent="World/UI/SidePanes/RightPane/VBox/AbilityScoresPanel/VBox/Stat4"]
 margin_left = 14.0
 margin_right = 79.0
 margin_bottom = 17.0
@@ -797,13 +723,13 @@ size_flags_horizontal = 3
 text = "INT"
 valign = 1
 
-[node name="pad2" type="Control" parent="World/UI/SidePanes/RightPane/VBox/StatsPanel/VBoxContainer/Stat4"]
+[node name="pad2" type="Control" parent="World/UI/SidePanes/RightPane/VBox/AbilityScoresPanel/VBox/Stat4"]
 margin_left = 83.0
 margin_right = 103.0
 margin_bottom = 17.0
 rect_min_size = Vector2( 20, 0 )
 
-[node name="Stat" type="Label" parent="World/UI/SidePanes/RightPane/VBox/StatsPanel/VBoxContainer/Stat4"]
+[node name="Stat" type="Label" parent="World/UI/SidePanes/RightPane/VBox/AbilityScoresPanel/VBox/Stat4"]
 margin_left = 107.0
 margin_right = 172.0
 margin_bottom = 17.0
@@ -812,19 +738,19 @@ size_flags_horizontal = 3
 text = "85"
 valign = 1
 
-[node name="Stat5" type="HBoxContainer" parent="World/UI/SidePanes/RightPane/VBox/StatsPanel/VBoxContainer"]
+[node name="Stat5" type="HBoxContainer" parent="World/UI/SidePanes/RightPane/VBox/AbilityScoresPanel/VBox"]
 margin_top = 84.0
 margin_right = 172.0
 margin_bottom = 101.0
 grow_horizontal = 2
 alignment = 1
 
-[node name="pad1" type="Control" parent="World/UI/SidePanes/RightPane/VBox/StatsPanel/VBoxContainer/Stat5"]
+[node name="pad1" type="Control" parent="World/UI/SidePanes/RightPane/VBox/AbilityScoresPanel/VBox/Stat5"]
 margin_right = 10.0
 margin_bottom = 17.0
 rect_min_size = Vector2( 10, 0 )
 
-[node name="StatLabel" type="Label" parent="World/UI/SidePanes/RightPane/VBox/StatsPanel/VBoxContainer/Stat5"]
+[node name="StatLabel" type="Label" parent="World/UI/SidePanes/RightPane/VBox/AbilityScoresPanel/VBox/Stat5"]
 margin_left = 14.0
 margin_right = 79.0
 margin_bottom = 17.0
@@ -833,13 +759,13 @@ size_flags_horizontal = 3
 text = "WIS"
 valign = 1
 
-[node name="pad2" type="Control" parent="World/UI/SidePanes/RightPane/VBox/StatsPanel/VBoxContainer/Stat5"]
+[node name="pad2" type="Control" parent="World/UI/SidePanes/RightPane/VBox/AbilityScoresPanel/VBox/Stat5"]
 margin_left = 83.0
 margin_right = 103.0
 margin_bottom = 17.0
 rect_min_size = Vector2( 20, 0 )
 
-[node name="Stat" type="Label" parent="World/UI/SidePanes/RightPane/VBox/StatsPanel/VBoxContainer/Stat5"]
+[node name="Stat" type="Label" parent="World/UI/SidePanes/RightPane/VBox/AbilityScoresPanel/VBox/Stat5"]
 margin_left = 107.0
 margin_right = 172.0
 margin_bottom = 17.0
@@ -848,19 +774,19 @@ size_flags_horizontal = 3
 text = "85"
 valign = 1
 
-[node name="Stat6" type="HBoxContainer" parent="World/UI/SidePanes/RightPane/VBox/StatsPanel/VBoxContainer"]
+[node name="Stat6" type="HBoxContainer" parent="World/UI/SidePanes/RightPane/VBox/AbilityScoresPanel/VBox"]
 margin_top = 105.0
 margin_right = 172.0
 margin_bottom = 122.0
 grow_horizontal = 2
 alignment = 1
 
-[node name="pad1" type="Control" parent="World/UI/SidePanes/RightPane/VBox/StatsPanel/VBoxContainer/Stat6"]
+[node name="pad1" type="Control" parent="World/UI/SidePanes/RightPane/VBox/AbilityScoresPanel/VBox/Stat6"]
 margin_right = 10.0
 margin_bottom = 17.0
 rect_min_size = Vector2( 10, 0 )
 
-[node name="StatLabel" type="Label" parent="World/UI/SidePanes/RightPane/VBox/StatsPanel/VBoxContainer/Stat6"]
+[node name="StatLabel" type="Label" parent="World/UI/SidePanes/RightPane/VBox/AbilityScoresPanel/VBox/Stat6"]
 margin_left = 14.0
 margin_right = 79.0
 margin_bottom = 17.0
@@ -869,13 +795,13 @@ size_flags_horizontal = 3
 text = "CHA"
 valign = 1
 
-[node name="pad2" type="Control" parent="World/UI/SidePanes/RightPane/VBox/StatsPanel/VBoxContainer/Stat6"]
+[node name="pad2" type="Control" parent="World/UI/SidePanes/RightPane/VBox/AbilityScoresPanel/VBox/Stat6"]
 margin_left = 83.0
 margin_right = 103.0
 margin_bottom = 17.0
 rect_min_size = Vector2( 20, 0 )
 
-[node name="Stat" type="Label" parent="World/UI/SidePanes/RightPane/VBox/StatsPanel/VBoxContainer/Stat6"]
+[node name="Stat" type="Label" parent="World/UI/SidePanes/RightPane/VBox/AbilityScoresPanel/VBox/Stat6"]
 margin_left = 107.0
 margin_right = 172.0
 margin_bottom = 17.0
@@ -1062,6 +988,81 @@ text = "Description of action. RichText Label means you can have special effects
 
 Will list Special Effects with a bit of flavor."
 fit_content_height = true
+
+[node name="StatsPanel" type="PanelContainer" parent="World/UI/SidePanes/RightPane/VBox"]
+self_modulate = Color( 1, 1, 1, 0.862745 )
+margin_top = 338.0
+margin_right = 186.0
+margin_bottom = 411.0
+size_flags_horizontal = 3
+size_flags_vertical = 5
+script = ExtResource( 17 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBox" type="VBoxContainer" parent="World/UI/SidePanes/RightPane/VBox/StatsPanel"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 179.0
+margin_bottom = 66.0
+
+[node name="NameLabel" type="Label" parent="World/UI/SidePanes/RightPane/VBox/StatsPanel/VBox"]
+margin_right = 172.0
+margin_bottom = 17.0
+grow_horizontal = 2
+text = "Name"
+align = 1
+
+[node name="HP" type="HBoxContainer" parent="World/UI/SidePanes/RightPane/VBox/StatsPanel/VBox"]
+margin_top = 21.0
+margin_right = 172.0
+margin_bottom = 38.0
+alignment = 2
+
+[node name="HpLabel" type="Label" parent="World/UI/SidePanes/RightPane/VBox/StatsPanel/VBox/HP"]
+margin_left = 28.0
+margin_right = 48.0
+margin_bottom = 17.0
+text = "hp"
+align = 2
+valign = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="World/UI/SidePanes/RightPane/VBox/StatsPanel/VBox/HP"]
+margin_left = 52.0
+margin_right = 172.0
+margin_bottom = 17.0
+rect_min_size = Vector2( 120, 0 )
+step = 1.0
+value = 100.0
+
+[node name="Stamina" type="HBoxContainer" parent="World/UI/SidePanes/RightPane/VBox/StatsPanel/VBox"]
+margin_top = 42.0
+margin_right = 172.0
+margin_bottom = 59.0
+alignment = 2
+
+[node name="StamLabel" type="Label" parent="World/UI/SidePanes/RightPane/VBox/StatsPanel/VBox/Stamina"]
+margin_left = 8.0
+margin_right = 48.0
+margin_bottom = 17.0
+text = "stam"
+align = 2
+valign = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="World/UI/SidePanes/RightPane/VBox/StatsPanel/VBox/Stamina"]
+margin_left = 52.0
+margin_right = 172.0
+margin_bottom = 17.0
+rect_min_size = Vector2( 120, 0 )
+step = 1.0
+value = 75.0
+
+[node name="padding" type="Control" parent="World/UI/SidePanes/RightPane/VBox"]
+margin_top = 415.0
+margin_right = 186.0
+margin_bottom = 416.0
+rect_min_size = Vector2( 0, 1 )
 
 [node name="ScorePanels" type="Control" parent="World/UI"]
 anchor_right = 1.0
