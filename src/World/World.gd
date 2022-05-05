@@ -48,8 +48,11 @@ func _unhandled_input(event: InputEvent) -> void:
 		# DOWN is negative, which is up in 2D
 		var slot3 := Vector3.DOWN
 		hover(slot3)
+	
 	if event.is_action_pressed("ui_accept"):
 		select(hovered_slot)
+	if event.is_action_pressed("ui_cancel"):
+		ui.deselect()
 
 
 func init_teams() -> void:
@@ -75,14 +78,16 @@ func select(slot3: Vector3) -> void:
 		printerr("Invalid selection attempt.")
 		return
 	
-	var slot2 = Vector2(slot3.x, slot3.y)
-	var side = slot3.z
-	print(side)
+	ui.select_hovered_slot()
+
+
+func _on_hovered_slot_selected() -> void:
+	var slot2 = Vector2(hovered_slot.x, hovered_slot.y)
+	var side = hovered_slot.z
 	var team: Team = _get_team_by_side(side)
-	print(team.name)
 	
-	var ch_to_select: Character = team.select(slot2)
-	ch_to_select.connect("selected", self, "_on_ch_selected", [ch_to_select])
+	var avail_actions: Array = team.select(slot2)
+	ui.activate_action_view(avail_actions)
 
 
 func hover(slot3_to_move: Vector3) -> void:
@@ -103,17 +108,6 @@ func _on_hover_finished() -> void:
 	var ch := get_ch_by_slot3(hovered_slot)
 	var ch_dict := ch.get_dict()
 	ui.update_ch_display(ch_dict)
-
-
-func _on_ch_selected(ch: Character) -> void:
-	# ui.freeze_selection
-	# ui.display_selected_ch
-	pass
-
-func _on_ch_deselected() -> void:
-	# ui.unfreeze_selection
-	# ui.display_default
-	pass
 
 
 ### MOVE SCREEN ###

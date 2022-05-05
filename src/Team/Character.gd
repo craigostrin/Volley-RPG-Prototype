@@ -51,14 +51,13 @@ func play_anim(name: String) -> void:
 	anim_sprite.play(name)
 
 
+# Why is this needed?
 func set_is_hovered(val: bool) -> void:
 	is_hovered = val
 
-
+# Why is this needed?
 func set_is_selected(val: bool) -> void:
 	is_selected = val
-	body.modulate = Color.blueviolet
-	emit_signal("selected", _available_actions) # send to World to hook up to UI
 
 
 func _set_side(val: int) -> void:
@@ -93,3 +92,6 @@ func get_stats() -> Dictionary:
 
 func get_ability_scores() -> Array:
 	return _ability_scores
+
+func get_avail_actions() -> Array:
+	return _available_actions

@@ -14,22 +14,19 @@ func _ready() -> void:
 
 
 func move_to(target_pos: Vector2) -> void:
-	if ready_to_move:
-		ready_to_move = false
-		
-		var dist := Vector2(rect_position).distance_to(target_pos)
-		var move_duration := dist / MOVE_SPD
-		
-		t.interpolate_property(
-			self,
-			"rect_position",
-			rect_position,
-			target_pos,
-			move_duration,
-			Tween.TRANS_LINEAR,
-			Tween.EASE_IN
-		)
-		t.start()
+	var dist := Vector2(rect_position).distance_to(target_pos)
+	var move_duration := dist / MOVE_SPD
+	
+	t.interpolate_property(
+		self,
+		"rect_position",
+		rect_position,
+		target_pos,
+		move_duration,
+		Tween.TRANS_LINEAR,
+		Tween.EASE_IN
+	)
+	t.start()
 
 
 func warp_to(target_pos: Vector2) -> void:
@@ -38,5 +35,4 @@ func warp_to(target_pos: Vector2) -> void:
 
 
 func _on_tween_all_completed() -> void:
-	ready_to_move = true
 	emit_signal("move_finished")
