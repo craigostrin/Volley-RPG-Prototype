@@ -19,6 +19,14 @@ export var action4 := ""
 export var uses4   := 10
 export var desc4   := ""
 
+export var action5 := ""
+export var uses5   := 10
+export var desc5   := ""
+
+export var action6 := ""
+export var uses6   := 10
+export var desc6   := ""
+
 
 func get_actions() -> Array:
 	var actions := []
@@ -38,6 +46,14 @@ func get_actions() -> Array:
 	if not action4 == "":
 		actions.append(
 			{ "label" : action4, "max_uses" : uses4 , "description" : desc4 }
+		)
+	if not action5 == "":
+		actions.append(
+			{ "label" : action5, "max_uses" : uses5 , "description" : desc5 }
+		)
+	if not action6 == "":
+		actions.append(
+			{ "label" : action6, "max_uses" : uses6 , "description" : desc6 }
 		)
 	
 	return actions

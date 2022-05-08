@@ -3,9 +3,12 @@ extends Node2D
 
 var active_side: int  = Side.LEFT setget _set_active_side
 
-#TODO combat manager
-var team_l_ch_dicts := []
-var team_r_ch_dicts := []
+enum Phase {
+	SERVE,
+	RECEIVE,
+	SET,
+	BLOCK
+}
 
 onready var test_timer: Timer = $PlaceholderTimer
 

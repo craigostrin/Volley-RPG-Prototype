@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource( 1 )
-action1 = "Rolling Thunder"
+action1 = "Lightning Dive"
 uses1 = 10
 desc1 = ""
 action2 = "Boost Morale"
@@ -16,3 +16,9 @@ desc3 = ""
 action4 = "Heroic Dive"
 uses4 = 10
 desc4 = ""
+action5 = ""
+uses5 = 10
+desc5 = ""
+action6 = ""
+uses6 = 10
+desc6 = ""
