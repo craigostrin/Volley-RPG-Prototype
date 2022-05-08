@@ -6,19 +6,18 @@
 margin_right = 172.0
 margin_bottom = 20.0
 grow_horizontal = 2
-alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="pad1" type="Control" parent="."]
-margin_right = 10.0
+margin_right = 5.0
 margin_bottom = 20.0
-rect_min_size = Vector2( 10, 0 )
+rect_min_size = Vector2( 5, 0 )
 
 [node name="Selector" type="TextureRect" parent="."]
-margin_left = 14.0
-margin_right = 34.0
+margin_left = 9.0
+margin_right = 29.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 20, 20 )
 size_flags_horizontal = 8
@@ -27,13 +26,13 @@ texture = ExtResource( 1 )
 stretch_mode = 5
 
 [node name="pad2" type="Control" parent="."]
-margin_left = 38.0
-margin_right = 58.0
+margin_left = 33.0
+margin_right = 43.0
 margin_bottom = 20.0
-rect_min_size = Vector2( 20, 0 )
+rect_min_size = Vector2( 10, 0 )
 
 [node name="Label" type="Label" parent="."]
-margin_left = 62.0
+margin_left = 47.0
 margin_top = 3.0
 margin_right = 172.0
 margin_bottom = 17.0
