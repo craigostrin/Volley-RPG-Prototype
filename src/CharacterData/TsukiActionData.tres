@@ -6,9 +6,13 @@
 script = ExtResource( 1 )
 action1 = "Read Block"
 uses1 = 10
+desc1 = ""
 action2 = "Predict"
 uses2 = 10
+desc2 = ""
 action3 = "Mind Games"
 uses3 = 10
+desc3 = ""
 action4 = "Taunt"
 uses4 = 10
+desc4 = ""

@@ -6,9 +6,13 @@
 script = ExtResource( 1 )
 action1 = "Con Job"
 uses1 = 10
+desc1 = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ultricies."
 action2 = "Witty Remark"
 uses2 = 10
+desc2 = "In sed mattis ex. Aenean ultrices diam lectus, ut placerat."
 action3 = "Play Music"
 uses3 = 10
-action4 = "Sew Flag"
+desc3 = "Sed et tortor a velit eleifend fermentum. Ut ac dapibus."
+action4 = ""
 uses4 = 10
+desc4 = ""

@@ -5,11 +5,12 @@
 [resource]
 script = ExtResource( 1 )
 name = "Blackbeard"
-max_health = 120
+max_health = 100
 max_stamina = 100
-PWR = 80
-AGI = 90
-END = 95
-INT = 85
-WIS = 60
-CHA = 99
+type = 0
+spiking = 80
+passing = 70
+setting = 65
+digging = 90
+agility = 90
+endurance = 99

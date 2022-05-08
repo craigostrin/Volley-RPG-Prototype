@@ -6,9 +6,13 @@
 script = ExtResource( 1 )
 action1 = "Terrify"
 uses1 = 10
+desc1 = "Act all scary"
 action2 = "Drink"
 uses2 = 10
+desc2 = "Get rum drunk"
 action3 = "Get Stabbed"
 uses3 = 10
+desc3 = "Take it properly"
 action4 = "Fuckery"
 uses4 = 10
+desc4 = "Let 'em know"

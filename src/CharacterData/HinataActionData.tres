@@ -6,9 +6,13 @@
 script = ExtResource( 1 )
 action1 = "Minus Attack"
 uses1 = 10
+desc1 = "Strike as fast as possible"
 action2 = "Jump"
 uses2 = 10
+desc2 = "Take to the skies"
 action3 = "Focus"
 uses3 = 10
-action4 = "Heroic Leap"
+desc3 = "Clear eyes can't lose"
+action4 = "Heroic Save"
 uses4 = 10
+desc4 = "Never give up until the last point is scored"

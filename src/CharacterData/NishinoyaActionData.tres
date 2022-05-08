@@ -6,9 +6,13 @@
 script = ExtResource( 1 )
 action1 = "Rolling Thunder"
 uses1 = 10
+desc1 = ""
 action2 = "Boost Morale"
 uses2 = 10
+desc2 = ""
 action3 = "Stand Ground"
 uses3 = 10
+desc3 = ""
 action4 = "Heroic Dive"
 uses4 = 10
+desc4 = ""

@@ -55,6 +55,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		ui.deselect()
 
 
+# Set the team slots and trigger each team's init functions
 func init_teams() -> void:
 	var teams := [left_team, right_team]
 	
@@ -82,10 +83,12 @@ func select(slot3: Vector3) -> void:
 
 
 func _on_hovered_slot_selected() -> void:
-	var slot2 = Vector2(hovered_slot.x, hovered_slot.y)
+	# Find the correct team based on slot3
 	var side = hovered_slot.z
 	var team: Team = _get_team_by_side(side)
 	
+	# Use slot2 to get the ch's up-to-date action list
+	var slot2 = Vector2(hovered_slot.x, hovered_slot.y)
 	var avail_actions: Array = team.select(slot2)
 	ui.activate_action_view(avail_actions)
 

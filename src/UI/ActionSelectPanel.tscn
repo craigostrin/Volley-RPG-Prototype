@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://src/UI/ActionSelectPanel.gd" type="Script" id=1]
+
+[node name="ActionSelectPanel" type="PanelContainer"]
+margin_top = 598.0
+margin_right = 186.0
+margin_bottom = 704.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Actions" type="VBoxContainer" parent="."]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 179.0
+margin_bottom = 99.0

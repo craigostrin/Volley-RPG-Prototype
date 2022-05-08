@@ -1,3 +1,5 @@
+#TODO Rotation
+
 class_name Team
 extends Node2D
 
@@ -45,7 +47,7 @@ func setup_team() -> void:
 
 func select(ch_slot: Vector2) -> Array:
 	var ch_to_select: Character = characters[ch_slot]
-	ch_to_select.set_is_selected(true)
+	ch_to_select.is_selected = true
 	
 	var avail_actions := ch_to_select.get_avail_actions()
 	return avail_actions

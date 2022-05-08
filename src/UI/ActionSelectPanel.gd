@@ -1,17 +1,16 @@
 extends PanelContainer
 
-signal selector_moved(ch_slot_hovered)
-signal ch_selected(ch_slot)
+signal action_hovered(description)
+signal action_selected(action)
+
+var action_slot_scene := preload("res://src/UI/ActionSlot.tscn")
 
 const OPAQUE = 255
 const TRANSP = 0
 
-onready var _slots := $Actions.get_children()
+var _slots := []
 var _slot_index := 0 setget _set_slot_index
-
-
-func _ready() -> void:
-	reset()
+var _actions := []
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -35,16 +34,33 @@ func move_selector_down() -> void:
 func move_selector_up() -> void:
 	self._slot_index -= 1
 
-func select_ch() -> void:
-	emit_signal("ch_selected", _slot_index)
+func select_action() -> void:
+	var action = _actions[_slot_index]
+	emit_signal("action_selected", action)
 
 
 ## SETUP
 func populate_actions(avail_actions: Array) -> void:
+	_actions = avail_actions
+	
+	# Create the ActionSlot HBox
+	for action in _actions:
+		var action_slot = action_slot_scene.instance()
+		$Actions.add_child(action_slot)
+		_slots.append(action_slot)
+	
+	# Put the correct text into the ActionSlot
 	var i := 0
 	for slot in _slots:
-		slot.get_node("Label").text = avail_actions[i].label
+		slot.get_node("Label").text = _actions[i].label
 		i += 1
+
+
+# When a ch is de-selected, we need to clear the ActionSlots of the prev ch
+func clear_actions() -> void:
+	for slot in _slots:
+		slot.queue_free()
+	_slots.clear()
 
 
 # PRIVATE
@@ -60,4 +76,6 @@ func _activate_selector(index: int) -> void:
 func _set_slot_index(val: int) -> void:
 	_slot_index = wrapi(val, 0, _slots.size())
 	_activate_selector(_slot_index)
-	emit_signal("selector_moved", _slot_index)
+	
+	var description = _actions[_slot_index].description
+	emit_signal("action_hovered", description)

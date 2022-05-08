@@ -1,27 +1,16 @@
 # Top-level node for managing turns and combat
 extends Node2D
 
-const WORLD_LEFT_POS  = Vector2(  0, 0)
-const WORLD_RIGHT_POS = Vector2(200, 0)
-
 var active_side: int  = Side.LEFT setget _set_active_side
-var active_team: Team
 
 #TODO combat manager
 var team_l_ch_dicts := []
 var team_r_ch_dicts := []
 
 onready var test_timer: Timer = $PlaceholderTimer
-onready var test_char: Character = $World/Teams/Team/Character1
 
 onready var combat_manager: CombatManager = $CombatManager
 onready var world: Node2D = $World
-onready var left_pane: Control = $World/UI/SidePanes/LeftPane
-onready var right_pane: Control = $World/UI/SidePanes/RightPane
-onready var ch_select_panel: PanelContainer = \
-	$World/UI/SidePanes/LeftPane/VBox/ChSelectPanelContainer
-onready var team_l: Team = $World/Teams/Team
-onready var team_r: Team = $World/Teams/Team2
 
 
 func _ready() -> void:
@@ -31,7 +20,6 @@ func _ready() -> void:
 		"defense_action_completed", self, "_on_defense_action_completed")
 	
 	init_match()
-	left_pane.is_active_pane = true
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -79,7 +67,7 @@ func _set_active_side(val: int) -> void:
 	world.switch_side_to(active_side)
 	
 	active_side = val
-	active_team = team_l if active_side == Side.LEFT else team_r
+	#active_team = team_l if active_side == Side.LEFT else team_r
 
 
 # COMBAT SIGNALS

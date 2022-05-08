@@ -44,6 +44,7 @@ func activate_action_view(avail_actions: Array) -> void:
 
 func deselect() -> void:
 	_active_pane.swap_to_ch_select_view()
+	_active_pane.action_select_panel.clear_actions()
 	selec_indic.ready_to_move = true
 
 
@@ -58,6 +59,7 @@ func move_hover_to(target_pos: Vector2) -> void:
 
 func reset_indic_to(pos: Vector2) -> void:
 	selec_indic.warp_to(pos)
+	#update score display
 
 
 func _on_selec_indic_move_finished() -> void:

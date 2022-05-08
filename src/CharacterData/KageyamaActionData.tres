@@ -6,9 +6,13 @@
 script = ExtResource( 1 )
 action1 = "Minus Set"
 uses1 = 10
+desc1 = ""
 action2 = "Analyze"
 uses2 = 10
+desc2 = ""
 action3 = "Focus"
 uses3 = 10
+desc3 = ""
 action4 = "Fake Out"
 uses4 = 10
+desc4 = ""

@@ -1,5 +1,4 @@
 #TODO - fix the health / max_health issue
-#TODO - when character selected, send Signal with this Ch's action data
 
 class_name Character
 extends Position2D
@@ -20,7 +19,7 @@ var _ability_scores: Array
 var _available_actions: Array # Array of Dicts with up-to-date action data
 
 var is_hovered := false
-var is_selected := false setget set_is_selected
+var is_selected := false
 export var is_weapon := false
 
 var side: int = Side.LEFT setget _set_side
@@ -49,15 +48,6 @@ func play_anim(name: String) -> void:
 		return
 	
 	anim_sprite.play(name)
-
-
-# Why is this needed?
-func set_is_hovered(val: bool) -> void:
-	is_hovered = val
-
-# Why is this needed?
-func set_is_selected(val: bool) -> void:
-	is_selected = val
 
 
 func _set_side(val: int) -> void:
