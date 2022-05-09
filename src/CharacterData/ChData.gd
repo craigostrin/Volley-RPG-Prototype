@@ -20,6 +20,7 @@ enum Type {
 export var name := ""
 export var max_health: int
 export var max_stamina: int
+export var max_morale: int
 export(Type) var type
 
 # PLACEHOLDERS FOR THE REAL SHIT
@@ -37,6 +38,7 @@ func get_stats() -> Dictionary:
 		   "name" : name,
 	 "max_health" : max_health,
 	"max_stamina" : max_stamina,
+	 "max_morale" : max_morale
 }
 
 func get_ability_scores() -> Array:

@@ -1,11 +1,12 @@
 class_name ActionData
 extends Resource
 
-#TODO what if they have less than 4 actions?
+# Phases = SERVE, RECEIVE, SET, SPIKE
 
 export var action1 := ""
 export var uses1   := 10
 export var desc1   := ""
+export var phases  := []
 
 export var action2 := ""
 export var uses2   := 10

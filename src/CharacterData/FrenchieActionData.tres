@@ -7,6 +7,7 @@ script = ExtResource( 1 )
 action1 = "Con Job"
 uses1 = 10
 desc1 = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ultricies."
+phases = [  ]
 action2 = "Witty Remark"
 uses2 = 10
 desc2 = "In sed mattis ex. Aenean ultrices diam lectus, ut placerat."

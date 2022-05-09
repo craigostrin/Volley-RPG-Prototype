@@ -7,6 +7,7 @@ script = ExtResource( 1 )
 name = "Hinata"
 max_health = 65
 max_stamina = 100
+max_morale = 0
 type = 0
 spiking = 0
 passing = 0

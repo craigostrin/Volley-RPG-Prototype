@@ -11,8 +11,8 @@ export(Resource) var _data
 export(Resource) var _action_data
 
 var _name: String
-var health: int
 var stamina: int
+var morale: int
 
 var _stats: Dictionary
 var _ability_scores: Array
@@ -37,8 +37,8 @@ func _ready() -> void:
 	_available_actions = _action_data.get_actions()
 	
 	_name = _stats.name
-	health = _stats.max_health
 	stamina = _stats.max_stamina
+	morale = _stats.max_morale
 	play_anim("idle")
 
 
@@ -76,8 +76,8 @@ func get_dict() -> Dictionary:
 func get_stats() -> Dictionary:
 	return {
 		   "name" : _name,
-		 "health" : health,
-		"stamina" : stamina
+		"stamina" : stamina,
+		 "morale" : morale
 	}
 
 func get_ability_scores() -> Array:

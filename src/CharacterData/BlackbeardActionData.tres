@@ -7,6 +7,7 @@ script = ExtResource( 1 )
 action1 = "Terrify"
 uses1 = 10
 desc1 = "Act all scary"
+phases = [  ]
 action2 = "Drink"
 uses2 = 10
 desc2 = "Get rum drunk"

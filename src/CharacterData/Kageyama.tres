@@ -7,6 +7,7 @@ script = ExtResource( 1 )
 name = "Kageyama"
 max_health = 90
 max_stamina = 100
+max_morale = 0
 type = 1
 spiking = 70
 passing = 90

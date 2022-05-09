@@ -7,6 +7,7 @@ script = ExtResource( 1 )
 action1 = "Lightning Dive"
 uses1 = 10
 desc1 = ""
+phases = [  ]
 action2 = "Boost Morale"
 uses2 = 10
 desc2 = ""

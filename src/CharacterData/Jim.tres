@@ -7,6 +7,7 @@ script = ExtResource( 1 )
 name = "Jim"
 max_health = 70
 max_stamina = 80
+max_morale = 0
 type = 0
 spiking = 80
 passing = 80
