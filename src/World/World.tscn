@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://assets/art/environment/beachbkgExpanded.png" type="Texture" id=1]
 [ext_resource path="res://assets/art/environment/net0.png" type="Texture" id=2]
+[ext_resource path="res://assets/art/environment/Beachbkg2.png" type="Texture" id=3]
 
 [sub_resource type="AtlasTexture" id=8]
 atlas = ExtResource( 2 )
@@ -37,11 +37,6 @@ animations = [ {
 
 [node name="World" type="Node2D"]
 
-[node name="Background" type="Sprite" parent="."]
-texture = ExtResource( 1 )
-centered = false
-offset = Vector2( -325, 0 )
-
 [node name="Net" type="AnimatedSprite" parent="."]
 position = Vector2( 184, 48 )
 scale = Vector2( 0.822222, 0.822222 )
@@ -53,3 +48,7 @@ position = Vector2( 200, 215 )
 __meta__ = {
 "_gizmo_extents_": 20.0
 }
+
+[node name="Beachbkg2" type="Sprite" parent="."]
+texture = ExtResource( 3 )
+offset = Vector2( 185, 250 )

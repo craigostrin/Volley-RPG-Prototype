@@ -50,9 +50,12 @@ func _unhandled_input(event: InputEvent) -> void:
 		hover(slot3)
 	
 	if event.is_action_pressed("ui_accept"):
-		select(hovered_slot)
+		select_hovered_slot()
 	if event.is_action_pressed("ui_cancel"):
 		ui.deselect()
+	
+	if event.is_action_pressed("debug_F"):
+		left_team.rotate_slots()
 
 
 # Set the team slots and trigger each team's init functions
@@ -74,7 +77,7 @@ func init_ui() -> void:
 
 ### CHARACTER SELECTION ###
 
-func select(slot3: Vector3) -> void:
+func select_hovered_slot() -> void:
 	if not can_select:
 		printerr("Invalid selection attempt.")
 		return
@@ -101,6 +104,7 @@ func hover(slot3_to_move: Vector3) -> void:
 	if not is_in_grid(slot_to_hover):
 		return
 	
+	can_select = false
 	var target_pos := get_ch_indic_pos(slot_to_hover)
 	ui.move_hover_to(target_pos)
 
