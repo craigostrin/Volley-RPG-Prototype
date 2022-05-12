@@ -12,12 +12,12 @@ _global_script_classes=[ {
 "base": "Resource",
 "class": "ActionData",
 "language": "GDScript",
-"path": "res://src/CharacterData/ActionData.gd"
+"path": "res://data/CharacterData/ActionData.gd"
 }, {
 "base": "Resource",
 "class": "ChData",
 "language": "GDScript",
-"path": "res://src/CharacterData/ChData.gd"
+"path": "res://data/CharacterData/ChData.gd"
 }, {
 "base": "Position2D",
 "class": "Character",

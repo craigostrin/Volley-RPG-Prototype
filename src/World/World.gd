@@ -68,6 +68,7 @@ func init_teams() -> void:
 		team.setup_team()
 
 
+# Vector3.BACK = 0,0,1, which is Slot(0,0) on the LEFT Side
 func init_ui() -> void:
 	ui.active_side = Side.LEFT
 	ui.reset_indic_to(get_ch_indic_pos(Vector3.BACK))
@@ -165,6 +166,8 @@ func _on_screen_move_finished() -> void:
 
 ### HELPERS ###
 
+# Slot2 is their position on their Team's grid, the Z axis tell us the team:
+# 1 for LEFT or -1 for RIGHT.
 func get_ch_by_slot3(slot3: Vector3) -> Character:
 	var ch: Character
 	var side = slot3.z

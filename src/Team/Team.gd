@@ -36,15 +36,8 @@ func setup_team() -> void:
 			teammates.append(ch)
 
 
-#func hover(ch_slot: Vector2) -> void:
-#	var ch_to_hover: Character = characters[ch_slot]
-#	for ch in characters.values():
-#		if not ch == ch_to_hover:
-#			ch.set_is_hovered(false)
-#		else:
-#			ch.set_is_hovered(true)
-
-
+# Tell the character that it's selected (not sure this is necessary) and return
+# that ch's available actions so the UI can populate its list
 func select(ch_slot: Vector2) -> Array:
 	var ch_to_select: Character = characters[ch_slot]
 	ch_to_select.is_selected = true

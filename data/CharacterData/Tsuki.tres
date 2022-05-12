@@ -1,12 +1,12 @@
 [gd_resource type="Resource" load_steps=2 format=2]
 
-[ext_resource path="res://src/CharacterData/ChData.gd" type="Script" id=1]
+[ext_resource path="res://data/CharacterData/ChData.gd" type="Script" id=1]
 
 [resource]
 script = ExtResource( 1 )
-name = "Hinata"
-max_health = 65
-max_stamina = 100
+name = "Tsuki"
+max_health = 100
+max_stamina = 80
 max_morale = 0
 type = 0
 spiking = 0
