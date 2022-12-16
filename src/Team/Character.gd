@@ -5,6 +5,7 @@ extends Position2D
 
 signal selected( available_actions )
 
+# I don't think this is used anywhere?
 const RIGHT_SIDE_X = 200.0
 
 export(Resource) var _data

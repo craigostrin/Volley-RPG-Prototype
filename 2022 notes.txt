@@ -7,3 +7,6 @@ Probably ditch the time-based component. Just seems overly complicated.
 
 Maybe keep the time component? And pare down the stats and abilities. They should be simple and legible. Keep the hand selector on the player's side of the screen so they're preparing for the opponent's move.
 	Hand selector should be moved with 1 / 2 / 3 keys?
+
+
+re: 3v3 beach: https://www.reddit.com/r/volleyball/comments/2r5tj6/strategy_for_3v3_beach_for_players_coming_from/

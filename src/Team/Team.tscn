@@ -1,36 +1,29 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://src/Team/Character.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Team/Team.gd" type="Script" id=2]
-[ext_resource path="res://data/CharacterData/Tsuki.tres" type="Resource" id=3]
 [ext_resource path="res://data/CharacterData/Hinata.tres" type="Resource" id=4]
 [ext_resource path="res://data/CharacterData/Blackbeard.tres" type="Resource" id=5]
 [ext_resource path="res://data/CharacterData/Frenchie.tres" type="Resource" id=6]
 [ext_resource path="res://data/CharacterData/HinataActionData.tres" type="Resource" id=7]
 [ext_resource path="res://data/CharacterData/BlackbeardActionData.tres" type="Resource" id=8]
-[ext_resource path="res://data/CharacterData/TsukiActionData.tres" type="Resource" id=9]
 [ext_resource path="res://data/CharacterData/FrenchieActionData.tres" type="Resource" id=10]
 
 [node name="Team" type="Node2D"]
 script = ExtResource( 2 )
 
 [node name="Character0" parent="." instance=ExtResource( 1 )]
-position = Vector2( 53, 220 )
+position = Vector2( 53, 258 )
 _data = ExtResource( 5 )
 _action_data = ExtResource( 8 )
 is_weapon = true
 
 [node name="Character1" parent="." instance=ExtResource( 1 )]
-position = Vector2( 147, 220 )
+position = Vector2( 53, 422 )
 _data = ExtResource( 4 )
 _action_data = ExtResource( 7 )
 
 [node name="Character2" parent="." instance=ExtResource( 1 )]
-position = Vector2( 53, 360 )
+position = Vector2( 147, 334 )
 _data = ExtResource( 6 )
 _action_data = ExtResource( 10 )
-
-[node name="Character3" parent="." instance=ExtResource( 1 )]
-position = Vector2( 147, 360 )
-_data = ExtResource( 3 )
-_action_data = ExtResource( 9 )

@@ -5,7 +5,7 @@ signal ch_selected(character)
 const LEFT_POS  = Vector2(  0, 0)
 const RIGHT_POS = Vector2(200, 0)
 
-var slots_per_team := 4
+var slots_per_team := 3
 var rows_per_team := 2
 
 var active_side := Side.LEFT
