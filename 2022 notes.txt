@@ -1,0 +1,9 @@
+Make it 3v3 - more constrained, more interesting decisions (i think)
+
+Get a bonus to your action based on distance to the ball
+	Speed or Agility modifies the bonus
+
+Probably ditch the time-based component. Just seems overly complicated.
+
+Maybe keep the time component? And pare down the stats and abilities. They should be simple and legible. Keep the hand selector on the player's side of the screen so they're preparing for the opponent's move.
+	Hand selector should be moved with 1 / 2 / 3 keys?
